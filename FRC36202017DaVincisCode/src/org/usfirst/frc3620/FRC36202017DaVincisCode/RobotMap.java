@@ -42,6 +42,7 @@ public class RobotMap {
     public static SpeedController shooterSubsystemShooterImpellerTalon;
     public static SpeedController gearSubsystemLeftRightTalon;
     public static SpeedController gearSubsystemTiltTalon;
+    public static DoubleSolenoid gearSubsystemGearPlunger;
     public static CANTalon climberSubsystemWinchCANTalon;
     public static SpeedController intakeSubsystemIntakeTalon;
 
@@ -92,6 +93,9 @@ public class RobotMap {
         
         gearSubsystemTiltTalon = new Talon(8);
         LiveWindow.addActuator("GearSubsystem", "Tilt Talon", (Talon) gearSubsystemTiltTalon);
+        
+        gearSubsystemGearPlunger = new DoubleSolenoid(0, 2, 3);
+        LiveWindow.addActuator("GearSubsystem", "Gear Plunger", gearSubsystemGearPlunger);
         
         climberSubsystemWinchCANTalon = new CANTalon(8);
         LiveWindow.addActuator("ClimberSubsystem", "Winch CAN Talon", climberSubsystemWinchCANTalon);
