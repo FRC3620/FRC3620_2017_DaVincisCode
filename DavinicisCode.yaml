@@ -148,30 +148,30 @@ Children:
     - Children: []
       Properties:
         Forward PCM (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
-          choices: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11',
-            '12', '13', '14', '15', '16', '17', '18', '19', '20']
+          choices: &id006 ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
+            '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
           default: '0'
           name: Forward PCM (Solenoid)
-          validators: [Solenoid]
+          validators: &id007 [Solenoid]
           value: '0'
         Reverse PCM (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
-          choices: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11',
-            '12', '13', '14', '15', '16', '17', '18', '19', '20']
+          choices: &id008 ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
+            '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
           default: '0'
           name: Reverse PCM (Solenoid)
-          validators: [Solenoid]
+          validators: &id009 [Solenoid]
           value: '0'
         Reverse Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
-          choices: ['0', '1', '2', '3', '4', '5', '6', '7']
+          choices: &id010 ['0', '1', '2', '3', '4', '5', '6', '7']
           default: '0'
           name: Reverse Channel (Solenoid)
-          validators: [Solenoid]
+          validators: &id011 [Solenoid]
           value: '1'
         Forward Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
-          choices: ['0', '1', '2', '3', '4', '5', '6', '7']
+          choices: &id012 ['0', '1', '2', '3', '4', '5', '6', '7']
           default: '0'
           name: Forward Channel (Solenoid)
-          validators: [Solenoid]
+          validators: &id013 [Solenoid]
           value: '0'
       Base: Double Solenoid
       Name: Shifter Solenoid
@@ -187,7 +187,7 @@ Children:
         default: []
         name: Constants
         validators: null
-        value: &id006 []
+        value: &id014 []
     Base: Subsystem
     Name: DriveSubsystem
   - Children:
@@ -276,6 +276,34 @@ Children:
           value: '8'
       Base: Speed Controller
       Name: Tilt Talon
+    - Children: []
+      Properties:
+        Forward PCM (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id006
+          default: '0'
+          name: Forward PCM (Solenoid)
+          validators: *id007
+          value: '0'
+        Reverse PCM (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id008
+          default: '0'
+          name: Reverse PCM (Solenoid)
+          validators: *id009
+          value: '0'
+        Reverse Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id010
+          default: '0'
+          name: Reverse Channel (Solenoid)
+          validators: *id011
+          value: '3'
+        Forward Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id012
+          default: '0'
+          name: Forward Channel (Solenoid)
+          validators: *id013
+          value: '2'
+      Base: Double Solenoid
+      Name: GearPlunger
     Properties:
       Default command parameters: !!robotbuilder.data.properties.ParametersProperty
         default: []
@@ -288,7 +316,7 @@ Children:
         default: []
         name: Constants
         validators: null
-        value: *id006
+        value: *id014
     Base: Subsystem
     Name: GearSubsystem
   - Children:
@@ -314,7 +342,7 @@ Children:
         default: []
         name: Constants
         validators: null
-        value: *id006
+        value: *id014
     Base: Subsystem
     Name: ClimberSubsystem
   - Children:
@@ -346,7 +374,7 @@ Children:
         default: []
         name: Constants
         validators: null
-        value: *id006
+        value: *id014
     Base: Subsystem
     Name: IntakeSubsystem
   - Children: []
@@ -362,7 +390,7 @@ Children:
         default: []
         name: Constants
         validators: null
-        value: *id006
+        value: *id014
     Base: Subsystem
     Name: MentorSubsystem
   Properties: {}
