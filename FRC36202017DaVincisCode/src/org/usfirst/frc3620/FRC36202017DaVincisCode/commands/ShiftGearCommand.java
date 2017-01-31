@@ -20,7 +20,7 @@ public class ShiftGearCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.gearSubsystem.shiftGear();
+    	Robot.gearSubsystem.shiftGear(Robot.oi.operatorJoystick.getRawAxis(3), Robot.oi.operatorJoystick.getRawAxis(2));
     }
 
     // Make this return true when this Command no longer needs to run execute()

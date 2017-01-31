@@ -45,13 +45,14 @@ public class GearSubsystem extends Subsystem {
 
     double gearShiftSpeed;
     double gearRotatorSpeed;
+   
     
-    public void shiftGear(){
-    	if(Robot.oi.operatorJoystick.getRawAxis(1)> .2){
-    		leftRightTalon.set(-gearShiftSpeed*Robot.oi.operatorJoystick.getRawAxis(2));
+    public void shiftGear(double gearShiftRightSpeed, double gearShiftLeftSpeed){
+    	if(Robot.oi.operatorJoystick.getRawAxis(3)> .2){
+    		leftRightTalon.set(-gearShiftRightSpeed);
     	}
-    	else if(Robot.oi.operatorJoystick.getRawAxis(1)< -.2){
-    	leftRightTalon.set(gearShiftSpeed*Robot.oi.operatorJoystick.getRawAxis(3));
+    	else if(Robot.oi.operatorJoystick.getRawAxis(2)< -.2){
+    	leftRightTalon.set(gearShiftLeftSpeed);
     	}
     	else{
     		leftRightTalon.set(0);
