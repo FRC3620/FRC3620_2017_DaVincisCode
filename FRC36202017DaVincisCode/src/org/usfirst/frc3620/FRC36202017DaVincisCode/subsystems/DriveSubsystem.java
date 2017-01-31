@@ -62,6 +62,7 @@ public class DriveSubsystem extends Subsystem {
     
     public void driveControl (Joystick joystick) {
 		robotDrive.arcadeDrive(joystick);
+		fixThirdMotor();
 	}
 
 	public void driveControl(double move, double rotate){
@@ -74,15 +75,25 @@ public class DriveSubsystem extends Subsystem {
 		}
 		
 		robotDrive.arcadeDrive(move, rotate);
+		fixThirdMotor();
 	}
 	
 	public void stopDrivingNow(){
 		robotDrive.stopMotor();
+		fixThirdMotor();
+	}
+	public void fixThirdMotor(){
+		double motorpower;
+		motorpower = rightDriveMotor1.get();
+		rightDriveMotor3.set(motorpower);
+		motorpower= leftDriveMotor1.get();
+		leftDriveMotor3.set(motorpower);
+		
+	}
 	}
    
-
    
        
    
-}
+
 
