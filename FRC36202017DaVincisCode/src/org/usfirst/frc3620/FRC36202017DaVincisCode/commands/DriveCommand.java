@@ -32,7 +32,7 @@ public class DriveCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveSubsystem.driveControl(Robot.oi.driveJoystick);
+    
     	Robot.driveSubsystem.setDriveForward(Robot.oi.driveJoystick.getRawAxis(1), Robot.oi.driveJoystick.getRawAxis(4));
     }
 
