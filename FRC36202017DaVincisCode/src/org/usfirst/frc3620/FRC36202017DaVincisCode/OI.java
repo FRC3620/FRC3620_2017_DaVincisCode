@@ -69,6 +69,7 @@ public class OI {
         shiftDownButton.whenPressed(new ShiftDownCommand());
         shiftUpButton = new JoystickButton(driveJoystick, 4);
         shiftUpButton.whenPressed(new ShiftUpCommand());
+        
         switchBackAndForthButton = new JoystickButton(driveJoystick, 6);
         switchBackAndForthButton.whenPressed(new SwitchBackAndForth());
        

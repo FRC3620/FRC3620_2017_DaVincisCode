@@ -16,6 +16,7 @@ import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.RobotDrive.MotorType;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedController;
 
@@ -74,6 +75,10 @@ public class RobotMap {
         driveSubsystemRobotDrive.setExpiration(0.1);
         driveSubsystemRobotDrive.setSensitivity(0.5);
         driveSubsystemRobotDrive.setMaxOutput(1.0);
+        driveSubsystemRobotDrive.setInvertedMotor(MotorType.kFrontLeft, true);
+        driveSubsystemRobotDrive.setInvertedMotor(MotorType.kFrontRight, true);
+        driveSubsystemRobotDrive.setInvertedMotor(MotorType.kRearLeft, true);
+        driveSubsystemRobotDrive.setInvertedMotor(MotorType.kRearRight, true);
 
         driveSubsystemLeftDriveMotor3 = new Spark(2);
         LiveWindow.addActuator("DriveSubsystem", "Left Drive Motor 3", (Spark) driveSubsystemLeftDriveMotor3);
@@ -99,7 +104,7 @@ public class RobotMap {
         gearSubsystemTiltTalon = new Spark(8);
         LiveWindow.addActuator("GearSubsystem", "Tilt Talon", (Spark) gearSubsystemTiltTalon);
         
-        gearSubsystemGearPlunger = new DoubleSolenoid(0, 2, 3);
+        gearSubsystemGearPlunger = new DoubleSolenoid(0, 3, 4 );
         LiveWindow.addActuator("GearSubsystem", "GearPlunger", gearSubsystemGearPlunger);
         
         gearSubsystemGearLimitLeft = new DigitalInput(0);
