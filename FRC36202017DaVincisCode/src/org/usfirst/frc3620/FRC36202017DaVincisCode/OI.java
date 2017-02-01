@@ -69,10 +69,10 @@ public class OI {
         runShooterButton.whenPressed(new RunShooterCommand());
         
         rotateGearUpButton = new JoystickButton(operatorJoystick, 4);
-        rotateGearUpButton.whileHeld(new RotateGearUpCommand());
+        rotateGearUpButton.whenPressed(new RotateGearUpCommand());
         
         rotateGearDownButton = new JoystickButton(operatorJoystick, 3);
-        rotateGearDownButton.whileHeld(new RotateGearDownCommand());
+        rotateGearDownButton.whenPressed(new RotateGearDownCommand());
         
         plungeGearButton = new JoystickButton(operatorJoystick, 2);
         plungeGearButton.whenPressed(new PlungeGearCommand());

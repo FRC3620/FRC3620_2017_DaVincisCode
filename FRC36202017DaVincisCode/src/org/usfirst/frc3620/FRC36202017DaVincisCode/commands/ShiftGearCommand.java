@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ShiftGearCommand extends Command {
 
     public ShiftGearCommand() {
+    	requires(Robot.gearSubsystem);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -20,7 +21,17 @@ public class ShiftGearCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.gearSubsystem.shiftGear(Robot.oi.operatorJoystick.getRawAxis(3), Robot.oi.operatorJoystick.getRawAxis(2));
+    	double gearShiftRightSpeed = Robot.oi.operatorJoystick.getRawAxis(3);
+    	double gearShiftLeftSpeed = Robot.oi.operatorJoystick.getRawAxis(2);
+    	if(gearShiftRightSpeed> .2){
+    		Robot.gearSubsystem.slideMotor(gearShiftRightSpeed);
+    	}
+    	else if(gearShiftLeftSpeed> .2){
+    		Robot.gearSubsystem.slideMotor(-gearShiftLeftSpeed);
+    	}
+    	else{
+    		Robot.gearSubsystem.slideMotor(0);
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

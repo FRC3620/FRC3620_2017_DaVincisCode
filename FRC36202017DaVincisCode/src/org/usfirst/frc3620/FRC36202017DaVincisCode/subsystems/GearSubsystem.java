@@ -48,28 +48,90 @@ public class GearSubsystem extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-    double gearShiftSpeed;
-    double gearRotatorSpeed;
-   
+    public void slideMotor(double speed) {
+
+		if (speed > 0) {
+			// we are trying to go to the right
+			if (isRightLimitSwitchDown()) {
+				// we are up against the right limit switch, so turn off motor
+				leftRightTalon.set(0.0);
+			} else {
+				// we are not up against the right limit swtich, so run the motor
+				// at whatever speed we were asked for
+				leftRightTalon.set(speed);
+			}
+			
+		} else {
+
+			// we are trying to go to the left
+			if (isLeftLimitSwitchDown()) {
+				// we are up against the left limit switch, so turn off motor
+				leftRightTalon.set(0.0);
+			} else {
+				// we are not up against the left limit swtich, so run the motor
+				// at whatever speed we were asked for
+				leftRightTalon.set(speed);
+			}
+		}
+
+	}
     
-    public void shiftGear(double gearShiftRightSpeed, double gearShiftLeftSpeed){
-    	if(Robot.oi.operatorJoystick.getRawAxis(3)> .2){
-    		leftRightTalon.set(-gearShiftRightSpeed);
-    	}
-    	else if(Robot.oi.operatorJoystick.getRawAxis(2)< -.2){
-    	leftRightTalon.set(gearShiftLeftSpeed);
-    	}
-    	else{
-    		leftRightTalon.set(0);
-    	}
-    }
-    
-    public void rotateGearUp(){
-    	tiltTalon.set(.75);
-    }
-    public void rotateGearDown(){
-    	tiltTalon.set(-.75);
-    }
+    public void tiltMotor(double speed) {
+
+		if (speed > 0) {
+			// we are trying to go up
+			if (isTopLimitSwitchDown()) {
+				// we are up against the top limit switch, so turn off motor
+				tiltTalon.set(0.0);
+			} else {
+				// we are not up against the top limit swtich, so run the motor
+				// at whatever speed we were asked for
+				tiltTalon.set(speed);
+			}
+			
+		} else {
+
+			// we are trying to go down
+			if (isBottomLimitSwitchDown()) {
+				// we are up against the bottom limit switch, so turn off motor
+				tiltTalon.set(0.0);
+			} else {
+				// we are not up against the bottom limit swtich, so run the motor
+				// at whatever speed we were asked for
+				tiltTalon.set(speed);
+			}
+		}
+
+	}
+	
+	public boolean isLeftLimitSwitchDown() {
+		if (RobotMap.gearSubsystemGearLimitLeft.get() == false) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	public boolean isRightLimitSwitchDown() {
+		if (RobotMap.gearSubsystemGearLimitRight.get() == false) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	public boolean isTopLimitSwitchDown() {
+		if (RobotMap.gearSubsystemGearLimitUp.get() == false) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	public boolean isBottomLimitSwitchDown() {
+		if (RobotMap.gearSubsystemGearLimitDown.get() == false) {
+			return true;
+		} else {
+			return false;
+		}
+	}
     
     public void plungeGear(){
     	gearPlunger.set(Value.kForward);
