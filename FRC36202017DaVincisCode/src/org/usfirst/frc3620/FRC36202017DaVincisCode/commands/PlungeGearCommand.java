@@ -28,10 +28,12 @@ public class PlungeGearCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.gearSubsystem.extendGearSupport();
     	Robot.gearSubsystem.plungeGear();
     	
     	if(timer.get() > .5){
     		Robot.gearSubsystem.retractGearPlunger();
+    		Robot.gearSubsystem.retractGearSupport();
     	}
     }
 
@@ -45,6 +47,7 @@ public class PlungeGearCommand extends Command {
     	timer.stop();
     	timer.reset();
     	Robot.gearSubsystem.stopGearPlunger();
+    	Robot.gearSubsystem.stopGearSupport();
     }
 
     // Called when another command which requires one or more of the same
