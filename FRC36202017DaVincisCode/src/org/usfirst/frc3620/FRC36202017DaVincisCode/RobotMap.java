@@ -118,7 +118,7 @@ public class RobotMap {
         gearSubsystemTiltTalon = new Spark(8);
         LiveWindow.addActuator("GearSubsystem", "Tilt Talon", (Spark) gearSubsystemTiltTalon);
         
-        gearSubsystemGearPlunger = new DoubleSolenoid(0, 3, 4 );
+        gearSubsystemGearPlunger = new DoubleSolenoid(0, 2, 3);
         LiveWindow.addActuator("GearSubsystem", "GearPlunger", gearSubsystemGearPlunger);
         
         gearSubsystemGearLimitLeft = new DigitalInput(4);
