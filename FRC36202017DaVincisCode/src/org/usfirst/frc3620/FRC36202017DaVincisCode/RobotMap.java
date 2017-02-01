@@ -53,6 +53,7 @@ public class RobotMap {
     public static DigitalInput gearSubsystemGearLimitRight;
     public static DigitalInput gearSubsystemGearLimitUp;
     public static DigitalInput gearSubsystemGearLimitDown;
+    public static DoubleSolenoid gearSubsystemGearSupport;
     public static DoubleSolenoid climberSubsystemRopeIntake;
     public static DigitalInput climberSubsystemTheTopOfRope;
     public static SpeedController intakeSubsystemIntakeTalon;
@@ -80,7 +81,10 @@ public class RobotMap {
         driveSubsystemRobotDrive.setExpiration(0.1);
         driveSubsystemRobotDrive.setSensitivity(0.5);
         driveSubsystemRobotDrive.setMaxOutput(1.0);
-
+        driveSubsystemRobotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);
+        driveSubsystemRobotDrive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
+        driveSubsystemRobotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
+        driveSubsystemRobotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
         driveSubsystemLeftDriveMotor3 = new Spark(2);
         LiveWindow.addActuator("DriveSubsystem", "Left Drive Motor 3", (Spark) driveSubsystemLeftDriveMotor3);
         
@@ -127,6 +131,9 @@ public class RobotMap {
         
         gearSubsystemGearLimitDown = new DigitalInput(7);
         LiveWindow.addSensor("GearSubsystem", "GearLimitDown", gearSubsystemGearLimitDown);
+        
+        gearSubsystemGearSupport = new DoubleSolenoid(0, 6, 7);
+        LiveWindow.addActuator("GearSubsystem", "GearSupport", gearSubsystemGearSupport);
         
         climberSubsystemRopeIntake = new DoubleSolenoid(0, 4, 5);
         LiveWindow.addActuator("ClimberSubsystem", "RopeIntake", climberSubsystemRopeIntake);
