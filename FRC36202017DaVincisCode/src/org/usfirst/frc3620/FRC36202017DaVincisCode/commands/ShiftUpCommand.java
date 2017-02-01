@@ -1,6 +1,6 @@
 package org.usfirst.frc3620.FRC36202017DaVincisCode.commands;
 
-import org.usfirst.frc3620.FRC3260_2016_gearShifter.RobotMap;
+
 import org.usfirst.frc3620.FRC36202017DaVincisCode.Robot;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
@@ -23,7 +23,7 @@ public class ShiftUpCommand extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.driveSubsystem.shiftIntoHighGear();
-    	RobotMap.subsystem1DoubleSolenoid1.set(Value.kForward);
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()

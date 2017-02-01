@@ -13,8 +13,9 @@ package org.usfirst.frc3620.FRC36202017DaVincisCode.commands;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
 
-import org.usfirst.frc3620.FRC3260_2016_gearShifter.RobotMap;
+
 import org.usfirst.frc3620.FRC36202017DaVincisCode.Robot;
+
 
 /**
  *
@@ -39,21 +40,22 @@ public class SwitchBackAndForth extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	if (Robot.driveSubsystem.weAreInReverse) {
+            Robot.driveSubsystem.weAreInReverse = false;
+        } else {
+            Robot.driveSubsystem.weAreInReverse = true;
+        }System.out.println("I shifted" + Robot.driveSubsystem.weAreInReverse );
+   	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	 if (Robot.subsystem1.weAreInReverse) {
-             Robot.subsystem1.weAreInReverse = false;
-         } else {
-             Robot.subsystem1.weAreInReverse = true;
-         }System.out.println("I shifted" + Robot.subsystem1.weAreInReverse );
-    	
+    	 
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true
