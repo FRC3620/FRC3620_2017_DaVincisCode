@@ -12,7 +12,7 @@ Children:
             default: Talon
             name: Type
             validators: null
-            value: Talon
+            value: Spark
           Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
             choices: &id002 ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
               '11', '12', '13', '14', '15', '16', '17', '18', '19']
@@ -29,7 +29,7 @@ Children:
             default: Talon
             name: Type
             validators: null
-            value: Talon
+            value: Spark
           Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
             choices: *id002
             default: '0'
@@ -45,7 +45,7 @@ Children:
             default: Talon
             name: Type
             validators: null
-            value: Talon
+            value: Spark
           Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
             choices: *id002
             default: '0'
@@ -61,7 +61,7 @@ Children:
             default: Talon
             name: Type
             validators: null
-            value: Talon
+            value: Spark
           Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
             choices: *id002
             default: '0'
@@ -120,7 +120,7 @@ Children:
           default: Talon
           name: Type
           validators: null
-          value: Talon
+          value: Spark
         Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
           choices: *id002
           default: '0'
@@ -136,7 +136,7 @@ Children:
           default: Talon
           name: Type
           validators: null
-          value: Talon
+          value: Spark
         Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
           choices: *id002
           default: '0'
@@ -187,7 +187,7 @@ Children:
         default: []
         name: Constants
         validators: null
-        value: &id014 []
+        value: &id016 []
     Base: Subsystem
     Name: DriveSubsystem
   - Children:
@@ -219,7 +219,7 @@ Children:
           default: Talon
           name: Type
           validators: null
-          value: Talon
+          value: Spark
         Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
           choices: *id002
           default: '0'
@@ -251,7 +251,7 @@ Children:
           default: Talon
           name: Type
           validators: null
-          value: Talon
+          value: Spark
         Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
           choices: *id002
           default: '0'
@@ -267,7 +267,7 @@ Children:
           default: Talon
           name: Type
           validators: null
-          value: Talon
+          value: Spark
         Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
           choices: *id002
           default: '0'
@@ -304,6 +304,48 @@ Children:
           value: '2'
       Base: Double Solenoid
       Name: GearPlunger
+    - Children: []
+      Properties:
+        Input Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
+          choices: &id014 ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
+            '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22',
+            '23', '24', '25']
+          default: '0'
+          name: Input Channel (Digital)
+          validators: &id015 [DigitalChannel]
+          value: '0'
+      Base: Limit Switch
+      Name: GearLimitLeft
+    - Children: []
+      Properties:
+        Input Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id014
+          default: '0'
+          name: Input Channel (Digital)
+          validators: *id015
+          value: '1'
+      Base: Limit Switch
+      Name: GearLimitRight
+    - Children: []
+      Properties:
+        Input Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id014
+          default: '0'
+          name: Input Channel (Digital)
+          validators: *id015
+          value: '2'
+      Base: Limit Switch
+      Name: GearLimitUp
+    - Children: []
+      Properties:
+        Input Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id014
+          default: '0'
+          name: Input Channel (Digital)
+          validators: *id015
+          value: '3'
+      Base: Limit Switch
+      Name: GearLimitDown
     Properties:
       Default command parameters: !!robotbuilder.data.properties.ParametersProperty
         default: []
@@ -316,7 +358,7 @@ Children:
         default: []
         name: Constants
         validators: null
-        value: *id014
+        value: *id016
     Base: Subsystem
     Name: GearSubsystem
   - Children:
@@ -342,7 +384,7 @@ Children:
         default: []
         name: Constants
         validators: null
-        value: *id014
+        value: *id016
     Base: Subsystem
     Name: ClimberSubsystem
   - Children:
@@ -353,7 +395,7 @@ Children:
           default: Talon
           name: Type
           validators: null
-          value: Talon
+          value: Spark
         Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
           choices: *id002
           default: '0'
@@ -374,7 +416,7 @@ Children:
         default: []
         name: Constants
         validators: null
-        value: *id014
+        value: *id016
     Base: Subsystem
     Name: IntakeSubsystem
   - Children: []
@@ -390,7 +432,7 @@ Children:
         default: []
         name: Constants
         validators: null
-        value: *id014
+        value: *id016
     Base: Subsystem
     Name: MentorSubsystem
   Properties: {}
