@@ -166,13 +166,13 @@ Children:
           default: '0'
           name: Reverse Channel (Solenoid)
           validators: &id017 [Solenoid]
-          value: '1'
+          value: '5'
         Forward Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
           choices: &id018 ['0', '1', '2', '3', '4', '5', '6', '7']
           default: '0'
           name: Forward Channel (Solenoid)
           validators: &id019 [Solenoid]
-          value: '0'
+          value: '4'
       Base: Double Solenoid
       Name: Shifter Solenoid
     - Children: []
@@ -433,13 +433,13 @@ Children:
           default: '0'
           name: Reverse Channel (Solenoid)
           validators: *id017
-          value: '7'
+          value: '1'
         Forward Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
           choices: *id018
           default: '0'
           name: Forward Channel (Solenoid)
           validators: *id019
-          value: '6'
+          value: '0'
       Base: Double Solenoid
       Name: GearSupport
     Properties:
@@ -477,13 +477,13 @@ Children:
           default: '0'
           name: Reverse Channel (Solenoid)
           validators: *id017
-          value: '5'
+          value: '7'
         Forward Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
           choices: *id018
           default: '0'
           name: Forward Channel (Solenoid)
           validators: *id019
-          value: '4'
+          value: '6'
       Base: Double Solenoid
       Name: RopeIntake
     - Children: []

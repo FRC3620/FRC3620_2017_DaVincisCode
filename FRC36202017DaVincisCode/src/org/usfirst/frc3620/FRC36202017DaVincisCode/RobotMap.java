@@ -92,7 +92,7 @@ public class RobotMap {
         driveSubsystemRightDriveMotor3 = new Spark(5);
         LiveWindow.addActuator("DriveSubsystem", "Right Drive Motor 3", (Spark) driveSubsystemRightDriveMotor3);
         
-        driveSubsystemShifterSolenoid = new DoubleSolenoid(0, 0, 1);
+        driveSubsystemShifterSolenoid = new DoubleSolenoid(0, 4, 5);
         LiveWindow.addActuator("DriveSubsystem", "Shifter Solenoid", driveSubsystemShifterSolenoid);
         
         driveSubsystemRightEncoder = new Encoder(2, 3, false, EncodingType.k4X);
@@ -133,10 +133,10 @@ public class RobotMap {
         gearSubsystemGearLimitDown = new DigitalInput(7);
         LiveWindow.addSensor("GearSubsystem", "GearLimitDown", gearSubsystemGearLimitDown);
         
-        gearSubsystemGearSupport = new DoubleSolenoid(0, 6, 7);
+        gearSubsystemGearSupport = new DoubleSolenoid(0, 0, 1);
         LiveWindow.addActuator("GearSubsystem", "GearSupport", gearSubsystemGearSupport);
         
-        climberSubsystemRopeIntake = new DoubleSolenoid(0, 4, 5);
+        climberSubsystemRopeIntake = new DoubleSolenoid(0, 6, 7);
         LiveWindow.addActuator("ClimberSubsystem", "RopeIntake", climberSubsystemRopeIntake);
         
         climberSubsystemTheTopOfRope = new DigitalInput(8);
