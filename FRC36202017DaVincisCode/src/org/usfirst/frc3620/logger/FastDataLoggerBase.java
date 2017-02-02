@@ -6,83 +6,79 @@ import java.io.PrintWriter;
 import java.util.Timer;
 import java.util.TimerTask;
 
-abstract public class FastDataLoggerBase extends DataLoggerBase
-        implements IFastDataLogger {
+abstract public class FastDataLoggerBase extends DataLoggerBase implements IFastDataLogger {
 
-    double maxLengthInSeconds;
-    double t0;
+	double maxLengthInSeconds;
+	double t0;
 
-    boolean isDone = false;
+	boolean isDone = false;
 
-    @Override
-    public void setMaxLength(double seconds) {
-        maxLengthInSeconds = seconds;
-    }
+	@Override
+	public void setMaxLength(double seconds) {
+		maxLengthInSeconds = seconds;
+	}
 
-    @Override
-    public boolean isDone() {
-        return isDone;
-    }
+	@Override
+	public boolean isDone() {
+		return isDone;
+	}
 
-    @Override
-    public void startTimer() {
-        isDone = false;
+	@Override
+	public void startTimer() {
+		isDone = false;
 
-        t0 = getTimeInSeconds();
+		t0 = getTimeInSeconds();
 
-        timer = new Timer();
-        long interval = Math.min(1, Math.round(intervalInSeconds * 1000));
-        System.out.println("fastlogger interval = " + interval);
-        timer.schedule(new FastLoggerTimerTask(), 0, interval);
-    }
+		timer = new Timer();
+		long interval = Math.min(1, Math.round(intervalInSeconds * 1000));
+		System.out.println("fastlogger interval = " + interval);
+		timer.schedule(new FastLoggerTimerTask(), 0, interval);
+	}
 
-    class FastLoggerTimerTask extends TimerTask {
-        @Override
-        public void run() {
-            double t = getTimeInSeconds();
-            if (t > t0 + maxLengthInSeconds)
-                done();
+	class FastLoggerTimerTask extends TimerTask {
+		@Override
+		public void run() {
+			double t = getTimeInSeconds();
+			if (t > t0 + maxLengthInSeconds) {
+				done();
+			} else {
+				Object[] row = new Object[namedDataProviders.size()];
 
-            Object[] data = iDataLoggerDataProvider.fetchData();
-            if (data != null)
-                logData(t - t0, data);
-        }
-    }
+				for (int i = 0; i < row.length; i++) {
+					NamedDataProvider namedDataProvider = namedDataProviders.get(i);
+					try {
+						row[i] = namedDataProvider.iDataLoggerDataProvider.get();
+					} catch (Exception e) {
+						row[i] = "ERROR";
+					}
+				}
 
-    @Override
-    public void done() {
-        timer.cancel();
-        System.out.println("fastLogger done");
-        try {
-            PrintWriter w = new PrintWriter(new FileWriter(outputFile));
+				logData(t - t0, row);
+			}
+		}
+	}
 
-            w.print("timestamp");
-            String[] names = iDataLoggerDataProvider.fetchNames();
-            for (String n : names) {
-                w.print(",");
-                w.print(n);
-            }
-            w.println();
+	@Override
+	public void done() {
+		timer.cancel();
+		if (outputFile != null) {
+			logger.info("fastLogger done, writing to {}", outputFile);
+			try {
+				PrintWriter w = new PrintWriter(new FileWriter(outputFile));
+				writeHeader(w, namedDataProviders, metadata);
+				writeData(w);
+				w.close();
 
-            for (String n : metadata.keySet()) {
-                w.print("# ");
-                w.print(n);
-                w.print(" = ");
-                w.print(metadata.get(n));
-                w.println();
-            }
+				isDone = true;
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else {
+			logger.warn("no output file yet!");
+		}
+	}
 
-            writeData(w);
+	abstract void logData(double timestamp, Object[] row);
 
-            w.close();
-
-            isDone = true;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    abstract void logData(double timestamp, Object[] d);
-
-    abstract void writeData(PrintWriter w);
+	abstract void writeData(PrintWriter w);
 }

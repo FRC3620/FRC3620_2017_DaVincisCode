@@ -1,4 +1,4 @@
-package org.usfirst.frc3620.FRC36202017DaVincisCode;
+package org.usfirst.frc3620.misc;
 
 public enum RobotMode {
   INIT, DISABLED, AUTONOMOUS, TELEOP, TEST;

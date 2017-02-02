@@ -27,9 +27,10 @@ public class DataLogger extends DataLoggerBase {
         timer.schedule(new SlowDataLoggerTimerTask(), 0, interval);
     }
 
+    Object[] data = null;
+
     class SlowDataLoggerTimerTask extends TimerTask {
-        SimpleDateFormat format = new SimpleDateFormat(
-                "MM-dd-yyyy HH:mm:ss.SS");
+        SimpleDateFormat format = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss.SS");
         double tFlushed = getTimeInSeconds();
 
         @Override
@@ -45,52 +46,47 @@ public class DataLogger extends DataLoggerBase {
                 }
             }
             if (w != null) {
-                Object[] data = iDataLoggerDataProvider.fetchData();
-
-                if (data != null) {
-                    double t = getTimeInSeconds();
-                    Date curDate = new Date();
-
-                    w.print(format.format(curDate));
-                    w.print(',');
-                    w.format("%.6f", t - t0);
-
-                    for (int i = 0; i < data.length; i++) {
-                        w.print(',');
-                        w.print(data[i]);
+            	if (data == null) {
+            		data = new Object[namedDataProviders.size()];
+            	}
+            	
+                for (int i = 0; i < data.length; i++) {
+                    NamedDataProvider namedDataProvider = namedDataProviders.get(i);
+                    try {
+                        data[i] = namedDataProvider.iDataLoggerDataProvider.get();
+                    } catch (Exception e) {
+                    	data[i] = "ERROR";
                     }
-                    w.println();
-
-                    // flush once every couple seconds
-                    if (t - tFlushed > flushInterval)
-                        w.flush();
                 }
+                
+                double t = getTimeInSeconds();
+                Date curDate = new Date();
+
+                w.print(format.format(curDate));
+                w.print(',');
+                w.format("%.6f", t - t0);
+
+                for (Object v : data) {
+                    w.print(',');
+                    w.print(v);
+                }
+                w.println();
+
+                // flush once every couple seconds
+                if (t - tFlushed > flushInterval)
+                    w.flush();
             }
         }
     }
-
+    
     void openTheFile() {
         try {
             w = new PrintWriter(new FileWriter(outputFile));
-            logger.info("Writing dataLogger to {}",
-                    outputFile.getAbsolutePath());
-
-            w.print("time,timeSinceStart");
-            String[] names = iDataLoggerDataProvider.fetchNames();
-            for (String n : names) {
-                w.print(",");
-                w.print(n);
-            }
-            w.println();
-
-            for (String n : metadata.keySet()) {
-                w.print("# ");
-                w.print(n);
-                w.print(" = ");
-                w.print(metadata.get(n));
-                w.println();
-            }
+            logger.info("Writing dataLogger to {}", outputFile.getAbsolutePath());
+            
+            writeHeader(w, namedDataProviders, metadata);
             w.flush();
+
         } catch (IOException e) {
             logger.error("trouble when logging data: {}", e);
         }

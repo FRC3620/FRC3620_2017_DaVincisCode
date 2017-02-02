@@ -13,25 +13,9 @@ public class RandomFastLogger {
         iFastDataLogger.addMetadata("pi", Math.PI);
         iFastDataLogger.addMetadata("e", Math.E);
 
-        iFastDataLogger.setDataProvider(new IDataLoggerDataProvider() {
-            @Override
-            public String[] fetchNames() {
-                return new String[] { //
-                        "r1", //
-                        "r2", //
-                        "r3", //
-                };
-            }
-
-            @Override
-            public Object[] fetchData() {
-                return new Object[] { //
-                        Math.random(), //
-                        Math.random() * 2.0, //
-                        Math.random() * 3.0, //
-                };
-            }
-        });
+        iFastDataLogger.addDataProvider("r1", () -> Math.random());
+        iFastDataLogger.addDataProvider("r2", () -> Math.random() * 2.0);
+        iFastDataLogger.addDataProvider("r3", () -> Math.random() * 3.0);
 
         iFastDataLogger.start();
     }

@@ -1,7 +1,6 @@
 package org.usfirst.frc3620.logger;
 
-public interface IDataLoggerDataProvider {
-    public String[] fetchNames();
+import java.util.function.Supplier;
 
-    public Object[] fetchData();
+public interface IDataLoggerDataProvider extends Supplier<Object> {
 }

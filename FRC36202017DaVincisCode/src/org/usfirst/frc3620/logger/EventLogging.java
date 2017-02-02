@@ -12,7 +12,8 @@ import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 import java.util.logging.StreamHandler;
 
-import edu.wpi.first.wpilibj.hal.FRCNetComm;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.hal.HAL;
 
 public class EventLogging {
 
@@ -67,6 +68,20 @@ public class EventLogging {
         org.slf4j.Logger rv = org.slf4j.LoggerFactory.getLogger(sClazz);
         return rv;
     }
+    
+    /**
+     * Write a message to the DriverStation. It also logs into the driver
+     * station log.
+     * 
+     * @param message
+     *            Message to log.
+     */
+    public static final void writeToDS(String message) {
+        if (DriverStation.getInstance().isDSAttached()) {
+        	HAL.setErrorData(message);
+        }
+    }
+
 
     /**
      * Create a String representation of an Exception.

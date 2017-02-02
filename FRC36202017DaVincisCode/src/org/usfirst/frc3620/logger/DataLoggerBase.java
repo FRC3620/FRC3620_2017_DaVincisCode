@@ -7,70 +7,124 @@ import org.slf4j.Logger;
 import org.usfirst.frc3620.logger.EventLogging.Level;
 
 abstract public class DataLoggerBase implements IDataLogger {
-    IDataLoggerDataProvider iDataLoggerDataProvider;
-    File loggingDirectory = LoggingMaster.getLoggingDirectory();
-    String filename = "";
+	boolean started = false;
 
-    Logger logger = EventLogging.getLogger(getClass(), Level.INFO);
+	List<NamedDataProvider> namedDataProviders = new ArrayList<>();
 
-    Map<String, Double> metadata = new TreeMap<>();
+	File loggingDirectory = LoggingMaster.getLoggingDirectory();
+	String filename = null;
 
-    double intervalInSeconds = 0.100;
+	Logger logger = EventLogging.getLogger(getClass(), Level.INFO);
 
-    File outputFile;
-    Timer timer;
+	Map<String, Object> metadata = new TreeMap<>();
 
-    @Override
-    public void setLoggingDirectory(File loggerDirectory) {
-        this.loggingDirectory = loggerDirectory;
-    }
+	double intervalInSeconds = 0.100;
 
-    @Override
-    public void setDataProvider(
-            IDataLoggerDataProvider _iFastLoggerDataProvider) {
-        iDataLoggerDataProvider = _iFastLoggerDataProvider;
-    }
+	File outputFile;
+	Timer timer;
 
-    @Override
-    public void setFilename(String _filename) {
-        filename = _filename;
-    }
+	@Override
+	public void setLoggingDirectory(File loggerDirectory) {
+		this.loggingDirectory = loggerDirectory;
+	}
 
-    @Override
-    public void addMetadata(String s, double d) {
-        metadata.put(s, d);
-    }
+	@Override
+	public void addDataProvider(String _name, IDataLoggerDataProvider _iDataLoggerDataProvider) {
+		if (!started) {
+			namedDataProviders.add(new NamedDataProvider(_name, _iDataLoggerDataProvider));
+		} else {
+			logger.error("Cannot addDataProvider(...) after start()");
+		}
+	}
 
-    @Override
-    public void setInterval(double seconds) {
-        intervalInSeconds = seconds;
-    }
+	@Override
+	public void setFilename(String _filename) {
+		logger.info("setFilename(\"{}\")", _filename);
+		if (!started) {
+			filename = _filename;
+		} else {
+			logger.error("Cannot setFilename(...) after start()");
+		}
+	}
 
-    double getTimeInSeconds() {
-        return edu.wpi.first.wpilibj.Timer.getFPGATimestamp();
-        // return System.currentTimeMillis() / 1000.0;
-    }
+	@Override
+	public void addMetadata(String s, double d) {
+		if (!started) {
+			metadata.put(s, d);
+		} else {
+			logger.error("Cannot addMetadata(...) after start()");
+		}
+	}
 
-    @Override
-    public String start() {
-        setupOutputFile();
+	@Override
+	public void setInterval(double seconds) {
+		intervalInSeconds = seconds;
+	}
 
-        startTimer();
+	double getTimeInSeconds() {
+		return edu.wpi.first.wpilibj.Timer.getFPGATimestamp();
+		// return System.currentTimeMillis() / 1000.0;
+	}
 
-        if (outputFile == null) {
-            return "";
-        } else {
-            return outputFile.getAbsolutePath();
-        }
-    }
+	@Override
+	public String start() {
+		started = true;
 
-    void setupOutputFile() {
+		setupOutputFile();
+
+		startTimer();
+
+		if (outputFile == null) {
+			return "";
+		} else {
+			return outputFile.getAbsolutePath();
+		}
+	}
+
+	void setupOutputFile() {
         String _timestampString = LoggingMaster.getTimestampString();
         if (_timestampString != null) {
-            String fullFilename = filename + _timestampString + ".csv";
-            outputFile = new File(loggingDirectory, fullFilename);
-        }
-    }
+        	String fullFilename = _timestampString + ".csv";
+        	if (filename != null) {
+        		fullFilename = filename + "_" + fullFilename;
+        	}
+  		    logger.info("setupOutputFile filename is {}", fullFilename);
 
-    abstract void startTimer();
+			outputFile = new File(loggingDirectory, fullFilename);
+			logger.info("setting file to {}", outputFile);
+		}
+	}
+
+	static void writeHeader(PrintWriter w, Iterable<NamedDataProvider> namedDataProviders,
+			Map<String, Object> metadata) {
+		w.print("time,timeSinceStart");
+		for (NamedDataProvider namedDataProvider : namedDataProviders) {
+			w.print(",");
+			w.print(namedDataProvider.name);
+		}
+		w.println();
+
+		if (metadata != null) {
+			for (String n : metadata.keySet()) {
+				w.print("# ");
+				w.print(n);
+				w.print(" = ");
+				w.print(metadata.get(n));
+				w.println();
+			}
+		}
+	}
+
+	abstract void startTimer();
+
+	public class NamedDataProvider {
+		public NamedDataProvider(String name, IDataLoggerDataProvider iDataLoggerDataProvider) {
+			super();
+			this.name = name;
+			this.iDataLoggerDataProvider = iDataLoggerDataProvider;
+		}
+
+		String name;
+		IDataLoggerDataProvider iDataLoggerDataProvider;
+	}
 }

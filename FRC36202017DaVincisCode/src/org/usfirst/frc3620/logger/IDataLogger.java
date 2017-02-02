@@ -9,8 +9,8 @@ public interface IDataLogger {
 
     public void setInterval(double seconds);
 
-    public void setDataProvider(
-            IDataLoggerDataProvider iFastLoggerDataProvider);
+    public void addDataProvider(String name, 
+            IDataLoggerDataProvider iDataLoggerDataProvider);
 
     public void addMetadata(String s, double d);
 
