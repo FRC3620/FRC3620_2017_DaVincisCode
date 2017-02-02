@@ -135,11 +135,11 @@ public class GearSubsystem extends Subsystem {
 	}
     
     public void plungeGear(){
-    	gearPlunger.set(Value.kReverse);
+    	gearPlunger.set(Value.kForward);
     }
    
     public void retractGearPlunger(){
-    	gearPlunger.set(Value.kForward);
+    	gearPlunger.set(Value.kReverse);
     }
     
     public void stopGearPlunger(){
@@ -147,11 +147,11 @@ public class GearSubsystem extends Subsystem {
     }
     
     public void retractGearSupport(){
-    	gearSupport.set(Value.kReverse);
+    	gearSupport.set(Value.kForward);
     }
    
     public void extendGearSupport(){
-    	gearSupport.set(Value.kForward);
+    	gearSupport.set(Value.kReverse);
     }
     
     public void stopGearSupport(){
