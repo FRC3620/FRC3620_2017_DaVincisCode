@@ -2,14 +2,17 @@ package org.usfirst.frc3620.FRC36202017DaVincisCode.commands;
 
 import org.usfirst.frc3620.FRC36202017DaVincisCode.Robot;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class NavTest extends Command {
+public class RunWinchForTimeCommand extends Command {
+	Timer timer = new Timer ();
+	
 
-    public NavTest() {
+    public RunWinchForTimeCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.driveSubsystem);
@@ -17,32 +20,20 @@ public class NavTest extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	timer.reset();
+    	timer.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveSubsystem.runWinch(0.5);
+    	Robot.driveSubsystem.runWinch(0.8);
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() { 
-    	double roll = Robot.driveSubsystem.getRoll();
-    	System.out.println("Roll is " + roll);
-    	if(roll > 50){
-    		return true;
-    	}
-    	if(roll < -50){
-    		return true;
-    	}
-    	double pitch = Robot.driveSubsystem.getPitch();
-    	System.out.println("Pitch is " + pitch);
-    	if(pitch > 50){
-    		return true;
-    	}
-    	if(pitch < -50){
-    		return true;
-    	}
-        return false;
+    protected boolean isFinished() {
+    	return timer.hasPeriodPassed(2);
+        
     }
 
     // Called once after isFinished returns true
@@ -55,5 +46,4 @@ public class NavTest extends Command {
     protected void interrupted() {
     	Robot.driveSubsystem.runWinch(0);
     }
-    }
-
+}
