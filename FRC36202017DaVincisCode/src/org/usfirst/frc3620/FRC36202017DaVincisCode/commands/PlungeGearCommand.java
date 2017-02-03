@@ -37,7 +37,7 @@ public class PlungeGearCommand extends Command {
     	
     	if(timer.get() > .5){
     		Robot.gearSubsystem.retractGearPlunger();
-    		Robot.gearSubsystem.retractGearSupport();
+    		//Robot.gearSubsystem.retractGearSupport();
     	}
     }
 

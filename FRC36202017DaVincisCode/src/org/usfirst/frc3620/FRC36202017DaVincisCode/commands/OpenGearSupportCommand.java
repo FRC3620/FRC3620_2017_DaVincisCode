@@ -8,11 +8,11 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class CloseGearSupportCommand extends Command {
+public class OpenGearSupportCommand extends Command {
 
 	Timer timer = new Timer();
 	
-    public CloseGearSupportCommand() {
+    public OpenGearSupportCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -24,7 +24,7 @@ public class CloseGearSupportCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.gearSubsystem.retractGearSupport();
+    	Robot.gearSubsystem.extendGearSupport();
     }
 
     // Make this return true when this Command no longer needs to run execute()
