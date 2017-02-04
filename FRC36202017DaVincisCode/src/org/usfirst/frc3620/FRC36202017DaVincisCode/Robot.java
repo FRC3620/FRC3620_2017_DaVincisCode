@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import java.text.DecimalFormat;
 
@@ -114,7 +115,7 @@ public class Robot extends IterativeRobot {
 		robotDataLogger.start();
 		
 		// testing only!
-		RandomFastLogger.startRandomFastLogger("random.test");
+		// RandomFastLogger.startRandomFastLogger("random.test");
 	}
 
 	/**
@@ -216,6 +217,7 @@ public class Robot extends IterativeRobot {
 
 		// and log data!
 		// updateDashboard();
+		SmartDashboard.putString("currentCommand", driveSubsystem.getCurrentCommand().getName());
 	}
 
 	void addRobotDataLoggerDataProviders() {
