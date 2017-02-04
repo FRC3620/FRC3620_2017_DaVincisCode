@@ -23,6 +23,7 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
@@ -183,12 +184,18 @@ public class GearSubsystem extends Subsystem {
     //*****************************************VISION************************************************
     
 	public double getPegLocation(){
-		if (UDPReceiver.visionData == null) return 0;
+		if (UDPReceiver.visionData == null) {
+			System.out.println("X not recieved");
+			return 0;
+		}
 		return UDPReceiver.visionData.getX();
 	}
     
 	public double getTargetCenter(){
-		if (UDPReceiver.visionData == null) return 0;
+		if (UDPReceiver.visionData == null){
+			System.out.println("ImageWidth not recieved");
+			return 0;
+		}
 		return UDPReceiver.visionData.getImageWidth()/2;
 	}
 	
@@ -197,8 +204,15 @@ public class GearSubsystem extends Subsystem {
 	}
 	
 	public double getBlobCount(){
-		if (UDPReceiver.visionData == null) return 0;
+		if (UDPReceiver.visionData == null){
+			System.out.println("BlobCount not recieved");
+			return 0;
+		}
 		return UDPReceiver.visionData.getCount();
+	}
+	
+	public double xOffset(){
+		return (getTargetCenter()-getPegLocation());
 	}
 	
 	public void shiftGearToPeg(){
@@ -210,10 +224,12 @@ public class GearSubsystem extends Subsystem {
 				slideMotor(.5);
 			}
 			else{
+				System.out.println("Gear is Aligned");
 				slideMotor(0);
 			}
 		}
 		else {
+			System.out.println("Blob not Found");
 			slideMotor(0);
 		}
 	}
