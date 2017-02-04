@@ -22,6 +22,14 @@ public class VisionData {
 		public double getY() {
 			return y;
 		}
+		
+		public double getTrueX(){
+			return (width/2);
+		}
+		
+		public double getTrueY(){
+			return (height/2);
+		}
 
 		@Override
 		public String toString() {
