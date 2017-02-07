@@ -149,11 +149,11 @@ public class GearSubsystem extends Subsystem {
     }
     
     public void retractGearSupport(){
-    	gearSupport.set(Value.kForward);
+    	gearSupport.set(Value.kReverse);
     }
    
     public void extendGearSupport(){
-    	gearSupport.set(Value.kReverse);
+    	gearSupport.set(Value.kForward);
     }
     
     public void stopGearSupport(){
