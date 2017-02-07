@@ -199,6 +199,7 @@ public class Robot extends IterativeRobot {
 
 		// if any subsystems need to know about mode changes, let
 		// them know here.
+		driveSubsystem.processRobotModeChange(newMode);
 	}
 
 	/*

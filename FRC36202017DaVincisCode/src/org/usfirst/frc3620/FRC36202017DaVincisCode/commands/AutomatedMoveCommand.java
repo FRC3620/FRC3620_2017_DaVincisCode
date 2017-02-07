@@ -66,17 +66,8 @@ public class AutomatedMoveCommand extends Command implements PIDOutput{
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	//System.out.println("PID Error: " + pidDriveStraight.getError());
-    	//System.out.println("sideStick value: " + sideStick);
-    	
-    	SmartDashboard.putNumber("DriveStraight P", pidDriveStraight.getP());
-    	SmartDashboard.putNumber("DriveStraight I", pidDriveStraight.getI());
-    	SmartDashboard.putNumber("DriveStraight D", pidDriveStraight.getD());
-    	SmartDashboard.putNumber("ActualHeading", Robot.driveSubsystem.getAngle());
-    	SmartDashboard.putNumber("DesiredHeading", Robot.driveSubsystem.getAutomaticHeading());
-    	
-    	SmartDashboard.putNumber("PID DriveStraight Error", pidDriveStraight.getError());
-    	SmartDashboard.putNumber("PID DriveStraight Sidestick", sideStick);
+    	Robot.driveSubsystem.updateDashboardWithPidStuff(this, pidDriveStraight, sideStick);
+
     	Robot.driveSubsystem.setDriveForward(-howFastToMove, sideStick);
     }
 
