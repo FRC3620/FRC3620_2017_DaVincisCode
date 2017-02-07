@@ -17,9 +17,10 @@ import org.usfirst.frc3620.FRC36202017DaVincisCode.RobotMap;
 import org.usfirst.frc3620.FRC36202017DaVincisCode.commands.*;
 
 
+
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedController;
