@@ -5,14 +5,14 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutoTesting extends CommandGroup {
+public class AutoTestingTurnAndMoveCommand extends CommandGroup {
 
-    public AutoTesting() {
-    	addSequential(new AutomatedMoveTimed(5.0, 1));
+    public AutoTestingTurnAndMoveCommand() {
+    	addSequential(new AutomatedMoveTimedCommand(5.0, 1));
     	addSequential(new AutomatedTurnCommand(45));
-    	addSequential(new AutomatedMoveTimed(3.0, 1));
+    	addSequential(new AutomatedMoveTimedCommand(3.0, 1));
     	addSequential(new AutomatedTurnCommand(-45));
-    	addSequential(new AutomatedMoveTimed(3.0, 1));
+    	addSequential(new AutomatedMoveTimedCommand(3.0, 1));
     
         // Add Commands here:
         // e.g. addSequential(new Command1());

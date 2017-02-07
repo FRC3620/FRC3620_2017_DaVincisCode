@@ -19,7 +19,7 @@ import edu.wpi.first.wpilibj.Timer;
 /**
  *
  */
-public class AutomatedMoveTimed extends Command implements PIDOutput{
+public class AutomatedMoveTimedCommand extends Command implements PIDOutput{
 	
 	Logger logger = EventLogging.getLogger(getClass(), Level.INFO);
 	
@@ -42,7 +42,7 @@ public class AutomatedMoveTimed extends Command implements PIDOutput{
 	PIDController pidDriveStraight = new PIDController(kP, kI, kD, kF, Robot.driveSubsystem.getAhrs(), this);
 	
 
-    public AutomatedMoveTimed(double howLongInSeconds, double howFast) {
+    public AutomatedMoveTimedCommand(double howLongInSeconds, double howFast) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.driveSubsystem);
