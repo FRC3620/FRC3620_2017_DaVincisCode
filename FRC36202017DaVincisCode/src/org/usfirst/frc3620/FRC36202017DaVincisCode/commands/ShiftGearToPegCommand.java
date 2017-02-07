@@ -29,7 +29,8 @@ public class ShiftGearToPegCommand extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.gearSubsystem.gearIsAligned();
+        SmartDashboard.putBoolean("Gear Aligned", Robot.gearSubsystem.gearIsAligned());
+    	return Robot.gearSubsystem.gearIsAligned();
     }
 
     // Called once after isFinished returns true
