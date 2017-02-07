@@ -54,6 +54,7 @@ public class AutomatedTurnCommand extends Command implements PIDOutput{
     protected void initialize() 
     {
     	logger.info("AutomatedTurn start");
+    	
     	double angle = Robot.driveSubsystem.getAutomaticHeading();
     	double newAngle = Robot.driveSubsystem.changeAutomaticHeading(howFarWeWantToTurn);
     	logger.info("angle was {}, new setpoint is {}", angle, newAngle);
@@ -90,6 +91,7 @@ public class AutomatedTurnCommand extends Command implements PIDOutput{
     // Called once after isFinished returns true
     protected void end() {
     	logger.info("AutomatedTurn end");
+    	
     	pidTurn.disable();
     	Robot.driveSubsystem.stopMotors();
     }
@@ -97,6 +99,8 @@ public class AutomatedTurnCommand extends Command implements PIDOutput{
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	logger.info("AutomatedTurn interrupted");
+    	
     	end();
     }
     

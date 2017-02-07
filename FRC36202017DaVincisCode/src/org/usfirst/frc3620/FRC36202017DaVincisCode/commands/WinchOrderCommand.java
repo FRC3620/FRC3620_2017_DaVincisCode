@@ -1,13 +1,24 @@
 package org.usfirst.frc3620.FRC36202017DaVincisCode.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import org.slf4j.Logger;
+import org.usfirst.frc3620.FRC36202017DaVincisCode.Robot;
+import org.usfirst.frc3620.FRC36202017DaVincisCode.RobotMap;
+import org.usfirst.frc3620.logger.EventLogging;
+import org.usfirst.frc3620.logger.EventLogging.Level;
+
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.PIDOutput;
 
 /**
  *
  */
 public class WinchOrderCommand extends CommandGroup {
+	Logger logger = EventLogging.getLogger(getClass(), Level.INFO);
 
     public WinchOrderCommand() {
+    	logger.info("WinchOrderCommand start");
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

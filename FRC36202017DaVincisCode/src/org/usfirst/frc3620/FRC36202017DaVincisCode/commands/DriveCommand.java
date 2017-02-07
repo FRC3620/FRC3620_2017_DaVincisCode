@@ -15,11 +15,20 @@ import org.usfirst.frc3620.FRC36202017DaVincisCode.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+import org.slf4j.Logger;
+import org.usfirst.frc3620.FRC36202017DaVincisCode.Robot;
+import org.usfirst.frc3620.FRC36202017DaVincisCode.RobotMap;
+import org.usfirst.frc3620.logger.EventLogging;
+import org.usfirst.frc3620.logger.EventLogging.Level;
+
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.PIDOutput;
 /**
  *
  */
 public class DriveCommand extends Command {
-
+	Logger logger = EventLogging.getLogger(getClass(), Level.INFO);
   
     public DriveCommand() {
 
@@ -28,6 +37,7 @@ public class DriveCommand extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	logger.info("DriveCommand start");
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -43,6 +53,8 @@ public class DriveCommand extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	logger.info("DriveCommand end");
+    	
     	Robot.driveSubsystem.stopDrivingNow();
     }
     
@@ -50,5 +62,6 @@ public class DriveCommand extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	logger.info("DriveCommand interrupted");
     }
 }

@@ -56,8 +56,8 @@ public class AutomatedMoveTimedCommand extends Command implements PIDOutput{
 
     // Called just before this Command runs the first time
     protected void initialize() {
-
     	logger.info("AutomatedMoveTimed start");
+    	
     	RobotMap.driveSubsystemLeftEncoder.reset();
     	RobotMap.driveSubsystemRightEncoder.reset();
         pidDriveStraight.setSetpoint(Robot.driveSubsystem.getAutomaticHeading());
@@ -84,6 +84,7 @@ public class AutomatedMoveTimedCommand extends Command implements PIDOutput{
     // Called once after isFinished returns true
     protected void end() {
     	logger.info("AutomatedMoveTimed end");
+    	
     	pidDriveStraight.disable();
     	Robot.driveSubsystem.stopMotors();
     }
@@ -91,6 +92,8 @@ public class AutomatedMoveTimedCommand extends Command implements PIDOutput{
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	logger.info("AutomatedMoveTimed interrupted");
+    	
         end();
     }
       

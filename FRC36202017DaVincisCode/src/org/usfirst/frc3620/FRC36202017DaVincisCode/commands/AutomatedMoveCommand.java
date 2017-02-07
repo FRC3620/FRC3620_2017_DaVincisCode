@@ -7,7 +7,6 @@ import org.usfirst.frc3620.logger.EventLogging;
 import org.usfirst.frc3620.logger.EventLogging.Level;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 
@@ -54,8 +53,8 @@ public class AutomatedMoveCommand extends Command implements PIDOutput{
 
     // Called just before this Command runs the first time
     protected void initialize() {
-
     	logger.info("AutomatedMove start");
+    	
     	RobotMap.driveSubsystemLeftEncoder.reset();
     	RobotMap.driveSubsystemRightEncoder.reset();
         pidDriveStraight.setSetpoint(Robot.driveSubsystem.getAutomaticHeading());
@@ -96,6 +95,7 @@ public class AutomatedMoveCommand extends Command implements PIDOutput{
     // Called once after isFinished returns true
     protected void end() {
     	logger.info("AutomatedMove end");
+    	
     	pidDriveStraight.disable();
     	Robot.driveSubsystem.stopMotors();
     }
@@ -104,12 +104,12 @@ public class AutomatedMoveCommand extends Command implements PIDOutput{
     // subsystems is scheduled to run
     protected void interrupted() {
     	logger.info("AutomatedMove interrupted");
+    	
         end();
     }
       
     public void pidWrite(double output) {
        sideStick = output;
     }
-
-   
+  
 }
