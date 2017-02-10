@@ -24,10 +24,10 @@ public class ShiftGearCommand extends Command {
     	double gearShiftRightSpeed = Robot.oi.operatorJoystick.getRawAxis(3);
     	double gearShiftLeftSpeed = Robot.oi.operatorJoystick.getRawAxis(2);
     	if(gearShiftRightSpeed> .2){
-    		Robot.gearSubsystem.slideMotor(gearShiftRightSpeed);
+    		Robot.gearSubsystem.slideMotor(-gearShiftRightSpeed*.5);
     	}
     	else if(gearShiftLeftSpeed> .2){
-    		Robot.gearSubsystem.slideMotor(-gearShiftLeftSpeed);
+    		Robot.gearSubsystem.slideMotor(gearShiftLeftSpeed*.5);
     	}
     	else{
     		Robot.gearSubsystem.slideMotor(0);

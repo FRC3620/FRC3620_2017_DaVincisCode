@@ -70,6 +70,19 @@ public class EventLogging {
     }
     
     /**
+     * Log command starts and stops
+     * 
+     * @param logger
+     * 			  logger to log to.
+     */
+    public static void commandMessage (org.slf4j.Logger logger) {
+  	  Throwable t = new Throwable();
+  	  StackTraceElement[] stackTraceElement = t.getStackTrace();
+  	  logger.info("command {}", stackTraceElement[1].getMethodName());
+    }
+
+    
+    /**
      * Write a message to the DriverStation. It also logs into the driver
      * station log.
      * 
