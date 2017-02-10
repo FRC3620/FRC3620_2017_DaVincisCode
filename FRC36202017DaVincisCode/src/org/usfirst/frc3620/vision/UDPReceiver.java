@@ -43,7 +43,7 @@ public class UDPReceiver extends Thread {
                 // figure out response
                 visionData = gson.fromJson(lastDataReceived, VisionData.class);
                 visionData.whenRecieved = System.currentTimeMillis();
-        		System.out.println(visionData);
+        		//System.out.println(visionData);
             } catch (IOException e) {
                 e.printStackTrace();
         moreQuotes = false;
