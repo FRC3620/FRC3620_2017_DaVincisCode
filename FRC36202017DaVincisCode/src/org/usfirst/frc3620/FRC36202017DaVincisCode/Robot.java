@@ -248,7 +248,7 @@ public class Robot extends IterativeRobot {
 
 		// and log data!
 		// updateDashboard();
-		SmartDashboard.putString("currentCommand", driveSubsystem.getCurrentCommand().getName());
+//		SmartDashboard.putString("currentCommand", driveSubsystem.getCurrentCommand().getName());
 	}
 
 	void addRobotDataLoggerDataProviders() {

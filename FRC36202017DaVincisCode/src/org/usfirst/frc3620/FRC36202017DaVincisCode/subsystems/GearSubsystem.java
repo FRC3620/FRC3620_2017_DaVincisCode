@@ -225,11 +225,11 @@ public class GearSubsystem extends Subsystem {
 	
 	public double getAlignment(){
 		if(isLeftSideBlocked()){
-			alignment=getTargetCenter()-20;
+			alignment=getTargetCenter()+46;
 			return alignment;
 		}
 		else if(!isLeftSideBlocked()){
-			alignment=getTargetCenter()+20;
+			alignment=getTargetCenter()-46;
 			return alignment;
 		}
 		else{
@@ -285,10 +285,10 @@ public class GearSubsystem extends Subsystem {
     }
     
     public void updateDashboard() {
-    	SmartDashboard.putNumber("PegCenter", Robot.gearSubsystem.getPegLocation());
-    	SmartDashboard.putNumber("X Offset", Robot.gearSubsystem.xOffset());
-    	SmartDashboard.putNumber("TargetCanter", Robot.gearSubsystem.getTargetCenter());
-    	SmartDashboard.putNumber("BlobCount", Robot.gearSubsystem.getBlobCount());
+    	SmartDashboard.putNumber("Alignment", getAlignment());
+    	SmartDashboard.putNumber("PegCenter", getPegLocation());
+    	SmartDashboard.putNumber("X Offset", xOffset());
+    	SmartDashboard.putNumber("BlobCount", getBlobCount());
     	
     }
 }
