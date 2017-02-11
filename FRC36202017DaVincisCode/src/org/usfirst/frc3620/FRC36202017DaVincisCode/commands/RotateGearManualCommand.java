@@ -11,7 +11,7 @@ public class RotateGearManualCommand extends Command {
 
     public RotateGearManualCommand() {
         // Use requires() here to declare subsystem dependencies
-    	requires(Robot.gearSubsystem);
+
     }
 
     // Called just before this Command runs the first time

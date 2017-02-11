@@ -85,22 +85,15 @@ public class OI {
         runShooterButton = new JoystickButton(operatorJoystick, 1);
         runShooterButton.whenPressed(new RunShooterCommand());
         
-//        rotateGearUpButton = new JoystickButton(operatorJoystick, 4);
-//        rotateGearUpButton.whenPressed(new RotateGearUpCommand());
-//        
-//        rotateGearDownButton = new JoystickButton(operatorJoystick, 3);
-//        rotateGearDownButton.whenPressed(new RotateGearDownCommand());
         
         plungeGearButton = new JoystickButton(operatorJoystick, 2);
         plungeGearButton.whenPressed(new PlungeGearCommand());
         
-        closeGearSupportButton = new JoystickButton(operatorJoystick, 10);
-        closeGearSupportButton.whenPressed(new CloseGearSupportCommand());
         
         openGearSupportButton = new JoystickButton(operatorJoystick, 9);
-        openGearSupportButton.whenPressed(new OpenGearSupportCommand());
+        openGearSupportButton.toggleWhenPressed(new OpenGearSupportCommand());
         
-        visionButton = new JoystickButton(operatorJoystick, 5);
+        visionButton = new JoystickButton(operatorJoystick, 1);
         visionButton.whenPressed(new ShiftGearToPegCommand());
 
         // SmartDashboard Buttons

@@ -34,6 +34,7 @@ public class OpenGearSupportCommand extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.gearSubsystem.retractGearSupport();
     	timer.stop();
     	timer.reset();
     }
