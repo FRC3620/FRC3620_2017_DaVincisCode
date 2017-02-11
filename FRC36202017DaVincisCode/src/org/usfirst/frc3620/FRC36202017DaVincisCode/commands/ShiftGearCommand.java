@@ -3,6 +3,7 @@ package org.usfirst.frc3620.FRC36202017DaVincisCode.commands;
 import org.usfirst.frc3620.FRC36202017DaVincisCode.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -32,6 +33,8 @@ public class ShiftGearCommand extends Command {
     	else{
     		Robot.gearSubsystem.slideMotor(0);
     	}
+    	SmartDashboard.putNumber("CurrentCenter", Robot.gearSubsystem.getPegLocation());
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()

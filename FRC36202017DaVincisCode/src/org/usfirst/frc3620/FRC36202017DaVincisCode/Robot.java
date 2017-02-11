@@ -152,10 +152,6 @@ public class Robot extends IterativeRobot {
     /**
      * This function is called periodically during operator control
      */
-    public void teleopPeriodic() {
-        Scheduler.getInstance().run();
-        shooterSubsystem.updateDashboard();
-    }
 
 
 	public void disabledPeriodic() {
@@ -197,6 +193,13 @@ public class Robot extends IterativeRobot {
 	/**
 	 * This function is called periodically during operator control
 	 */
+	public void teleopPeriodic() {
+		beginPeriodic();
+		Scheduler.getInstance().run();
+		gearSubsystem.updateDashboard();
+		endPeriodic();
+	}
+
 
 	public void testInit() {
 		// This makes sure that the autonomous stops running when
