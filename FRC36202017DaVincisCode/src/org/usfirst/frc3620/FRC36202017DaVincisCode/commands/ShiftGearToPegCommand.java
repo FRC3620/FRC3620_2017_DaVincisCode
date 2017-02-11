@@ -28,9 +28,6 @@ public class ShiftGearToPegCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	SmartDashboard.putNumber("PegCenter", Robot.gearSubsystem.getPegLocation());
-    	SmartDashboard.putNumber("X Offset", Robot.gearSubsystem.xOffset());
-
     	Robot.gearSubsystem.shiftGearToPeg();
     	System.out.println("shifting Gear to Peg");
     }

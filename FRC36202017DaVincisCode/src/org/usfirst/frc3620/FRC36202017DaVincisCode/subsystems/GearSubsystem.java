@@ -283,5 +283,13 @@ public class GearSubsystem extends Subsystem {
         setDefaultCommand(new ShiftGearCommand());
     	 //setDefaultCommand(new RotateGearManualCommand());
     }
+    
+    public void updateDashboard() {
+    	SmartDashboard.putNumber("PegCenter", Robot.gearSubsystem.getPegLocation());
+    	SmartDashboard.putNumber("X Offset", Robot.gearSubsystem.xOffset());
+    	SmartDashboard.putNumber("TargetCanter", Robot.gearSubsystem.getTargetCenter());
+    	SmartDashboard.putNumber("BlobCount", Robot.gearSubsystem.getBlobCount());
+    	
+    }
 }
 

@@ -190,6 +190,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		beginPeriodic();
 		Scheduler.getInstance().run();
+		gearSubsystem.updateDashboard();
 		endPeriodic();
 	}
 
