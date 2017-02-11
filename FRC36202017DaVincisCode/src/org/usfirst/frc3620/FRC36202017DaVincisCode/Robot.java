@@ -106,6 +106,7 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        shooterSubsystem.updateDashboard();
     }
 
     /**
