@@ -79,9 +79,6 @@ public class Robot extends IterativeRobot {
 		pdpIsPresent = canDeviceFinder.isPDPPresent();
 		logger.info("PDP present = {}", pdpIsPresent);
 
-		robotDataLogger = new DataLogger();
-		addRobotDataLoggerDataProviders();
-
 		// --------------------------------------------------------------
 		// regular RobotBuilder stuff
 		RobotMap.init();
@@ -115,6 +112,8 @@ public class Robot extends IterativeRobot {
 
 		// --------------------------------------------------------------
 		// finish up 3620 stuff
+		robotDataLogger = new DataLogger();
+		addRobotDataLoggerDataProviders();
 		
 		robotDataLogger.setInterval(1.000);
 		robotDataLogger.start();
