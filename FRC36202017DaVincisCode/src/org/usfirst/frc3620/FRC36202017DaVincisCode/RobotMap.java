@@ -98,11 +98,11 @@ public class RobotMap {
         
         driveSubsystemRightEncoder = new Encoder(2, 3, false, EncodingType.k4X);
         LiveWindow.addSensor("DriveSubsystem", "Right Encoder", driveSubsystemRightEncoder);
-        driveSubsystemRightEncoder.setDistancePerPulse(1.0);
+        driveSubsystemRightEncoder.setDistancePerPulse(0.105);
         driveSubsystemRightEncoder.setPIDSourceType(PIDSourceType.kRate);
         driveSubsystemLeftEncoder = new Encoder(0, 1, false, EncodingType.k4X);
         LiveWindow.addSensor("DriveSubsystem", "Left Encoder", driveSubsystemLeftEncoder);
-        driveSubsystemLeftEncoder.setDistancePerPulse(1.0);
+        driveSubsystemLeftEncoder.setDistancePerPulse(0.105);
         driveSubsystemLeftEncoder.setPIDSourceType(PIDSourceType.kRate);
         driveSubsystemRangeFinder = new AnalogInput(0);
         LiveWindow.addSensor("DriveSubsystem", "RangeFinder", driveSubsystemRangeFinder);
