@@ -44,11 +44,7 @@ public class ShooterSubsystem extends Subsystem {
   Timer timer = new Timer();
     
     boolean shooterWasRunning;
-    double shooterF= edu.wpi.first.wpilibj.Preferences.getInstance().getDouble("shooterF", .1);
-//    double shooterP=  5;
-    double shooterP= edu.wpi.first.wpilibj.Preferences.getInstance().getDouble("shooterP", 30);
-    double shooterI= edu.wpi.first.wpilibj.Preferences.getInstance().getDouble("shooterI", 0);
-    double shooterD= edu.wpi.first.wpilibj.Preferences.getInstance().getDouble("shooterD", 0);
+
    
     
     public void setShooterSpeed(double speed){
@@ -70,26 +66,32 @@ public class ShooterSubsystem extends Subsystem {
     	shooterImpellerTalon.set(power);
     }
     
-    public void stopPID(){
+    public void updatePIDFromDashboard(){
+    	double shooterP= edu.wpi.first.wpilibj.Preferences.getInstance().getDouble("shooterP", 60);
+        double shooterI= edu.wpi.first.wpilibj.Preferences.getInstance().getDouble("shooterI", 0);
+        double shooterD= edu.wpi.first.wpilibj.Preferences.getInstance().getDouble("shooterD", 0);
+        shooterCANTalon2.setPID(shooterP, shooterI, shooterD);
     }
     
     public ShooterSubsystem() {
 		super();
 		
+		shooterCANTalon2.enableBrakeMode(false);
+		shooterCANTalon2.reverseSensor(true);
 		shooterCANTalon2.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		shooterCANTalon2.configEncoderCodesPerRev(3);
+		shooterCANTalon2.configEncoderCodesPerRev(20);
 		shooterCANTalon2.setPosition(0);
 		shooterCANTalon2.setForwardSoftLimit(+15);
 		shooterCANTalon2.setReverseSoftLimit(-15);;
-		shooterCANTalon2.enableBrakeMode(false);
-		
+	
+		updatePIDFromDashboard();
 		shooterCANTalon2.setF(.1097);
-		shooterCANTalon2.setPID(60, 0.0065, 0.01);
 		shooterCANTalon2.changeControlMode(CANTalon.TalonControlMode.Speed);
     
+		shooterCANTalon3.enableBrakeMode(false);
 		shooterCANTalon3.changeControlMode(CANTalon.TalonControlMode.Follower);
 		shooterCANTalon3.set(shooterCANTalon2.getDeviceID());
-		shooterCANTalon3.enableBrakeMode(false);
+		
     }
 		
     // Put methods for controlling this subsystem
@@ -116,6 +118,12 @@ public class ShooterSubsystem extends Subsystem {
     	
     	SmartDashboard.putNumber("ShooterOutputVoltage3", shooterCANTalon3.getOutputVoltage());
     	SmartDashboard.putNumber("ShooterOutputCurrent3", shooterCANTalon3.getOutputCurrent());
+    	
+    	SmartDashboard.putNumber("ShooterP", shooterCANTalon2.getP());
+    	SmartDashboard.putNumber("ShooterI", shooterCANTalon2.getI());
+    	SmartDashboard.putNumber("ShooterD", shooterCANTalon2.getD());
+    
+
     }
 }
 

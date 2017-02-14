@@ -47,6 +47,7 @@ public class RunShooterCommand extends Command {
     
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.shooterSubsystem.updatePIDFromDashboard();
     	logger.info("RunshooterCommand start");
     	shooterSpeed = edu.wpi.first.wpilibj.Preferences.getInstance().getDouble("Shooter Speed", 100);
     	SmartDashboard.putNumber("ShooterSpeed", shooterSpeed);
@@ -54,7 +55,7 @@ public class RunShooterCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
+    	SmartDashboard.putNumber("ShooterSpeed", shooterSpeed);
     	Robot.shooterSubsystem.setShooterSpeed(shooterSpeed);
     }
 
