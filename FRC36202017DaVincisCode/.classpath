@@ -10,6 +10,10 @@
 	<classpathentry kind="lib" path="lib/navx_frc.jar"/>
 	<classpathentry kind="lib" path="lib/slf4j-api-1.7.22.jar"/>
 	<classpathentry kind="lib" path="lib/slf4j-jdk14-1.7.22.jar"/>
+
 	<classpathentry kind="lib" path="lib/gson-2.8.0.jar"/>
+
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+
 	<classpathentry kind="output" path="bin"/>
 </classpath>

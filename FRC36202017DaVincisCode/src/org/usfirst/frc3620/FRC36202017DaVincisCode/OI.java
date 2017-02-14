@@ -15,7 +15,10 @@ import org.usfirst.frc3620.FRC36202017DaVincisCode.commands.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.*;
+import edu.wpi.first.wpilibj.command.Command;
+
 import org.usfirst.frc3620.FRC36202017DaVincisCode.subsystems.*;
+import org.usfirst.frc3620.misc.DPad;
 
 
 /**
@@ -124,6 +127,14 @@ public class OI {
         SmartDashboard.putData("AutomatedTurnLeft", new AutomatedTurnCommand(-30));
         SmartDashboard.putData("Watch", new AutomatedMoveTimedCommand(20.0, 0.00)); 
         SmartDashboard.putData("AutoTest", new AutoTestingTurnAndMoveCommand());
+
+        DPad operatorDpad = new DPad(operatorJoystick, 0);
+        Command hCommand1 = new Command1("Horizontal Command1");
+        operatorDpad.horizontalCommand(hCommand1);
+        SmartDashboard.putData("hCommand1", hCommand1);
+        Command vCommand1 = new Command1("Vertical Command1");
+        operatorDpad.verticalCommand(vCommand1);
+        SmartDashboard.putData("vCommand1", vCommand1);
 
     }
     
