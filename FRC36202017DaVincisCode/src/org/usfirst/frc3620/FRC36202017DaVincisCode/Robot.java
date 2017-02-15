@@ -198,7 +198,6 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		beginPeriodic();
 		Scheduler.getInstance().run();
-		gearSubsystem.updateDashboard();
 		endPeriodic();
 	}
 
@@ -251,6 +250,8 @@ public class Robot extends IterativeRobot {
 		// and log data!
 		// updateDashboard();
 //		SmartDashboard.putString("currentCommand", driveSubsystem.getCurrentCommand().getName());
+		gearSubsystem.updateDashboard();
+		shooterSubsystem.updateDashboard();
 	}
 
 	void addRobotDataLoggerDataProviders() {
