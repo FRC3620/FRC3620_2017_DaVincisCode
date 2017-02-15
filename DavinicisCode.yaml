@@ -186,7 +186,7 @@ Children:
           validators: &id005 [DigitalChannel]
           value: '2'
         Distance Per Pulse: !!robotbuilder.data.properties.DoubleProperty {default: 1,
-          name: Distance Per Pulse, validators: null, value: 1.0}
+          name: Distance Per Pulse, validators: null, value: 0.105}
         PID Source: !!robotbuilder.data.properties.ChoicesProperty
           choices: &id006 [kDisplacement, kRate]
           default: kRate
@@ -220,7 +220,7 @@ Children:
           validators: *id005
           value: '0'
         Distance Per Pulse: !!robotbuilder.data.properties.DoubleProperty {default: 1,
-          name: Distance Per Pulse, validators: null, value: 1.0}
+          name: Distance Per Pulse, validators: null, value: 0.105}
         PID Source: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id006
           default: kRate
@@ -243,6 +243,16 @@ Children:
           value: '1'
       Base: Quadrature Encoder
       Name: Left Encoder
+    - Children: []
+      Properties:
+        Input Channel (Analog): !!robotbuilder.data.properties.ChoicesProperty
+          choices: ['0', '1', '2', '3', '4', '5', '6', '7']
+          default: '0'
+          name: Input Channel (Analog)
+          validators: [AnalogInput]
+          value: '0'
+      Base: Analog Input
+      Name: RangeFinder
     Properties:
       Default command parameters: !!robotbuilder.data.properties.ParametersProperty
         default: []
