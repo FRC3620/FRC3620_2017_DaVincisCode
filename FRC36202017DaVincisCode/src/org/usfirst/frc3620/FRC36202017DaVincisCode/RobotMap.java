@@ -87,8 +87,7 @@ public class RobotMap {
         driveSubsystemRobotDrive.setMaxOutput(1.0);
         driveSubsystemRobotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);
         driveSubsystemRobotDrive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
-        driveSubsystemRobotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
-        driveSubsystemRobotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
+        
         driveSubsystemLeftDriveMotor3 = new Spark(2);
         LiveWindow.addActuator("DriveSubsystem", "Left Drive Motor 3", (Spark) driveSubsystemLeftDriveMotor3);
         
