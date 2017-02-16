@@ -34,7 +34,7 @@ public class AutomatedMoveTimedCommand extends Command implements PIDOutput{
 	
 	Timer timer = new Timer();
 	
-	PIDController pidDriveStraight = new PIDController(kP, kI, kD, kF, Robot.driveSubsystem.getAhrs(), this);
+	PIDController pidDriveStraight = new PIDController(kP, kI, kD, kF, Robot.driveSubsystem.getAhrsPidSource(), this);
 	
 
     public AutomatedMoveTimedCommand(double howLongInSeconds, double howFast) {

@@ -224,9 +224,13 @@ public class GearSubsystem extends Subsystem {
 	
 	public double getBlobCount(){
 		if (UDPReceiver.visionData == null){
-			System.out.println("BlobCount not recieved");
+			if (!complainedAboutNoVision) {
+				logger.warn("ImageWidth not recieved");
+			}
+			complainedAboutNoVision = true;
 			return 0;
 		}
+		complainedAboutNoVision = false;
 		return UDPReceiver.visionData.getCount();
 	}
 	

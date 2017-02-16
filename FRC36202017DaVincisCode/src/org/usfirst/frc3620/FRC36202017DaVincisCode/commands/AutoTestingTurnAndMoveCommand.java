@@ -12,7 +12,6 @@ public class AutoTestingTurnAndMoveCommand extends CommandGroup {
 	Logger logger = EventLogging.getLogger(getClass(), Level.INFO);
 
     public AutoTestingTurnAndMoveCommand() {
-    	logger.info("AutoTestingTurnAndMove start");
     	addSequential(new AutomatedMoveTimedCommand(5.0, 1));
     	addSequential(new AutomatedTurnCommand(45));
     	addSequential(new AutomatedMoveTimedCommand(3.0, 1));

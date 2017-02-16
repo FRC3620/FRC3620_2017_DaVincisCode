@@ -108,22 +108,24 @@ public class ShooterSubsystem extends Subsystem {
     }
     
     public void updateDashboard(){
-    	SmartDashboard.putNumber("ShooterOutputVoltage2", shooterCANTalon2.getOutputVoltage());
-    	SmartDashboard.putNumber("ShooterOutputSpeed2", shooterCANTalon2.getSpeed());
-    	SmartDashboard.putNumber("ShooterGet2", shooterCANTalon2.get());
-    	SmartDashboard.putNumber("ShooterOutputError2", shooterCANTalon2.getError());
-    	SmartDashboard.putNumber("ShooterEncoderVelocity2", shooterCANTalon2.getEncVelocity());
-    	SmartDashboard.putNumber("ShooterClosedLoopError2", shooterCANTalon2.getClosedLoopError());
-    	SmartDashboard.putNumber("ShooterOutputCurrent2", shooterCANTalon2.getOutputCurrent());
-    	
-    	SmartDashboard.putNumber("ShooterOutputVoltage3", shooterCANTalon3.getOutputVoltage());
-    	SmartDashboard.putNumber("ShooterOutputCurrent3", shooterCANTalon3.getOutputCurrent());
-    	
-    	SmartDashboard.putNumber("ShooterP", shooterCANTalon2.getP());
-    	SmartDashboard.putNumber("ShooterI", shooterCANTalon2.getI());
-    	SmartDashboard.putNumber("ShooterD", shooterCANTalon2.getD());
-    
+    	if (Robot.canDeviceFinder.isSRXPresent(shooterCANTalon2)) {
+        	SmartDashboard.putNumber("ShooterOutputVoltage2", shooterCANTalon2.getOutputVoltage());
+        	SmartDashboard.putNumber("ShooterOutputSpeed2", shooterCANTalon2.getSpeed());
+        	SmartDashboard.putNumber("ShooterGet2", shooterCANTalon2.get());
+        	SmartDashboard.putNumber("ShooterOutputError2", shooterCANTalon2.getError());
+        	SmartDashboard.putNumber("ShooterEncoderVelocity2", shooterCANTalon2.getEncVelocity());
+        	SmartDashboard.putNumber("ShooterClosedLoopError2", shooterCANTalon2.getClosedLoopError());
+        	SmartDashboard.putNumber("ShooterOutputCurrent2", shooterCANTalon2.getOutputCurrent());
 
+        	SmartDashboard.putNumber("ShooterP", shooterCANTalon2.getP());
+        	SmartDashboard.putNumber("ShooterI", shooterCANTalon2.getI());
+        	SmartDashboard.putNumber("ShooterD", shooterCANTalon2.getD());
+        
+    	}
+    	if (Robot.canDeviceFinder.isSRXPresent(shooterCANTalon3)) {
+        	SmartDashboard.putNumber("ShooterOutputVoltage3", shooterCANTalon3.getOutputVoltage());
+        	SmartDashboard.putNumber("ShooterOutputCurrent3", shooterCANTalon3.getOutputCurrent());
+    	}
     }
 }
 

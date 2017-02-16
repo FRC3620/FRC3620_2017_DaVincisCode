@@ -8,18 +8,16 @@ import org.usfirst.frc3620.logger.EventLogging.Level;
 /**
  *
  */
-public class WinchOrderCommand extends CommandGroup {
+public class FinishWinchCommand extends CommandGroup {
 	Logger logger = EventLogging.getLogger(getClass(), Level.INFO);
 
-    public WinchOrderCommand() {
-    	logger.info("WinchOrderCommand start");
+    public FinishWinchCommand() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
         // these will run in order.
-    	addSequential(new RunWinchUntilTiltedCommand());
-    	addSequential(new RunWinchForTimeCommand());
-
+    	addSequential(new WinchInRopeCommand());
+        addSequential(new SnugRopeCommand());
         // To run multiple commands at the same time,
         // use addParallel()
         // e.g. addParallel(new Command1());

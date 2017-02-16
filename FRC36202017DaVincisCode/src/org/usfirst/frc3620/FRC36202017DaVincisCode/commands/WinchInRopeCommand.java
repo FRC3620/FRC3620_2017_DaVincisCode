@@ -11,12 +11,12 @@ import edu.wpi.first.wpilibj.Timer;
 /**
  *
  */
-public class RunWinchForTimeCommand extends Command {
+public class WinchInRopeCommand extends Command {
 	Logger logger = EventLogging.getLogger(getClass(), Level.INFO);
 	Timer timer = new Timer ();
 	
 
-    public RunWinchForTimeCommand() {
+    public WinchInRopeCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.driveSubsystem);

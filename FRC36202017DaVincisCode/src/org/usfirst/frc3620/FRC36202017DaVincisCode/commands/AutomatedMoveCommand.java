@@ -32,7 +32,7 @@ public class AutomatedMoveCommand extends Command implements PIDOutput{
 	double howFarWeWantToMove = 0;
 	double howFastToMove = 0;
 	
-	PIDController pidDriveStraight = new PIDController(kP, kI, kD, kF, Robot.driveSubsystem.getAhrs(), this);
+	PIDController pidDriveStraight = new PIDController(kP, kI, kD, kF, Robot.driveSubsystem.getAhrsPidSource(), this);
 	
 
     public AutomatedMoveCommand(double howFar, double howFast) {

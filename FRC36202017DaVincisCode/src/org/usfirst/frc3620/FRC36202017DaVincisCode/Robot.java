@@ -231,6 +231,7 @@ public class Robot extends IterativeRobot {
 		// if any subsystems need to know about mode changes, let
 		// them know here.
 		driveSubsystem.processRobotModeChange(newMode);
+		climberSubsystem.processRobotModeChange(newMode);
 	}
 
 	/*
@@ -252,6 +253,11 @@ public class Robot extends IterativeRobot {
 //		SmartDashboard.putString("currentCommand", driveSubsystem.getCurrentCommand().getName());
 		gearSubsystem.updateDashboard();
 		shooterSubsystem.updateDashboard();
+		driveSubsystem.updateDashboard();
+		
+		SmartDashboard.putNumber("accel.x", builtinAccelerometer.getX());
+		SmartDashboard.putNumber("accel.y", builtinAccelerometer.getY());
+		SmartDashboard.putNumber("accel.z", builtinAccelerometer.getZ());
 	}
 
 	void addRobotDataLoggerDataProviders() {
