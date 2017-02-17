@@ -53,6 +53,7 @@ public class DriveSubsystem extends Subsystem {
 	private final SpeedController leftDriveMotor3 = RobotMap.driveSubsystemLeftDriveMotor3;
 	private final SpeedController rightDriveMotor3 = RobotMap.driveSubsystemRightDriveMotor3;
 	private final DoubleSolenoid shifterSolenoid = RobotMap.driveSubsystemShifterSolenoid;
+	private final DoubleSolenoid climbingShifterSolenoid = RobotMap.climberSubsystemRopeIntake;
 	private final Encoder rightEncoder = RobotMap.driveSubsystemRightEncoder;
 	private final Encoder leftEncoder = RobotMap.driveSubsystemLeftEncoder;
 
@@ -355,4 +356,13 @@ public class DriveSubsystem extends Subsystem {
 	    robotDrive.setLeftRightMotorOutputs(leftMotorSpeed, rightMotorSpeed);
 	    fixThirdMotor();
 	  }
+	
+	public void shiftIntoClimbingMode(){
+		climbingShifterSolenoid.set(Value.kForward);
+	}
+	
+	public void shiftOutOfClimbingMode(){
+		climbingShifterSolenoid.set(Value.kReverse);
+		
+	}
 }
