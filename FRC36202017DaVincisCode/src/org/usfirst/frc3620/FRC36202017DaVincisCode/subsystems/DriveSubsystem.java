@@ -17,16 +17,15 @@ import org.usfirst.frc3620.FRC36202017DaVincisCode.commands.*;
 import org.usfirst.frc3620.logger.EventLogging;
 import org.usfirst.frc3620.logger.EventLogging.Level;
 import org.usfirst.frc3620.misc.RobotMode;
-
 import com.kauailabs.navx.frc.AHRS;
-
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
-
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.PIDSourceType;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SPI.Port;
 import edu.wpi.first.wpilibj.SpeedController;
@@ -74,10 +73,6 @@ public class DriveSubsystem extends Subsystem {
 	}
 
 	public boolean weAreInReverse = false;
-
-	private AHRS ahrs = null; // new AHRS(Port.kMXP);
-
-	double automaticHeading = 0;
 
 	public void runWinch(double winchPower) {
 		robotDrive.tankDrive(0, winchPower);
@@ -140,12 +135,6 @@ public class DriveSubsystem extends Subsystem {
 		rightEncoder.reset();
 	}
 
-	public double getRangeInInches() {
-		double voltage = RobotMap.driveSubsystemRangeFinder.getAverageVoltage();
-		double inches = (6 / .06) * voltage;
-		return inches;
-	}
-
 	public void resetNavX() {
 		if (ahrs != null) {
 		ahrs.resetDisplacement();
@@ -154,35 +143,6 @@ public class DriveSubsystem extends Subsystem {
 		ahrs.reset();
 		logger.info("Resetting NavX Angle, Angle = {}", ahrs.getAngle());
 		}
-	}
-
-	static public double angleDifference(double angle1, double angle2) {
-		double diff = Math.abs(angle1 - angle2);
-		if (diff > 180) {
-			diff = 360 - diff;
-		}
-		return diff;
-	}
-
-	static public double normalizeAngle(double angle) {
-		// bring into range of -360..360
-		double newAngle = angle % 360;
-
-		// if it's between -360..0, put it between 0..360
-		if (newAngle < 0)
-			newAngle += 360;
-
-		return newAngle;
-	}
-
-	public double changeAutomaticHeading(double changeAngle) {
-		automaticHeading = automaticHeading + changeAngle;
-		automaticHeading = normalizeAngle(automaticHeading);
-		return automaticHeading;
-	}
-
-	public double getAutomaticHeading() {
-		return automaticHeading;
 	}
 
 	boolean complainedAboutMissingAhrs = false;
@@ -234,6 +194,24 @@ public class DriveSubsystem extends Subsystem {
 		}
 	}
 
+	public double getRoll() {
+		if (ahrsIsConnected()) {
+			return ahrs.getRoll();
+		} else {
+			complainAboutMissingAhrs();
+			return 0;
+		}
+	}
+
+	public double getAngle() {
+		if (ahrsIsConnected()) {
+			return ahrs.getAngle();
+		} else {
+			complainAboutMissingAhrs();
+			return 0;
+		}
+	}
+	
 	public double getDisplacementX() {
 		if (ahrsIsConnected()) {
 			return ahrs.getDisplacementX();
@@ -260,23 +238,44 @@ public class DriveSubsystem extends Subsystem {
 			return 0;
 		}
 	}
-
-	public double getRoll() {
-		if (ahrsIsConnected()) {
-			return ahrs.getRoll();
-		} else {
-			complainAboutMissingAhrs();
-			return 0;
-		}
+	
+	public double getRangeInInches() {
+    	double voltage = RobotMap.driveSubsystemRangeFinder.getAverageVoltage();
+    	double inches = (6/.06)*voltage;
+    	return inches;	
 	}
 
-	public double getAngle() {
-		if (ahrsIsConnected()) {
-			return ahrs.getAngle();
-		} else {
-			complainAboutMissingAhrs();
-			return 0;
+	public static AHRS ahrs = new AHRS(Port.kMXP);
+
+	double automaticHeading = 0;
+
+	static public double angleDifference(double angle1, double angle2) {
+		double diff = Math.abs(angle1 - angle2);
+		if (diff > 180) {
+			diff = 360 - diff;
 		}
+		return diff;
+	}
+
+	public double getAutomaticHeading() {
+		return automaticHeading;
+	}
+
+	static public double normalizeAngle(double angle) {
+		// bring into range of -360..360
+		double newAngle = angle % 360;
+
+		// if it's between -360..0, put it between 0..360
+		if (newAngle < 0)
+			newAngle += 360;
+
+		return newAngle;
+	}
+
+	public double changeAutomaticHeading(double changeAngle) {
+		automaticHeading = automaticHeading + changeAngle;
+		automaticHeading = normalizeAngle(automaticHeading);
+		return automaticHeading;
 	}
 	
 	public void updateDashboard() {
