@@ -133,7 +133,10 @@ public class OI {
         SmartDashboard.putData("AutomatedTurnLeft", new AutomatedTurnCommand(-30));
         SmartDashboard.putData("Watch", new AutomatedMoveTimedCommand(20.0, 0.00)); 
         SmartDashboard.putData("AutoTest", new AutoTestingTurnAndMoveCommand());
-
+        SmartDashboard.putData("Score Gear Command", new ScoreGearFromPointSenecaCommand());
+        SmartDashboard.putData("AutoPointSenecaLane1", new AutoPointSenecaLane1());
+        SmartDashboard.putData("AutoPointSenecaLane3", new AutoPointSenecaLane3());
+        
         DPad operatorDpad = new DPad(driveJoystick, 0);
         Command huntForRopeCommand = new HuntForRopeCommand();
         SmartDashboard.putData("huntForRopeCommand", huntForRopeCommand);

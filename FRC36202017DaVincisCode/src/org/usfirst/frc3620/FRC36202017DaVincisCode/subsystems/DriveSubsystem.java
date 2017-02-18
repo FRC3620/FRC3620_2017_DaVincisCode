@@ -244,6 +244,52 @@ public class DriveSubsystem extends Subsystem {
     	double inches = (6/.06)*voltage;
     	return inches;	
 	}
+	
+	public double robotOffset(){
+		return (18-getRangeInInches());
+	}
+	
+	public void setUpRobotForGearScoring(){
+			if(robotIsAligned()){
+				SmartDashboard.putBoolean("Robot Is Aligned", true);
+				stopDrivingNow();
+			}
+			else if(robotOffset()<0){
+				SmartDashboard.putBoolean("Robot Is Aligned", false);
+				setDriveForward(.75, 0);
+			}
+			else if(robotOffset()>0){
+				SmartDashboard.putBoolean("Robot Is Aligned", false);
+				setDriveForward(-.75, 0);
+			}
+		}
+	public void moveRobotForwardToPlunge(){
+		if(robotIsShovedUp()){
+			SmartDashboard.putBoolean("Robot Is Shoved Up", true);
+			stopDrivingNow();
+		}
+		else{
+			setDriveForward(.75, 0);
+		}
+	}
+	
+	public boolean robotIsAligned(){
+		if (Math.abs(robotOffset())<2){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	
+	public boolean robotIsShovedUp(){
+		if (getRangeInInches()<2){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 
 	public static AHRS ahrs = new AHRS(Port.kMXP);
 
