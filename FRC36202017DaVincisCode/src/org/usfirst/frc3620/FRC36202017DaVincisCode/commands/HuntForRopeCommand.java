@@ -22,7 +22,7 @@ public class HuntForRopeCommand extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	logger.info("HuntForRopeCommand start");
-    	Robot.climberSubsystem.ingageWinch();
+    	Robot.driveSubsystem.shiftIntoClimbingMode();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -32,45 +32,45 @@ public class HuntForRopeCommand extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() { 
-    	if (Robot.driveSubsystem.ahrsIsConnected()) {
-        	double roll = Robot.driveSubsystem.getRoll();
-        	if(roll > 30){
-        		logger.info("finishing: roll is {}", roll);
-        		return true;
-        	}
-        	if(roll < -30){
-        		logger.info("finishing: roll is {}", roll);
-        		return true;
-        	}
-        	double pitch = Robot.driveSubsystem.getPitch();
-        	if(pitch > 20){
-        		logger.info("finishing: pitch is {}", pitch);
-        		return true;
-        	}
-        	if(pitch < -20){
-        		logger.info("finishing: pitch is {}", pitch);
-        		return true;
-        	}
-            return false;
-    	} else {
-    		double x = Robot.builtinAccelerometer.getX();
-    		if (Math.abs(x) > 0.3) {
-        		logger.info("finishing: accel X is {}", x);
-    			return true;
-    		}
-    		double y = Robot.builtinAccelerometer.getX();
-    		if (Math.abs(y) > 0.3) {
-        		logger.info("finishing: accel Y is {}", y);
-    			return true;
-    		}
+//    	if (Robot.driveSubsystem.ahrsIsConnected()) {
+//        	double roll = Robot.driveSubsystem.getRoll();
+//        	if(roll > 30){
+//        		logger.info("finishing: roll is {}", roll);
+//        		return true;
+//        	}
+//        	if(roll < -30){
+//        		logger.info("finishing: roll is {}", roll);
+//        		return true;
+//        	}
+//        	double pitch = Robot.driveSubsystem.getPitch();
+//        	if(pitch > 20){
+//        		logger.info("finishing: pitch is {}", pitch);
+//        		return true;
+//        	}
+//        	if(pitch < -20){
+//        		logger.info("finishing: pitch is {}", pitch);
+//        		return true;
+//        	}
+//            return false;
+//    	} else {
+//    		double x = Robot.builtinAccelerometer.getX();
+//    		if (Math.abs(x) > 0.3) {
+//        		logger.info("finishing: accel X is {}", x);
+//    			return true;
+//    		}
+//    		double y = Robot.builtinAccelerometer.getX();
+//    		if (Math.abs(y) > 0.3) {
+//        		logger.info("finishing: accel Y is {}", y);
+//    			return true;
+//    		}
     		return false;
-    	}
+//    	}
     }
 
     // Called once after isFinished returns true
     protected void end() {
     	logger.info("HuntForRopeCommand end");
-    	finishWinchCommand.start();
+//    	finishWinchCommand.start();
     	Robot.driveSubsystem.runWinch(0);
     }
 
@@ -78,7 +78,7 @@ public class HuntForRopeCommand extends Command {
     // subsystems is scheduled to run
     protected void interrupted() {
     	logger.info("HuntForRopeCommand interrupted");
-    	Robot.climberSubsystem.disingageWinch();
+    	Robot.driveSubsystem.shiftOutOfClimbingMode();
     	Robot.driveSubsystem.runWinch(0);
     }
     }

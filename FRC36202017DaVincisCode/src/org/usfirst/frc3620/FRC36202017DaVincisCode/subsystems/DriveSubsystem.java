@@ -357,11 +357,11 @@ public class DriveSubsystem extends Subsystem {
 	  }
 	
 	public void shiftIntoClimbingMode(){
+		shiftIntoLowGear();
 		climbingShifterSolenoid.set(Value.kForward);
 	}
 	
 	public void shiftOutOfClimbingMode(){
 		climbingShifterSolenoid.set(Value.kReverse);
-		
 	}
 }
