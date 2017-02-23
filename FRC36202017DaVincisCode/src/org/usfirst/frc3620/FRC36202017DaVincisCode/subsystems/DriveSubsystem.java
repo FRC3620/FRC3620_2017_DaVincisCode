@@ -326,6 +326,8 @@ public class DriveSubsystem extends Subsystem {
 	
 	public void updateDashboard() {
 		SmartDashboard.putString("DriveSubsystemCurrentCommand", ""+getCurrentCommand());
+		SmartDashboard.putNumber("Drive Encoder Left", leftEncoder.getDistance());
+		SmartDashboard.putNumber("Drive Encoder Right", rightEncoder.getDistance());
 	}
 
 	public void updateDashboardWithPidStuff(Command who, PIDController pid,

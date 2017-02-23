@@ -243,11 +243,11 @@ public class GearSubsystem extends Subsystem {
 	
 	public double getAlignment(){
 		if(isLeftSideBlocked()){
-			alignment=getTargetCenter()+46;
+			alignment=getTargetCenter();
 			return alignment;
 		}
 		else if(!isLeftSideBlocked()){
-			alignment=getTargetCenter()-46;
+			alignment=getTargetCenter();
 			return alignment;
 		}
 		else{
@@ -267,11 +267,11 @@ public class GearSubsystem extends Subsystem {
 			}
 			else if(xOffset()<0){
 				SmartDashboard.putBoolean("Gear Is Aligned", false);
-				slideMotor(-.25);
+				slideMotor(.5);
 			}
 			else if(xOffset()>0){
 				SmartDashboard.putBoolean("Gear Is Aligned", false);
-				slideMotor(.25);
+				slideMotor(-.5);
 			}
 			
 		}
