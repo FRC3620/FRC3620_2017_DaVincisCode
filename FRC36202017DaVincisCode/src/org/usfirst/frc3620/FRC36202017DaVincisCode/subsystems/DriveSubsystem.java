@@ -12,6 +12,7 @@
 package org.usfirst.frc3620.FRC36202017DaVincisCode.subsystems;
 
 import org.slf4j.Logger;
+import org.usfirst.frc3620.FRC36202017DaVincisCode.Robot;
 import org.usfirst.frc3620.FRC36202017DaVincisCode.RobotMap;
 import org.usfirst.frc3620.FRC36202017DaVincisCode.commands.*;
 import org.usfirst.frc3620.logger.EventLogging;
@@ -137,11 +138,11 @@ public class DriveSubsystem extends Subsystem {
 
 	public void resetNavX() {
 		if (ahrs != null) {
-		ahrs.resetDisplacement();
-		logger.info("Resetting X Displacement, X = {}",
-				ahrs.getDisplacementX());
-		ahrs.reset();
-		logger.info("Resetting NavX Angle, Angle = {}", ahrs.getAngle());
+			ahrs.resetDisplacement();
+			logger.info("Resetting X Displacement, X = {}",
+					ahrs.getDisplacementX());
+			ahrs.reset();
+			logger.info("Resetting NavX Angle, Angle = {}", ahrs.getAngle());
 		}
 	}
 
@@ -149,22 +150,22 @@ public class DriveSubsystem extends Subsystem {
 
 	public PIDSource getAhrsPidSource() {
 		if (ahrsIsConnected()) {
-		  return ahrs;
+			return ahrs;
 		} else {
 			return new PIDSource() {
-				
+
 				@Override
 				public void setPIDSourceType(PIDSourceType pidSource) {
 					// TODO Auto-generated method stub
-					
+
 				}
-				
+
 				@Override
 				public double pidGet() {
 					// TODO Auto-generated method stub
 					return 0;
 				}
-				
+
 				@Override
 				public PIDSourceType getPIDSourceType() {
 					// TODO Auto-generated method stub
@@ -173,7 +174,7 @@ public class DriveSubsystem extends Subsystem {
 			};
 		}
 	}
-	
+
 	public boolean ahrsIsConnected() {
 		return ahrs != null && ahrs.isConnected();
 	}
@@ -211,7 +212,7 @@ public class DriveSubsystem extends Subsystem {
 			return 0;
 		}
 	}
-	
+
 	public double getDisplacementX() {
 		if (ahrsIsConnected()) {
 			return ahrs.getDisplacementX();
@@ -238,55 +239,51 @@ public class DriveSubsystem extends Subsystem {
 			return 0;
 		}
 	}
-	
+
 	public double getRangeInInches() {
-    	double voltage = RobotMap.driveSubsystemRangeFinder.getAverageVoltage();
-    	double inches = (6/.06)*voltage;
-    	return inches;	
+		double voltage = RobotMap.driveSubsystemRangeFinder.getAverageVoltage();
+		double inches = (6 / .06) * voltage;
+		return inches;
 	}
-	
-	public double robotOffset(){
-		return (18-getRangeInInches());
+
+	public double robotOffset() {
+		return (18 - getRangeInInches());
 	}
-	
-	public void setUpRobotForGearScoring(){
-			if(robotIsAligned()){
-				SmartDashboard.putBoolean("Robot Is Aligned", true);
-				stopDrivingNow();
-			}
-			else if(robotOffset()<0){
-				SmartDashboard.putBoolean("Robot Is Aligned", false);
-				setDriveForward(.75, 0);
-			}
-			else if(robotOffset()>0){
-				SmartDashboard.putBoolean("Robot Is Aligned", false);
-				setDriveForward(-.75, 0);
-			}
+
+	public void setUpRobotForGearScoring() {
+		if (robotIsAligned()) {
+			SmartDashboard.putBoolean("Robot Is Aligned", true);
+			stopDrivingNow();
+		} else if (robotOffset() < 0) {
+			SmartDashboard.putBoolean("Robot Is Aligned", false);
+			setDriveForward(.75, 0);
+		} else if (robotOffset() > 0) {
+			SmartDashboard.putBoolean("Robot Is Aligned", false);
+			setDriveForward(-.75, 0);
 		}
-	public void moveRobotForwardToPlunge(){
-		if(robotIsShovedUp()){
+	}
+
+	public void moveRobotForwardToPlunge() {
+		if (robotIsShovedUp()) {
 			SmartDashboard.putBoolean("Robot Is Shoved Up", true);
 			stopDrivingNow();
-		}
-		else{
+		} else {
 			setDriveForward(.75, 0);
 		}
 	}
-	
-	public boolean robotIsAligned(){
-		if (Math.abs(robotOffset())<2){
+
+	public boolean robotIsAligned() {
+		if (Math.abs(robotOffset()) < 2) {
 			return true;
-		}
-		else{
+		} else {
 			return false;
 		}
 	}
-	
-	public boolean robotIsShovedUp(){
-		if (getRangeInInches()<2){
+
+	public boolean robotIsShovedUp() {
+		if (getRangeInInches() < 2) {
 			return true;
-		}
-		else{
+		} else {
 			return false;
 		}
 	}
@@ -323,15 +320,18 @@ public class DriveSubsystem extends Subsystem {
 		automaticHeading = normalizeAngle(automaticHeading);
 		return automaticHeading;
 	}
-	
+
 	public void updateDashboard() {
-		SmartDashboard.putString("DriveSubsystemCurrentCommand", ""+getCurrentCommand());
-		SmartDashboard.putNumber("Drive Encoder Left", leftEncoder.getDistance());
-		SmartDashboard.putNumber("Drive Encoder Right", rightEncoder.getDistance());
+		SmartDashboard.putString("DriveSubsystemCurrentCommand",
+				"" + getCurrentCommand());
+		SmartDashboard.putNumber("Drive Encoder Left",
+				leftEncoder.getDistance());
+		SmartDashboard.putNumber("Drive Encoder Right",
+				rightEncoder.getDistance());
 		SmartDashboard.putNumber("Right Motor 1", rightDriveMotor1.get());
 		SmartDashboard.putNumber("Right Motor 2", rightDriveMotor2.get());
 		SmartDashboard.putNumber("Right Motor 3", rightDriveMotor3.get());
-		
+
 	}
 
 	public void updateDashboardWithPidStuff(Command who, PIDController pid,
@@ -349,75 +349,103 @@ public class DriveSubsystem extends Subsystem {
 		SmartDashboard.putNumber("DesiredHeading", getAutomaticHeading());
 
 	}
+
 	protected static double limit(double num) {
-	    if (num > 1.0) {
-	      return 1.0;
-	    }
-	    if (num < -1.0) {
-	      return -1.0;
-	    }
-	    return num;
-	  }
-	public void winchArcadeDrive(double moveValue, double rotateValue, boolean squaredInputs) {
-	    // local variables to hold the computed PWM values for the motors
-	   
-		if(weAreInReverse){
-			moveValue=-moveValue;
+		if (num > 1.0) {
+			return 1.0;
 		}
-	    double leftMotorSpeed;
-	    double rightMotorSpeed;
-
-	    moveValue = limit(moveValue);
-	    rotateValue = limit(rotateValue);
-
-	    if (squaredInputs) {
-	      // square the inputs (while preserving the sign) to increase fine control
-	      // while permitting full power
-	      if (moveValue >= 0.0) {
-	        moveValue = moveValue * moveValue;
-	      } else {
-	        moveValue = -(moveValue * moveValue);
-	      }
-	      if (rotateValue >= 0.0) {
-	        rotateValue = rotateValue * rotateValue;
-	      } else {
-	        rotateValue = -(rotateValue * rotateValue);
-	      }
-	    }
-
-	    if (moveValue > 0.0) {
-	      if (rotateValue > 0.0) {
-	        leftMotorSpeed = moveValue - rotateValue;
-	        rightMotorSpeed = Math.max(moveValue, rotateValue);
-	      } else {
-	        leftMotorSpeed = Math.max(moveValue, -rotateValue);
-	        rightMotorSpeed = moveValue + rotateValue;
-	      }
-	    } else {
-	      if (rotateValue > 0.0) {
-	        leftMotorSpeed = -Math.max(-moveValue, rotateValue);
-	        rightMotorSpeed = moveValue + rotateValue;
-	      } else {
-	        leftMotorSpeed = moveValue - rotateValue;
-	        rightMotorSpeed = -Math.max(-moveValue, -rotateValue);
-	      }
-	    }
-	    if (rightMotorSpeed < 0){
-	    	rightMotorSpeed = 0.0;
-	    }
-        
-	    SmartDashboard.putNumber("moveValue", moveValue);
-	    SmartDashboard.putNumber("rotateValue", rotateValue);
-	    robotDrive.setLeftRightMotorOutputs(leftMotorSpeed, rightMotorSpeed);
-	    fixThirdMotor();
-	  }
-	
-	public void shiftIntoClimbingMode(){
-		climbingShifterSolenoid.set(Value.kForward);
+		if (num < -1.0) {
+			return -1.0;
+		}
+		return num;
 	}
 	
-	public void shiftOutOfClimbingMode(){
+	public void winchOnly (double moveValue) {
+		if (weAreInReverse) {
+			moveValue = -moveValue;
+		}
+		moveValue = limit(moveValue);
+		if (moveValue < 0) {
+			moveValue = 0.0;
+		}
+
+		SmartDashboard.putNumber("moveValue", moveValue);
+		SmartDashboard.putNumber("rotateValue", 0);
+
+		robotDrive.setLeftRightMotorOutputs(0.0, moveValue);
+		fixThirdMotor();
+	}
+
+	public void winchArcadeDrive(double moveValue, double rotateValue,
+			boolean squaredInputs) {
+
+		if (weAreInReverse) {
+			moveValue = -moveValue;
+		}
+		// local variables to hold the computed PWM values for the motors
+		double leftMotorSpeed;
+		double rightMotorSpeed;
+
+		moveValue = limit(moveValue);
+		rotateValue = limit(rotateValue);
+
+		if (squaredInputs) {
+			// square the inputs (while preserving the sign) to increase fine
+			// control
+			// while permitting full power
+			if (moveValue >= 0.0) {
+				moveValue = moveValue * moveValue;
+			} else {
+				moveValue = -(moveValue * moveValue);
+			}
+			if (rotateValue >= 0.0) {
+				rotateValue = rotateValue * rotateValue;
+			} else {
+				rotateValue = -(rotateValue * rotateValue);
+			}
+		}
+
+		if (moveValue > 0.0) {
+			if (rotateValue > 0.0) {
+				leftMotorSpeed = moveValue - rotateValue;
+				rightMotorSpeed = Math.max(moveValue, rotateValue);
+			} else {
+				leftMotorSpeed = Math.max(moveValue, -rotateValue);
+				rightMotorSpeed = moveValue + rotateValue;
+			}
+		} else {
+			if (rotateValue > 0.0) {
+				leftMotorSpeed = -Math.max(-moveValue, rotateValue);
+				rightMotorSpeed = moveValue + rotateValue;
+			} else {
+				leftMotorSpeed = moveValue - rotateValue;
+				rightMotorSpeed = -Math.max(-moveValue, -rotateValue);
+			}
+		}
+		if (rightMotorSpeed < 0) {
+			rightMotorSpeed = 0.0;
+		}
+
+		SmartDashboard.putNumber("moveValue", moveValue);
+		SmartDashboard.putNumber("rotateValue", rotateValue);
+		robotDrive.setLeftRightMotorOutputs(leftMotorSpeed, rightMotorSpeed);
+		fixThirdMotor();
+	}
+
+	public void shiftIntoClimbingMode() {
+		climbingShifterSolenoid.set(Value.kForward);
+	}
+
+	public void shiftOutOfClimbingMode() {
 		climbingShifterSolenoid.set(Value.kReverse);
-		
+	}
+
+	public boolean isRobotTipped() {
+		if (ahrsIsConnected()) {
+			return (Math.abs(getRoll()) > 20 || Math.abs(getPitch()) > 20);
+		} else {
+			double z = Robot.builtinAccelerometer.getZ();
+			return Math.abs(z) < 0.85;
+		}
 	}
 }

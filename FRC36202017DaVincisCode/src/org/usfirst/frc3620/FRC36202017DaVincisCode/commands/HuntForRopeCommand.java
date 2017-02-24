@@ -29,44 +29,15 @@ public class HuntForRopeCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveSubsystem.winchArcadeDrive(Robot.oi.driveJoystick.getRawAxis(1)*1.5, Robot.oi.driveJoystick.getRawAxis(4), false);
+    	if (! Robot.driveSubsystem.isRobotTipped()) {
+    	  Robot.driveSubsystem.winchArcadeDrive(Robot.oi.driveJoystick.getRawAxis(1), Robot.oi.driveJoystick.getRawAxis(4), false);
+    	} else {
+      	  Robot.driveSubsystem.winchOnly(Robot.oi.driveJoystick.getRawAxis(1));
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() { 
-//    	if (Robot.driveSubsystem.ahrsIsConnected()) {
-//        	double roll = Robot.driveSubsystem.getRoll();
-//        	if(roll > 30){
-//        		logger.info("finishing: roll is {}", roll);
-//        		return true;
-//        	}
-//        	if(roll < -30){
-//        		logger.info("finishing: roll is {}", roll);
-//        		return true;
-//        	}
-//        	double pitch = Robot.driveSubsystem.getPitch();
-//        	if(pitch > 20){
-//        		logger.info("finishing: pitch is {}", pitch);
-//        		return true;
-//        	}
-//        	if(pitch < -20){
-//        		logger.info("finishing: pitch is {}", pitch);
-//        		return true;
-//        	}
-//            return false;
-//    	} else {
-//    		double x = Robot.builtinAccelerometer.getX();
-//    		if (Math.abs(x) > 0.3) {
-//        		logger.info("finishing: accel X is {}", x);
-//    			return true;
-//    		}
-//    		double y = Robot.builtinAccelerometer.getX();
-//    		if (Math.abs(y) > 0.3) {
-//        		logger.info("finishing: accel Y is {}", y);
-//    			return true;
-//    		}
-//    		return false;
-//    	}
     	return false;
     }
 
@@ -84,5 +55,4 @@ public class HuntForRopeCommand extends Command {
     	Robot.driveSubsystem.shiftOutOfClimbingMode();
     	Robot.driveSubsystem.runWinch(0);
     }
-    }
-
+}
