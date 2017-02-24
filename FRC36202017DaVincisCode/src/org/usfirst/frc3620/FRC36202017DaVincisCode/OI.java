@@ -137,7 +137,7 @@ public class OI {
         SmartDashboard.putData("AutoPointSenecaLane1", new AutoPointSenecaLane1());
         SmartDashboard.putData("AutoPointSenecaLane3", new AutoPointSenecaLane3());
         
-        DPad operatorDpad = new DPad(driveJoystick, 0);
+        DPad operatorDpad = new DPad(operatorJoystick, 0);
         Command huntForRopeCommand = new HuntForRopeCommand();
         SmartDashboard.putData("huntForRopeCommand", huntForRopeCommand);
         operatorDpad.up().whenActive(huntForRopeCommand);

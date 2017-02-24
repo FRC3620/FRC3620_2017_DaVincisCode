@@ -328,6 +328,10 @@ public class DriveSubsystem extends Subsystem {
 		SmartDashboard.putString("DriveSubsystemCurrentCommand", ""+getCurrentCommand());
 		SmartDashboard.putNumber("Drive Encoder Left", leftEncoder.getDistance());
 		SmartDashboard.putNumber("Drive Encoder Right", rightEncoder.getDistance());
+		SmartDashboard.putNumber("Right Motor 1", rightDriveMotor1.get());
+		SmartDashboard.putNumber("Right Motor 2", rightDriveMotor2.get());
+		SmartDashboard.putNumber("Right Motor 3", rightDriveMotor3.get());
+		
 	}
 
 	public void updateDashboardWithPidStuff(Command who, PIDController pid,
@@ -357,7 +361,9 @@ public class DriveSubsystem extends Subsystem {
 	public void winchArcadeDrive(double moveValue, double rotateValue, boolean squaredInputs) {
 	    // local variables to hold the computed PWM values for the motors
 	   
-
+		if(weAreInReverse){
+			moveValue=-moveValue;
+		}
 	    double leftMotorSpeed;
 	    double rightMotorSpeed;
 
@@ -396,10 +402,12 @@ public class DriveSubsystem extends Subsystem {
 	        rightMotorSpeed = -Math.max(-moveValue, -rotateValue);
 	      }
 	    }
-	    if (rightMotorSpeed > 0){
+	    if (rightMotorSpeed < 0){
 	    	rightMotorSpeed = 0.0;
 	    }
         
+	    SmartDashboard.putNumber("moveValue", moveValue);
+	    SmartDashboard.putNumber("rotateValue", rotateValue);
 	    robotDrive.setLeftRightMotorOutputs(leftMotorSpeed, rightMotorSpeed);
 	    fixThirdMotor();
 	  }
