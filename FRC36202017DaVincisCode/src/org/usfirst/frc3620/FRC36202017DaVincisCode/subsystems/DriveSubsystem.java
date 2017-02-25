@@ -89,11 +89,10 @@ public class DriveSubsystem extends Subsystem {
 		if (Math.abs(move) <= 0.2) {
 			move = 0;
 		}
-		if (Math.abs(rotate) <= 0.2) {
-			if (rotate < 0) {
+		if (rotate < 0) {
 				r2 = -r2;
 			}
-		}
+		
 		robotDrive.arcadeDrive(move, r2);
 		fixThirdMotor();
 	}
