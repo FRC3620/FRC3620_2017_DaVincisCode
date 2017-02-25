@@ -21,13 +21,19 @@ public class HuntForRopeCommand extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.driveSubsystem.weAreInReverse=true;
     	logger.info("HuntForRopeCommand start");
+    	Robot.driveSubsystem.shiftIntoLowGear();
     	Robot.driveSubsystem.shiftIntoClimbingMode();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveSubsystem.winchArcadeDrive(Robot.oi.driveJoystick.getRawAxis(1), Robot.oi.driveJoystick.getRawAxis(4), false);
+    	if (! Robot.driveSubsystem.isRobotTipped()) {
+    	  Robot.driveSubsystem.winchArcadeDrive(Robot.oi.driveJoystick.getRawAxis(1), Robot.oi.driveJoystick.getRawAxis(4), false);
+    	} else {
+      	  Robot.driveSubsystem.winchOnly(Robot.oi.driveJoystick.getRawAxis(1));
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -63,8 +69,10 @@ public class HuntForRopeCommand extends Command {
 //        		logger.info("finishing: accel Y is {}", y);
 //    			return true;
 //    		}
-    		return false;
+//    		return false;
 //    	}
+    	return false;
+
     }
 
     // Called once after isFinished returns true
@@ -81,5 +89,4 @@ public class HuntForRopeCommand extends Command {
     	Robot.driveSubsystem.shiftOutOfClimbingMode();
     	Robot.driveSubsystem.runWinch(0);
     }
-    }
-
+}

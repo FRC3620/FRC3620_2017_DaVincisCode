@@ -254,6 +254,9 @@ public class Robot extends IterativeRobot {
 		shooterSubsystem.updateDashboard();
 		driveSubsystem.updateDashboard();
 		
+		
+		SmartDashboard.putNumber("driver y joystick", -Robot.oi.driveJoystick.getRawAxis(1));
+		SmartDashboard.putNumber("driver x joystick", Robot.oi.driveJoystick.getRawAxis(4));
 		SmartDashboard.putNumber("accel.x", builtinAccelerometer.getX());
 		SmartDashboard.putNumber("accel.y", builtinAccelerometer.getY());
 		SmartDashboard.putNumber("accel.z", builtinAccelerometer.getZ());
