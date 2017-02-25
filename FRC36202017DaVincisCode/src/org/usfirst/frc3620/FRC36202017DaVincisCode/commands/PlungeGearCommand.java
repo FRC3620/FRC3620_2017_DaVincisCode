@@ -1,6 +1,7 @@
 package org.usfirst.frc3620.FRC36202017DaVincisCode.commands;
 
 import org.usfirst.frc3620.FRC36202017DaVincisCode.Robot;
+import org.usfirst.frc3620.FRC36202017DaVincisCode.subsystems.DriveSubsystem;
 import org.usfirst.frc3620.FRC36202017DaVincisCode.subsystems.GearSubsystem;
 
 import edu.wpi.first.wpilibj.Timer;
@@ -14,6 +15,7 @@ public class PlungeGearCommand extends Command {
     public PlungeGearCommand() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.gearSubsystem);
+        requires(Robot.driveSubsystem);
     }
 
     Timer timer = new Timer();
@@ -30,6 +32,7 @@ public class PlungeGearCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	
     	if(timer.get()>3){
     		Robot.gearSubsystem.retractGearSupport();
     	}
@@ -38,6 +41,7 @@ public class PlungeGearCommand extends Command {
     	}
     	else if(timer.get() > .25){
     	Robot.gearSubsystem.plungeGear();
+//    	Robot.driveSubsystem.setDriveForward(0, 0);
     	}
     	
     	
