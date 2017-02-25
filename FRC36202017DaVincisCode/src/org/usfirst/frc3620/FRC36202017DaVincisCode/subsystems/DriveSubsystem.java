@@ -83,12 +83,16 @@ public class DriveSubsystem extends Subsystem {
 
 	public void setDriveForward(double move, double rotate) {
 		double r2 = rotate * rotate;
-		if (rotate < 0) {
-			r2 = -r2;
-		}
-
 		if (weAreInReverse) {
 			move = -move;
+		}
+		if (Math.abs(move) <= 0.2) {
+			move = 0;
+		}
+		if (Math.abs(rotate) <= 0.2) {
+			if (rotate < 0) {
+				r2 = -r2;
+			}
 		}
 		robotDrive.arcadeDrive(move, r2);
 		fixThirdMotor();
