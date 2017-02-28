@@ -147,6 +147,7 @@ public class OI {
         SmartDashboard.putData("Score Gear Command", new ScoreGearFromPointSenecaCommand());
         SmartDashboard.putData("AutoPointSenecaLane1", new AutoPointSenecaLane1());
         SmartDashboard.putData("AutoPointSenecaLane3", new AutoPointSenecaLane3());
+        SmartDashboard.putData("AutomatedMoveToPeg", new AutomatedMoveToPegCommand(.75));
         
         DPad operatorDpad = new DPad(operatorJoystick, 0);
     }

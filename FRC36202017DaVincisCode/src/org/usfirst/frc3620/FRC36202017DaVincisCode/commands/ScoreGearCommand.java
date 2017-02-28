@@ -14,7 +14,7 @@ public class ScoreGearCommand extends CommandGroup {
         // these will run in order.
     	
     	 addSequential(new AutomatedMoveToPegCommand(.75));
-    	 addSequential(new PlungeGearCommand());
+    	 addSequential(new AutoPlungeGearCommand());
         // To run multiple commands at the same time,
         // use addParallel()
         // e.g. addParallel(new Command1());

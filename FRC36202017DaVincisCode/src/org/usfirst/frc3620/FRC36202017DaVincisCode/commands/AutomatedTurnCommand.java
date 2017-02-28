@@ -66,7 +66,7 @@ public class AutomatedTurnCommand extends Command implements PIDOutput{
     protected void execute() {
     	Robot.driveSubsystem.updateDashboardWithPidStuff(this, pidTurn, sideStick);
 
-    	Robot.driveSubsystem.setDriveForward(0, sideStick);
+    	Robot.driveSubsystem.driveAutomatically(0, sideStick);
     }
 
     // Make this return true when this Command no longer needs to run execute()

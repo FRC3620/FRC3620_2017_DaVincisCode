@@ -61,12 +61,12 @@ public class AutomatedMoveToPegCommand extends Command implements PIDOutput{
     protected void execute() {
     	Robot.driveSubsystem.updateDashboardWithPidStuff(this, pidDriveStraight, sideStick);
     	Robot.driveSubsystem.weAreInReverse=false;
-    	Robot.driveSubsystem.setDriveForward(-howFastToMove, sideStick);
+    	Robot.driveSubsystem.driveAutomatically(howFastToMove, sideStick);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return Robot.driveSubsystem.getRangeInInches()<2;
+    	return Robot.driveSubsystem.getRangeInInches()<7;
     }
 
     // Called once after isFinished returns true

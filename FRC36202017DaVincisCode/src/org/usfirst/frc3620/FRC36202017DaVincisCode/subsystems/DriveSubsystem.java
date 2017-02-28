@@ -81,7 +81,7 @@ public class DriveSubsystem extends Subsystem {
 
 	}
 
-	public void setDriveForward(double move, double rotate) {
+	public void driveManually(double move, double rotate) {
 		double r2 = rotate * rotate;
 		if (weAreInReverse) {
 			move = -move;
@@ -97,6 +97,12 @@ public class DriveSubsystem extends Subsystem {
 		fixThirdMotor();
 	}
 
+	public void driveAutomatically(double move, double rotate) {
+		
+		robotDrive.arcadeDrive(-move, rotate);
+		fixThirdMotor();
+	}
+	
 	public void stopDrivingNow() {
 		robotDrive.stopMotor();
 		fixThirdMotor();
@@ -259,10 +265,10 @@ public class DriveSubsystem extends Subsystem {
 			stopDrivingNow();
 		} else if (robotOffset() < 0) {
 			SmartDashboard.putBoolean("Robot Is Aligned", false);
-			setDriveForward(.75, 0);
+			driveManually(.75, 0);
 		} else if (robotOffset() > 0) {
 			SmartDashboard.putBoolean("Robot Is Aligned", false);
-			setDriveForward(-.75, 0);
+			driveManually(-.75, 0);
 		}
 	}
 
@@ -271,7 +277,7 @@ public class DriveSubsystem extends Subsystem {
 			SmartDashboard.putBoolean("Robot Is Shoved Up", true);
 			stopDrivingNow();
 		} else {
-			setDriveForward(.75, 0);
+			driveManually(.75, 0);
 		}
 	}
 
@@ -334,6 +340,11 @@ public class DriveSubsystem extends Subsystem {
 		SmartDashboard.putNumber("Right Motor 1", rightDriveMotor1.get());
 		SmartDashboard.putNumber("Right Motor 2", rightDriveMotor2.get());
 		SmartDashboard.putNumber("Right Motor 3", rightDriveMotor3.get());
+		SmartDashboard.putNumber("Left Motor 1", leftDriveMotor1.get());
+		SmartDashboard.putNumber("Left Motor 2", leftDriveMotor2.get());
+		SmartDashboard.putNumber("Left Motor 3", leftDriveMotor3.get());
+		SmartDashboard.putNumber("Proximity in Inches", getRangeInInches());
+
 
 	}
 
