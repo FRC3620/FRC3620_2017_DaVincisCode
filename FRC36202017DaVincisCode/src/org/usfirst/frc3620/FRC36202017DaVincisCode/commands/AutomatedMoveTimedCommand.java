@@ -42,7 +42,8 @@ public class AutomatedMoveTimedCommand extends Command implements PIDOutput{
         // eg. requires(chassis);
     	requires(Robot.driveSubsystem);
     	pidDriveStraight.setOutputRange(-1, 1);
-   
+    	pidDriveStraight.setInputRange(0.0f, 360.0f);
+    	pidDriveStraight.setContinuous(true);
     	howFastToMove = howFast;
     	howLongWeWantToMove = howLongInSeconds;
     }
@@ -56,7 +57,8 @@ public class AutomatedMoveTimedCommand extends Command implements PIDOutput{
     	RobotMap.driveSubsystemLeftEncoder.reset();
     	RobotMap.driveSubsystemRightEncoder.reset();
         pidDriveStraight.setSetpoint(Robot.driveSubsystem.getAutomaticHeading());
-    	pidDriveStraight.enable();
+        pidDriveStraight.reset();
+        pidDriveStraight.enable();
     	
     	timer.reset();
     	timer.start();

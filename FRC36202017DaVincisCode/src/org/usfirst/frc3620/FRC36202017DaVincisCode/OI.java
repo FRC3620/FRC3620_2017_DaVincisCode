@@ -143,9 +143,11 @@ public class OI {
         SmartDashboard.putData("AutomatedTurn", new AutomatedTurnCommand(30));
         SmartDashboard.putData("AutomatedTurnLeft", new AutomatedTurnCommand(-30));
         SmartDashboard.putData("Watch", new AutomatedMoveTimedCommand(20.0, 0.00)); 
+        SmartDashboard.putData("MoveBAck", new AutomatedMoveTimedCommand(3, -.75));
         SmartDashboard.putData("AutoTest", new AutoTestingTurnAndMoveCommand());
         SmartDashboard.putData("Score Gear Command", new ScoreGearFromPointSenecaCommand());
         SmartDashboard.putData("AutoPointSenecaLane1", new AutoPointSenecaLane1());
+        SmartDashboard.putData("AutoPointSenecaLane2", new AutoPointSenecaLane2());
         SmartDashboard.putData("AutoPointSenecaLane3", new AutoPointSenecaLane3());
         SmartDashboard.putData("AutomatedMoveToPeg", new AutomatedMoveToPegCommand(.75));
         

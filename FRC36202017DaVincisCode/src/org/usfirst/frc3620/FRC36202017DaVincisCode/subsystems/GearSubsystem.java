@@ -276,7 +276,7 @@ public class GearSubsystem extends Subsystem {
 			
 		}
 		else {
-			System.out.println("Blob not Found");
+//			System.out.println("Blob not Found");
 			SmartDashboard.putBoolean("Gear Is Aligned", false);
 			slideMotor(0);
 		}
