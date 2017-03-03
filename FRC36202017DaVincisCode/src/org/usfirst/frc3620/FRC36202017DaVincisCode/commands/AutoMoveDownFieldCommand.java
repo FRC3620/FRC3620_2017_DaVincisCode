@@ -19,7 +19,7 @@ public class AutoMoveDownFieldCommand extends CommandGroup {
         //      addSequential(new Command2());
         // Command1 and Command2 will run in parallel.
     	addSequential(new AutoBackUpFromPegCommand());
-    	addSequential(new AutomatedTurnCommand(60));
+    	addSequential(new AutomatedTurnCommand(-60));
     	addSequential(new AutomatedMoveTimedCommand(15, .85));
     	// A command group will require all of the subsystems that each member
         // would require.
