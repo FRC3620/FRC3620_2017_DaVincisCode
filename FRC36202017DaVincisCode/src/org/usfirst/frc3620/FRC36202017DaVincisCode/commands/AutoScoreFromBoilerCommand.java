@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutoPointSenecaLane2 extends CommandGroup {
+public class AutoScoreFromBoilerCommand extends CommandGroup {
 
-    public AutoPointSenecaLane2() {
+    public AutoScoreFromBoilerCommand() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -17,8 +17,10 @@ public class AutoPointSenecaLane2 extends CommandGroup {
         // use addParallel()
         // e.g. addParallel(new Command1());
         //      addSequential(new Command2());
-        // Command1 and Command2 will run in parallel.
-    	addSequential(new ScoreGearFromPointSenecaCommand(),3);
+    	addSequential(new AutomatedTurnCommand(15));
+    	addParallel(new AutomatedMoveTimedCommand(8, -.90));
+    	addSequential(new AutoScoreFeulCommand());
+    	addSequential(new CloseGearSupportCommand());
     	
         // A command group will require all of the subsystems that each member
         // would require.

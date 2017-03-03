@@ -158,6 +158,9 @@ public class Robot extends IterativeRobot {
         laneChooser.addObject("Lane 4", new AutoPointSenecaLane4());
         SmartDashboard.putData("Lane chooser", laneChooser);
         autoChooser = new AverageSendableChooser();
+        autoChooser.addObject("Back Up", new AutoBackUpFromPegCommand());
+        autoChooser.addObject("Score From Boiler", new AutoScoreFromBoilerCommand());
+        autoChooser.addObject("Move Down Field", new AutoMoveDownFieldCommand());
         
 	}
 	/**
@@ -183,8 +186,7 @@ public class Robot extends IterativeRobot {
 		processRobotModeChange(RobotMode.AUTONOMOUS);
 
 		autonomousLaneCommand = (Command) laneChooser.getSelected();
-		
-//		String auto = (String) autoChooser.getSelected();
+		String auto = (String) autoChooser.getSelected();
 //		if (! auto.equals("")) {
 //		    try {
 //			    autonomousCommand = SuperDuperAutonomous.make(autonomousCommand, lane);

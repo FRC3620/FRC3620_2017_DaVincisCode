@@ -21,8 +21,7 @@ public class AutoPointSenecaLane1 extends CommandGroup {
     	addSequential(new AutomatedMoveCommand(63, .75));
     	addSequential(new AutomatedTurnCommand(-60));
     	addSequential(new ScoreGearFromPointSenecaCommand(), 3);
-    	addSequential(new AutomatedMoveTimedCommand(.5, -.75));
-    	addSequential(new CloseGearSupportCommand());
+    	
 
         // A command group will require all of the subsystems that each member
         // would require.

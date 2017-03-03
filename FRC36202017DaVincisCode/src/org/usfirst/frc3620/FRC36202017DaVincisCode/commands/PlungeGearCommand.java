@@ -15,7 +15,7 @@ public class PlungeGearCommand extends Command {
     public PlungeGearCommand() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.gearSubsystem);
-        requires(Robot.driveSubsystem);
+//        requires(Robot.driveSubsystem);
     }
 
     Timer timer = new Timer();
