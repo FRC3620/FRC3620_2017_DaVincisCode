@@ -436,9 +436,9 @@ public class DriveSubsystem extends Subsystem {
 				rightMotorSpeed = -Math.max(-moveValue, -rotateValue);
 			}
 		}
-		if (rightMotorSpeed < 0) {
-			rightMotorSpeed = 0.0;
-		}
+//		if (rightMotorSpeed < 0) {
+//			rightMotorSpeed = 0.0;
+//		}
 		robotDrive.setLeftRightMotorOutputs(leftMotorSpeed, rightMotorSpeed);
 		fixThirdMotor();
 	}
