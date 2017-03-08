@@ -150,7 +150,10 @@ public class OI {
         SmartDashboard.putData("AutoPointSenecaLane2", new AutoPointSenecaLane2());
         SmartDashboard.putData("AutoPointSenecaLane3", new AutoPointSenecaLane3());
         SmartDashboard.putData("AutomatedMoveToPeg", new AutomatedMoveToPegCommand(.75));
-        
+        SmartDashboard.putData("AutoBackUpFromPeg", new AutoBackUpFromPegCommand());
+        SmartDashboard.putData("AutoMoveDownFieldLeft", new AutoMoveDownFieldLeftCommand());
+        SmartDashboard.putData("AutoMoveDownFieldRight", new AutoMoveDownFieldRightCommand());
+        SmartDashboard.putData("AutoScoreFeul", new AutoScoreFromBoilerCommand());
         DPad operatorDpad = new DPad(operatorJoystick, 0);
     }
     

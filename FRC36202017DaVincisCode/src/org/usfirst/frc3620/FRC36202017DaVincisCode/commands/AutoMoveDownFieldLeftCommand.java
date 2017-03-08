@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutoMoveDownFieldCommand extends CommandGroup {
+public class AutoMoveDownFieldLeftCommand extends CommandGroup {
 
-    public AutoMoveDownFieldCommand() {
+    public AutoMoveDownFieldLeftCommand() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

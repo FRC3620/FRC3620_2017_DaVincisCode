@@ -160,7 +160,8 @@ public class Robot extends IterativeRobot {
         autoChooser = new AverageSendableChooser();
         autoChooser.addObject("Back Up", new AutoBackUpFromPegCommand());
         autoChooser.addObject("Score From Boiler", new AutoScoreFromBoilerCommand());
-        autoChooser.addObject("Move Down Field", new AutoMoveDownFieldCommand());
+        autoChooser.addObject("Move Down Field Left", new AutoMoveDownFieldLeftCommand());
+        autoChooser.addObject("Move Down Field Right", new AutoMoveDownFieldRightCommand());
         
 	}
 	/**
