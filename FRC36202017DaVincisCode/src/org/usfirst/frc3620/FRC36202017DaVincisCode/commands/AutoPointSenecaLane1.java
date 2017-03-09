@@ -18,9 +18,9 @@ public class AutoPointSenecaLane1 extends CommandGroup {
         // e.g. addParallel(new Command1());
         //      addSequential(new Command2());
         // Command1 and Command2 will run in parallel.
+    	addSequential(new AutoShiftDownCommand());
     	addParallel(new CloseGearSupportCommand(), .25);
-    	addSequential(new ShiftDownCommand());
-    	addSequential(new AutomatedMoveCommand(64, .85));
+    	addSequential(new AutomatedMoveCommand(62, .85));
     	addSequential(new AutomatedTurnCommand(-60));
     	addSequential(new ScoreGearFromPointSenecaCommand(),4);
     	

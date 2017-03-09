@@ -152,10 +152,10 @@ public class Robot extends IterativeRobot {
 	public static void loadAutoChooser() {
         laneChooser = new AverageSendableChooser();
         laneChooser.addDefault("Do Nothing", new AutonomousDoNothingCommand());
-        laneChooser.addObject("Lane 1", new AutoPointSenecaLane1());
-        laneChooser.addObject("Lane 2", new AutoPointSenecaLane2());
-        laneChooser.addObject("Lane 3", new AutoPointSenecaLane3());
-        laneChooser.addObject("Lane 4", new AutoPointSenecaLane4());
+        laneChooser.addObject("Right", new AutoPointSenecaLane1());
+        laneChooser.addObject("Middle", new AutoPointSenecaLane2());
+        laneChooser.addObject("Left", new AutoPointSenecaLane3());
+        laneChooser.addObject("DriveForward", new AutoPointSenecaLane4());
         SmartDashboard.putData("Lane chooser", laneChooser);
         autoChooser = new AverageSendableChooser();
         autoChooser.addObject("Back Up", new AutoBackUpFromPegCommand());
@@ -218,7 +218,7 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
-
+		Robot.driveSubsystem.shiftIntoHighGear();
 		processRobotModeChange(RobotMode.TELEOP);
 	}
 
