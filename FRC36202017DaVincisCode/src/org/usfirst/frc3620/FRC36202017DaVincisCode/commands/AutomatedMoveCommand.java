@@ -66,7 +66,7 @@ public class AutomatedMoveCommand extends Command implements PIDOutput{
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.driveSubsystem.updateDashboardWithPidStuff(this, pidDriveStraight, sideStick);
-
+    	logger.info("Moving");
     	Robot.driveSubsystem.driveAutomatically(howFastToMove, sideStick);
     }
 

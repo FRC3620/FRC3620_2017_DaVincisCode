@@ -187,7 +187,7 @@ public class Robot extends IterativeRobot {
 		processRobotModeChange(RobotMode.AUTONOMOUS);
 
 		autonomousLaneCommand = (Command) laneChooser.getSelected();
-		String auto = (String) autoChooser.getSelected();
+//		String auto = (String) autoChooser.getSelected();
 //		if (! auto.equals("")) {
 //		    try {
 //			    autonomousCommand = SuperDuperAutonomous.make(autonomousCommand, lane);

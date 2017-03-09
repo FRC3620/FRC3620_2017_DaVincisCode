@@ -32,7 +32,7 @@ public class AutomatedMoveToPegCommand extends Command implements PIDOutput{
 	
 	PIDController pidDriveStraight = new PIDController(kP, kI, kD, kF, Robot.driveSubsystem.getAhrsPidSource(), this);
 	
-
+	
     public AutomatedMoveToPegCommand( double howFast) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -59,6 +59,7 @@ public class AutomatedMoveToPegCommand extends Command implements PIDOutput{
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	logger.info("Moving to peg");
     	Robot.driveSubsystem.updateDashboardWithPidStuff(this, pidDriveStraight, sideStick);
     	Robot.driveSubsystem.weAreInReverse=false;
     	Robot.driveSubsystem.driveAutomatically(howFastToMove, sideStick);
