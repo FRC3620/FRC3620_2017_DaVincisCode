@@ -267,11 +267,11 @@ public class GearSubsystem extends Subsystem {
 			}
 			else if(xOffset()<0){
 				SmartDashboard.putBoolean("Gear Is Aligned", false);
-				slideMotor(.5);
+				slideMotor(.35);
 			}
 			else if(xOffset()>0){
 				SmartDashboard.putBoolean("Gear Is Aligned", false);
-				slideMotor(-.5);
+				slideMotor(-.35);
 			}
 			
 		}
@@ -283,7 +283,7 @@ public class GearSubsystem extends Subsystem {
 	}
 	
 	public boolean gearIsAligned(){
-		if (Math.abs(xOffset())<5){
+		if (Math.abs(xOffset())<10){
 			return true;
 		}
 		else{
