@@ -188,6 +188,9 @@ public class Robot extends IterativeRobot {
 		Command command1 = (Command) laneChooser.getSelected();
 		Command command2 = (Command) autoChooser.getSelected();		
 		
+//		Command command1 = (Command) new AutoPointSenecaLane3();
+//		Command command2 = (Command) new AutoMoveDownFieldLeftCommand();	
+		
 	    try {
 			    autonomousCommand = CombinationAutonomousStation.make(command1, command2);
 	    } catch (Exception e) {

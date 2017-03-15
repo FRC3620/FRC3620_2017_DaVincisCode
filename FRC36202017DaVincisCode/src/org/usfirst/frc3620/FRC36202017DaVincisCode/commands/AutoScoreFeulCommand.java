@@ -19,8 +19,8 @@ public class AutoScoreFeulCommand extends CommandGroup {
         //      addSequential(new Command2());
         // Command1 and Command2 will run in parallel.
     	addParallel(new RunShooterCommand());
-    	addSequential(new AutonomousDoNothingCommand(),3);
-    	addSequential(new FeedShooterCommand());
+    	addSequential(new AutonomousDoNothingCommand(),1);
+    	addSequential(new FeedShooterCommand(),3);
     	
         // A command group will require all of the subsystems that each member
         // would require.
