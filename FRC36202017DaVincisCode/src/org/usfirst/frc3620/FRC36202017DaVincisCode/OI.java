@@ -153,7 +153,7 @@ public class OI {
         SmartDashboard.putData("AutoBackUpFromPeg", new AutoBackUpFromPegCommand());
         SmartDashboard.putData("AutoMoveDownFieldLeft", new AutoMoveDownFieldLeftCommand());
         SmartDashboard.putData("AutoMoveDownFieldRight", new AutoMoveDownFieldRightCommand());
-        SmartDashboard.putData("AutoScoreFeul", new AutoScoreFromBoilerCommand());
+        SmartDashboard.putData("AutoScoreFeul", new AutoScoreFeulCommand());
         DPad operatorDpad = new DPad(operatorJoystick, 0);
     }
     
