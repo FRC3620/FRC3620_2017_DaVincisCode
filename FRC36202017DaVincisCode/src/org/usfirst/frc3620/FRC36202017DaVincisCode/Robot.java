@@ -150,6 +150,9 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Before Gear", beforeGearChooser);
 		SmartDashboard.putData("Gear", gearChooser);
         SmartDashboard.putData("After Gear", afterGearChooser);
+		
+		// must be done AFTER autochooser is loaded
+		new ControlPanelWatcher();
 	}
 
 	public static void loadAutoChooser() {
@@ -295,12 +298,11 @@ public class Robot extends IterativeRobot {
 		shooterSubsystem.updateDashboard();
 		driveSubsystem.updateDashboard();
 		
-		
 		SmartDashboard.putNumber("driver y joystick", -Robot.oi.driveJoystick.getRawAxis(1));
 		SmartDashboard.putNumber("driver x joystick", Robot.oi.driveJoystick.getRawAxis(4));
-		SmartDashboard.putNumber("accel.x", builtinAccelerometer.getX());
-		SmartDashboard.putNumber("accel.y", builtinAccelerometer.getY());
-		SmartDashboard.putNumber("accel.z", builtinAccelerometer.getZ());
+//		SmartDashboard.putNumber("accel.x", builtinAccelerometer.getX());
+//		SmartDashboard.putNumber("accel.y", builtinAccelerometer.getY());
+//		SmartDashboard.putNumber("accel.z", builtinAccelerometer.getZ());
 	}
 
 	void addRobotDataLoggerDataProviders() {

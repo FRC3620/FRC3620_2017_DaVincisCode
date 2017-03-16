@@ -22,11 +22,9 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.PIDSourceType;
-import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SPI.Port;
 import edu.wpi.first.wpilibj.SpeedController;
@@ -98,7 +96,6 @@ public class DriveSubsystem extends Subsystem {
 	}
 
 	public void driveAutomatically(double move, double rotate) {
-		
 		robotDrive.arcadeDrive(-move, rotate);
 		fixThirdMotor();
 	}
@@ -127,7 +124,6 @@ public class DriveSubsystem extends Subsystem {
 
 	public void shiftIntoLowGear() {
 		shifterSolenoid.set(Value.kReverse);
-
 	}
 
 	public void processRobotModeChange(RobotMode robotMode) {
@@ -297,7 +293,8 @@ public class DriveSubsystem extends Subsystem {
 		}
 	}
 
-	public static AHRS ahrs = new AHRS(Port.kMXP);
+	// TODO change this back to new AHRS(Port.kMXP)
+	public static AHRS ahrs = null;
 
 	double automaticHeading = 0;
 
