@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutoPointSenecaLane4 extends CommandGroup {
+public class AutoDriveForwardCommand extends CommandGroup {
 
-    public AutoPointSenecaLane4() {
+    public AutoDriveForwardCommand() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

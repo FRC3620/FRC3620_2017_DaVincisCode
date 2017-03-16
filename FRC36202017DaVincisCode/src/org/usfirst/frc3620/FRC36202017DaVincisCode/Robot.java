@@ -60,8 +60,9 @@ public class Robot extends IterativeRobot {
 	public static PowerDistributionPanel powerDistributionPanel = new PowerDistributionPanel();
 	public static BuiltInAccelerometer builtinAccelerometer = new BuiltInAccelerometer();
 
-	public static AverageSendableChooser autoChooser;
-    public static AverageSendableChooser laneChooser;
+	public static AverageSendableChooser beforeGearChooser;
+    public static AverageSendableChooser gearChooser;
+    public static AverageSendableChooser afterGearChooser;
 	// this came with stock RobotBuilder stuff
 	Command autonomousCommand;
 
@@ -146,22 +147,28 @@ public class Robot extends IterativeRobot {
 		// RandomFastLogger.startRandomFastLogger("random.test");
 		
 		loadAutoChooser();
-        SmartDashboard.putData("Autonomous mode chooser", autoChooser);
+		SmartDashboard.putData("Before Gear", beforeGearChooser);
+		SmartDashboard.putData("Gear", gearChooser);
+        SmartDashboard.putData("After Gear", afterGearChooser);
 	}
 
 	public static void loadAutoChooser() {
-        laneChooser = new AverageSendableChooser();
-        laneChooser.addDefault("Do Nothing", new AutonomousDoNothingCommand());
-        laneChooser.addObject("Right", new AutoPointSenecaLane1());
-        laneChooser.addObject("Middle", new AutoPointSenecaLane2());
-        laneChooser.addObject("Left", new AutoPointSenecaLane3());
-        laneChooser.addObject("DriveForward", new AutoPointSenecaLane4());
-        SmartDashboard.putData("Lane chooser", laneChooser);
-        autoChooser = new AverageSendableChooser();
-        autoChooser.addObject("Back Up", new AutoBackUpFromPegCommand());
-        autoChooser.addObject("Score From Boiler", new AutoScoreFromBoilerCommand());
-        autoChooser.addObject("Move Down Field Left", new AutoMoveDownFieldLeftCommand());
-        autoChooser.addObject("Move Down Field Right", new AutoMoveDownFieldRightCommand());
+		beforeGearChooser = new AverageSendableChooser();
+		beforeGearChooser.addDefault("Do Nothing", new AutonomousDoNothingCommand());
+		beforeGearChooser.addObject("Score Feul", new AutoScoreFeulCommand());
+        gearChooser = new AverageSendableChooser();
+        gearChooser.addDefault("Do Nothing", new AutonomousDoNothingCommand());
+        gearChooser.addObject("Right", new AutoGearRightCommand());
+        gearChooser.addObject("Middle", new AutoGearMiddleCommand());
+        gearChooser.addObject("Left", new AutoGearLeftCommand());
+        gearChooser.addObject("DriveForward", new AutoDriveForwardCommand());
+        SmartDashboard.putData("Lane chooser", gearChooser);
+        afterGearChooser = new AverageSendableChooser();
+        afterGearChooser.addDefault("Do Nothing", new AutonomousDoNothingCommand());
+        afterGearChooser.addObject("Back Up", new AutoBackUpFromPegCommand());
+        afterGearChooser.addObject("Score From Boiler", new AutoScoreFromBoilerCommand());
+        afterGearChooser.addObject("Move Down Field Left", new AutoMoveDownFieldLeftCommand());
+        afterGearChooser.addObject("Move Down Field Right", new AutoMoveDownFieldRightCommand());
         
 	}
 	/**
@@ -185,14 +192,15 @@ public class Robot extends IterativeRobot {
 
 	public void autonomousInit() {
 		processRobotModeChange(RobotMode.AUTONOMOUS);
-		Command command1 = (Command) laneChooser.getSelected();
-		Command command2 = (Command) autoChooser.getSelected();		
+		Command command1 = (Command) beforeGearChooser.getSelected();
+		Command command2 = (Command) gearChooser.getSelected();
+		Command command3 = (Command) afterGearChooser.getSelected();
 		
 //		Command command1 = (Command) new AutoPointSenecaLane3();
 //		Command command2 = (Command) new AutoMoveDownFieldLeftCommand();	
 		
 	    try {
-			    autonomousCommand = CombinationAutonomousStation.make(command1, command2);
+			    autonomousCommand = CombinationAutonomousStation.make(command1, command2, command3);
 	    } catch (Exception e) {
 	        logger.error("Unable to make a SuperDuperAutonomous: {}", e);
 	    }
