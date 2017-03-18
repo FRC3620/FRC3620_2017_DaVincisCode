@@ -21,7 +21,7 @@ public class AutoGearLeftCommand extends CommandGroup {
     	
     	addSequential(new AutoShiftDownCommand());
     	addParallel(new CloseGearSupportCommand(), .25);
-    	addSequential(new AutomatedMoveCommand(59, .85));
+    	addSequential(new AutomatedMoveCommand(43, .85));
     	addSequential(new AutomatedTurnCommand(60));
     	addSequential(new ScoreGearFromPointSenecaCommand(), 4);
     	

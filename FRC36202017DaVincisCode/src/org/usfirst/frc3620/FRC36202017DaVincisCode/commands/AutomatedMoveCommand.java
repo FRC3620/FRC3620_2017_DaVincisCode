@@ -80,7 +80,7 @@ public class AutomatedMoveCommand extends Command implements PIDOutput{
     		return true;
   
     	}
-    	else if(RobotMap.driveSubsystemRightEncoder.getDistance() < -howFarWeWantToMove)
+    	else if(RobotMap.driveSubsystemRightEncoder.getDistance() > howFarWeWantToMove)
     	{
     		return true;
     	}
