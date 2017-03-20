@@ -294,7 +294,7 @@ public class DriveSubsystem extends Subsystem {
 	}
 
 	// TODO change this back to new AHRS(Port.kMXP)
-	public static AHRS ahrs = null;
+	public static AHRS ahrs = new AHRS(Port.kMXP);
 
 	double automaticHeading = 0;
 
