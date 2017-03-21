@@ -157,10 +157,10 @@ public class Robot extends IterativeRobot {
 
 	public static void loadAutoChooser() {
 		beforeGearChooser = new AverageSendableChooser();
-		beforeGearChooser.addDefault("Do Nothing", new AutonomousDoNothingCommand());
+		beforeGearChooser.addDefault("Do Nothing", new AutonomousBlankCommand());
 		beforeGearChooser.addObject("Score Feul", new AutoScoreFeulCommand());
         gearChooser = new AverageSendableChooser();
-        gearChooser.addDefault("Do Nothing", new AutonomousDoNothingCommand());
+        gearChooser.addDefault("Do Nothing", new AutonomousBlankCommand());
         gearChooser.addObject("Right", new AutoGearRightCommand());
         gearChooser.addObject("Middle", new AutoGearMiddleCommand());
         gearChooser.addObject("Left", new AutoGearLeftCommand());

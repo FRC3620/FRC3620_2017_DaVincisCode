@@ -23,15 +23,22 @@ public class CombinationAutonomousStation extends CommandGroup {
 			InstantiationException, IllegalAccessException,
 			IllegalArgumentException, InvocationTargetException {
 		CombinationAutonomousStation combinationStation = new CombinationAutonomousStation();
-		Command newCommand1 = makeANewCommand(command1);
-		Command newCommand2 = makeANewCommand(command2);
-		Command newCommand3 = makeANewCommand(command3);
-		combinationStation.addSequential(newCommand1);
-		combinationStation.commands.add(newCommand1);
-		combinationStation.addSequential(newCommand2);
-		combinationStation.commands.add(newCommand2);
-		combinationStation.addSequential(newCommand3);
-		combinationStation.commands.add(newCommand3);
+		if (command1 != null) {
+		    Command newCommand1 = makeANewCommand(command1);
+			combinationStation.addSequential(newCommand1);
+			combinationStation.commands.add(newCommand1);
+		}
+		if (command2 != null) {
+		    Command newCommand2 = makeANewCommand(command2);
+			combinationStation.addSequential(newCommand2);
+			combinationStation.commands.add(newCommand2);
+		}
+		if (command3 != null) {
+		    Command newCommand3 = makeANewCommand(command3);
+			combinationStation.addSequential(newCommand3);
+			combinationStation.commands.add(newCommand3);
+		}
+		
 		return combinationStation;
 	}
 

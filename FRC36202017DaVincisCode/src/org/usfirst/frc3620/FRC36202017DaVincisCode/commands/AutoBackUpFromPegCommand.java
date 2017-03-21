@@ -18,7 +18,7 @@ public class AutoBackUpFromPegCommand extends CommandGroup {
         // e.g. addParallel(new Command1());
         //      addSequential(new Command2());
         // Command1 and Command2 will run in parallel.
-    	addSequential(new AutomatedMoveTimedCommand(.5, -.75));
+    	addSequential(new AutomatedMoveTimedCommand(1, -.75));
     	addSequential(new AutonomousDoNothingCommand(), .5);
     	addSequential(new CloseGearSupportCommand());
         // A command group will require all of the subsystems that each member
