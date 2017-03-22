@@ -169,7 +169,8 @@ public class Robot extends IterativeRobot {
         afterGearChooser = new AverageSendableChooser();
         afterGearChooser.addDefault("Do Nothing", new AutonomousDoNothingCommand());
         afterGearChooser.addObject("Back Up", new AutoBackUpFromPegCommand());
-        afterGearChooser.addObject("Score From Boiler", new AutoScoreFromBoilerCommand());
+        afterGearChooser.addObject("Score From Boiler Left", new AutoScoreFromBoilerLeftCommand());
+        afterGearChooser.addObject("Score From Boiler Right", new AutoScoreFromBoilerRightCommand());
         afterGearChooser.addObject("Move Down Field Left", new AutoMoveDownFieldLeftCommand());
         afterGearChooser.addObject("Move Down Field Right", new AutoMoveDownFieldRightCommand());
         

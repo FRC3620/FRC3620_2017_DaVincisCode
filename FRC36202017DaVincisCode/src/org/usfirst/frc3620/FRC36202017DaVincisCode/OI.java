@@ -140,7 +140,7 @@ public class OI {
         SmartDashboard.putData("Time", new WinchInRopeCommand()); 
         SmartDashboard.putData("Order", new FinishWinchCommand());
         SmartDashboard.putData("TestAutomatedMove", new AutomatedMoveCommand(5,0.8));
-        SmartDashboard.putData("AutomatedTurn", new AutomatedTurnCommand(60));
+        SmartDashboard.putData("AutomatedTurn", new AutomatedTurnCommand(8));
         SmartDashboard.putData("AutomatedTurnLeft", new AutomatedTurnCommand(-60));
         SmartDashboard.putData("Watch", new AutomatedMoveTimedCommand(20.0, 0.00)); 
         SmartDashboard.putData("MoveBAck", new AutomatedMoveTimedCommand(3, -.75));

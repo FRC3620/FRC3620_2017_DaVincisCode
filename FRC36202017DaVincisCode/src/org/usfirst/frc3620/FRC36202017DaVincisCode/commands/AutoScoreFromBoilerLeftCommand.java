@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutoScoreFromBoilerCommand extends CommandGroup {
+public class AutoScoreFromBoilerLeftCommand extends CommandGroup {
 
-    public AutoScoreFromBoilerCommand() {
+    public AutoScoreFromBoilerLeftCommand() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -17,10 +17,11 @@ public class AutoScoreFromBoilerCommand extends CommandGroup {
         // use addParallel()
         // e.g. addParallel(new Command1());
         //      addSequential(new Command2());
-    	addSequential(new AutomatedTurnCommand(15));
-    	addParallel(new AutomatedMoveTimedCommand(8, -.90));
+    	addParallel(new RunShooterCommand());
+    	addSequential(new AutoBackUpFromPegCommand());
+    	addSequential(new AutomatedTurnCommand(-8));
     	addSequential(new AutoScoreFeulCommand());
-    	addSequential(new CloseGearSupportCommand());
+    
     	
         // A command group will require all of the subsystems that each member
         // would require.
