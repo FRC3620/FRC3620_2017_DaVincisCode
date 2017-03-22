@@ -80,7 +80,7 @@ public class AutomatedTurnCommand extends Command implements PIDOutput{
     			pidTurn.getAvgError(),
     			pidTurn.getError());
     	
-    	return error < 3;
+    	return Math.abs(error) < 3;
     }
 
     // Called once after isFinished returns true

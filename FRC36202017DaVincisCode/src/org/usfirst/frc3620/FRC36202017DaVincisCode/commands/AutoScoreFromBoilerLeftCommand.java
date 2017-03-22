@@ -19,8 +19,8 @@ public class AutoScoreFromBoilerLeftCommand extends CommandGroup {
         //      addSequential(new Command2());
     	addParallel(new RunShooterCommand());
     	addSequential(new AutoBackUpFromPegCommand());
-    	addSequential(new AutomatedTurnCommand(-8));
-    	addSequential(new AutoScoreFeulCommand());
+    	addSequential(new AutomatedTurnCommand(-10));
+    	addSequential(new FeedShooterCommand(),3);
     
     	
         // A command group will require all of the subsystems that each member
