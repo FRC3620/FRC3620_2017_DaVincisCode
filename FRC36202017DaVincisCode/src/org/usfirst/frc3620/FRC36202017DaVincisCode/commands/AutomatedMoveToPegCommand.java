@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.PIDOutput;
 /**
  *
  */
-public class AutomatedMoveCommand extends Command implements PIDOutput{
+public class AutomatedMoveToPegCommand extends Command implements PIDOutput{
 	
 	Logger logger = EventLogging.getLogger(getClass(), Level.INFO);
 	
@@ -28,14 +28,12 @@ public class AutomatedMoveCommand extends Command implements PIDOutput{
 	
 	static final double kF = .00;
 	double sideStick;
-	
-	double howFarWeWantToMove = 0;
 	double howFastToMove = 0;
 	
 	PIDController pidDriveStraight = new PIDController(kP, kI, kD, kF, Robot.driveSubsystem.getAhrsPidSource(), this);
 	
-
-    public AutomatedMoveCommand(double howFar, double howFast) {
+	
+    public AutomatedMoveToPegCommand( double howFast) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.driveSubsystem);
@@ -44,19 +42,15 @@ public class AutomatedMoveCommand extends Command implements PIDOutput{
     	pidDriveStraight.setInputRange(0.0f, 360.0f);
     	pidDriveStraight.setContinuous(true);
     	
-    	
     	howFastToMove = howFast;
-    	howFarWeWantToMove = howFar;
     }
     
     
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	logger.info("AutomatedMove start");
+    	logger.info("Shoving Robot up to peg");
     	
-    	RobotMap.driveSubsystemLeftEncoder.reset();
-    	RobotMap.driveSubsystemRightEncoder.reset();
         pidDriveStraight.setSetpoint(Robot.driveSubsystem.getAutomaticHeading());
         pidDriveStraight.reset();
     	pidDriveStraight.enable();
@@ -65,36 +59,20 @@ public class AutomatedMoveCommand extends Command implements PIDOutput{
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	logger.info("Moving to peg");
     	Robot.driveSubsystem.updateDashboardWithPidStuff(this, pidDriveStraight, sideStick);
-    	logger.info("Moving");
+    	Robot.driveSubsystem.weAreInReverse=false;
     	Robot.driveSubsystem.driveAutomatically(howFastToMove, sideStick);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	//logger.info("Left Encoder: {}", RobotMap.driveSubsystemLeftDriveEncoder.getDistance());
-    	//logger.info("Right Encoder: {}", RobotMap.driveSubsystemRightDriveEncoder.getDistance());
-    	
-    	if(RobotMap.driveSubsystemLeftEncoder.getDistance() > howFarWeWantToMove)
-    	{
-    		return true;
-  
-    	}
-    	else if(RobotMap.driveSubsystemRightEncoder.getDistance() > howFarWeWantToMove)
-    	{
-    		return true;
-    	}
-    	
-    	else
-    	{
-    		return false;
-    	}
-
+    	return Robot.driveSubsystem.getRangeInInches()<15;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	logger.info("AutomatedMove end");
+    	logger.info("Robot is shoved up against peg");
     	
     	pidDriveStraight.disable();
     	Robot.driveSubsystem.stopMotors();
@@ -103,8 +81,6 @@ public class AutomatedMoveCommand extends Command implements PIDOutput{
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	logger.info("AutomatedMove interrupted");
-    	
         end();
     }
       

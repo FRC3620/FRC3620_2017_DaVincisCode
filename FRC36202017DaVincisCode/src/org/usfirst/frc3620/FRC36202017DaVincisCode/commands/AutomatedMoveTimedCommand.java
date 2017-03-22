@@ -42,7 +42,8 @@ public class AutomatedMoveTimedCommand extends Command implements PIDOutput{
         // eg. requires(chassis);
     	requires(Robot.driveSubsystem);
     	pidDriveStraight.setOutputRange(-1, 1);
-   
+    	pidDriveStraight.setInputRange(0.0f, 360.0f);
+    	pidDriveStraight.setContinuous(true);
     	howFastToMove = howFast;
     	howLongWeWantToMove = howLongInSeconds;
     }
@@ -56,7 +57,8 @@ public class AutomatedMoveTimedCommand extends Command implements PIDOutput{
     	RobotMap.driveSubsystemLeftEncoder.reset();
     	RobotMap.driveSubsystemRightEncoder.reset();
         pidDriveStraight.setSetpoint(Robot.driveSubsystem.getAutomaticHeading());
-    	pidDriveStraight.enable();
+        pidDriveStraight.reset();
+        pidDriveStraight.enable();
     	
     	timer.reset();
     	timer.start();
@@ -64,9 +66,10 @@ public class AutomatedMoveTimedCommand extends Command implements PIDOutput{
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	logger.info("Moving timed");
     	Robot.driveSubsystem.updateDashboardWithPidStuff(this, pidDriveStraight, sideStick);
 
-    	Robot.driveSubsystem.setDriveForward(-howFastToMove, sideStick);
+    	Robot.driveSubsystem.driveAutomatically(howFastToMove, sideStick);
     }
 
     // Make this return true when this Command no longer needs to run execute()

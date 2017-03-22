@@ -2,14 +2,16 @@ package org.usfirst.frc3620.vision;
 import java.io.*;
 import java.math.BigInteger;
 import java.net.*;
-import java.util.*;
 
+import org.slf4j.Logger;
+import org.usfirst.frc3620.logger.EventLogging;
+import org.usfirst.frc3620.logger.EventLogging.Level;
 
 import com.google.gson.Gson;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
- 
 public class UDPReceiver extends Thread {
+	Logger logger = EventLogging.getLogger(getClass(), Level.INFO);
+
 	public static String lastDataReceived = "";
 	public static VisionData visionData;
 	Gson gson = new Gson();
@@ -27,15 +29,21 @@ public class UDPReceiver extends Thread {
     }
     
     public void run() {
-    	System.out.println("thread start");
+    	logger.info("thread start");
     	byte[] buf = new byte[256];
-    	 DatagramPacket packet = new DatagramPacket(buf, buf.length);
+    	DatagramPacket packet = new DatagramPacket(buf, buf.length);
+    	InetAddress lastSender  = null;
         while (moreQuotes) {
             try {
  
                 // receive request
             	packet.setLength(buf.length);
                 socket.receive(packet);
+                InetAddress sender = packet.getAddress();
+                if (lastSender == null || ! lastSender.equals(sender)) {
+                	logger.info ("Kangaru is at {}", sender);
+                }
+                lastSender = sender;
                 byte[] data = packet.getData();
                 lastDataReceived = new String(data, 0, packet.getLength());
                 //SmartDashboard.putString("last Data Received", lastDataReceived);

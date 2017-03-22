@@ -243,11 +243,11 @@ public class GearSubsystem extends Subsystem {
 	
 	public double getAlignment(){
 		if(isLeftSideBlocked()){
-			alignment=getTargetCenter()+46;
+			alignment=getTargetCenter();
 			return alignment;
 		}
 		else if(!isLeftSideBlocked()){
-			alignment=getTargetCenter()-46;
+			alignment=getTargetCenter();
 			return alignment;
 		}
 		else{
@@ -267,23 +267,23 @@ public class GearSubsystem extends Subsystem {
 			}
 			else if(xOffset()<0){
 				SmartDashboard.putBoolean("Gear Is Aligned", false);
-				slideMotor(-.25);
+				slideMotor(.5);
 			}
 			else if(xOffset()>0){
 				SmartDashboard.putBoolean("Gear Is Aligned", false);
-				slideMotor(.25);
+				slideMotor(-.5);
 			}
 			
 		}
 		else {
-			System.out.println("Blob not Found");
+//			System.out.println("Blob not Found");
 			SmartDashboard.putBoolean("Gear Is Aligned", false);
 			slideMotor(0);
 		}
 	}
 	
 	public boolean gearIsAligned(){
-		if (Math.abs(xOffset())<5){
+		if (Math.abs(xOffset())<10){
 			return true;
 		}
 		else{

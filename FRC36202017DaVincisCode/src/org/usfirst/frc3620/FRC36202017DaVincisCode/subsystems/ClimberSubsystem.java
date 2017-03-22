@@ -50,22 +50,8 @@ public class ClimberSubsystem extends Subsystem {
 
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
-    }
-    public void ingageWinch() {
-    	ropeIntake.set(Value.kForward);
-	}
-
-	public void disingageWinch() {
-		ropeIntake.set(Value.kReverse);
-
-	}
-	public void processRobotModeChange(RobotMode robotMode) {
-		if (robotMode == RobotMode.TELEOP
-				|| robotMode == RobotMode.AUTONOMOUS) {
-			disingageWinch();
-		}
-	}
 
 	
+}
 }
 
