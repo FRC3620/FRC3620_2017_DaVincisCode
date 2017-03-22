@@ -28,7 +28,7 @@ public class AutomatedTurnCommand extends Command implements PIDOutput{
 	//PIDController pidTurn = new PIDController(.015, .001, 00, kF, ahrs, this); overshot
 	//PIDController pidTurn = new PIDController(.015, .0001, 00, kF, ahrs, this); works
 	PIDController pidTurn = new PIDController(.1, .0001, .00, .00, Robot.driveSubsystem.getAhrsPidSource(), this);
-	
+	//PIDController pidTurn = new PIDController(100, 20, 0, .00, Robot.driveSubsystem.getAhrsPidSource(), this);
 	public AutomatedTurnCommand() {
 		this(90.0);
 	}
@@ -80,7 +80,7 @@ public class AutomatedTurnCommand extends Command implements PIDOutput{
     			pidTurn.getAvgError(),
     			pidTurn.getError());
     	
-    	return error < 10;
+    	return Math.abs(error) < 3;
     }
 
     // Called once after isFinished returns true

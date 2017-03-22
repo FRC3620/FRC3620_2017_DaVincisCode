@@ -30,6 +30,7 @@ public class AutoPlungeGearCommand extends Command {
     	timer.start();
     	Robot.gearSubsystem.extendGearSupport();
     	Robot.gearSubsystem.retractGearPlunger();
+    	logger.info("Plunging gear");
     	System.out.println(timer.get()
     			);
     }
