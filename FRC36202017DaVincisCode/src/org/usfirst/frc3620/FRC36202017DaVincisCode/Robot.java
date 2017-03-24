@@ -173,6 +173,7 @@ public class Robot extends IterativeRobot {
         afterGearChooser.addObject("Score From Boiler Right", new AutoScoreFromBoilerRightCommand());
         afterGearChooser.addObject("Move Down Field Left", new AutoMoveDownFieldLeftCommand());
         afterGearChooser.addObject("Move Down Field Right", new AutoMoveDownFieldRightCommand());
+        afterGearChooser.addObject("Shoot From Middle", new AutoBackUpAndShootCommand());
         
 	}
 	/**
