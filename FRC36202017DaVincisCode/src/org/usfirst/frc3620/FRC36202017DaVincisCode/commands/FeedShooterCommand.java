@@ -33,7 +33,7 @@ public class FeedShooterCommand extends Command {
 		    protected void initialize() {
 		    	logger.info("Feeding shooter");
 		    	canIShoot=Robot.shooterSubsystem.isShooterSpunUp();
-		    	impellerPower=edu.wpi.first.wpilibj.Preferences.getInstance().getDouble("Impeller Power", .75);
+		    	impellerPower=1;
 		    }
 		    protected void execute() {
 //		    	if(canIShoot)
