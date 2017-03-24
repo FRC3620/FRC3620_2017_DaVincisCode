@@ -30,18 +30,19 @@ public class AutoPlungeGearCommand extends Command {
     	timer.start();
     	Robot.gearSubsystem.extendGearSupport();
     	Robot.gearSubsystem.retractGearPlunger();
-    	logger.info("Plunging gear");
+    	logger.info("AutoPlungerGear initialize()");
     	System.out.println(timer.get()
     			);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	logger.info("Plunging gear");
     	if(timer.get() > .5){
+        	logger.info("Retracting gear");
     		Robot.gearSubsystem.retractGearPlunger();
     	}
     	else if(timer.get() > .25){
+        	logger.info("PLunging gear");
     	Robot.gearSubsystem.plungeGear();
 //    	Robot.driveSubsystem.setDriveForward(0, 0);
     	}
@@ -56,6 +57,7 @@ public class AutoPlungeGearCommand extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	logger.info("AutoPlungerGear end()");
     	timer.stop();
     	timer.reset();
     	Robot.gearSubsystem.stopGearPlunger();
@@ -65,6 +67,7 @@ public class AutoPlungeGearCommand extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	logger.info("AutoPlungerGear interrupted()");
     	end();
     }
 }

@@ -19,7 +19,7 @@ public class AutoScoreFromBoilerLeftCommand extends CommandGroup {
         //      addSequential(new Command2());
     	addParallel(new RunShooterCommand());
     	addSequential(new AutoBackUpFromPegCommand());
-    	addSequential(new AutomatedTurnCommand(-10.5));
+    	addSequential(new AutomatedTurnCommand(-12));
     	addSequential(new FeedShooterCommand());
     
     	

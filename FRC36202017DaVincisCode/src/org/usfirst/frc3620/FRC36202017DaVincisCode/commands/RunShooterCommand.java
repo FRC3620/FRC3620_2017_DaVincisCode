@@ -49,7 +49,7 @@ public class RunShooterCommand extends Command {
     protected void initialize() {
     	Robot.shooterSubsystem.updatePIDFromDashboard();
     	logger.info("RunshooterCommand start");
-    	shooterSpeed = 2200;
+    	shooterSpeed = 2250;
     	SmartDashboard.putNumber("ShooterSpeed", shooterSpeed);
     }
 
