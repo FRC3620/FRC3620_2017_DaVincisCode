@@ -18,9 +18,12 @@ public class AutoBackUpAndShootCommand extends CommandGroup {
         // e.g. addParallel(new Command1());
         //      addSequential(new Command2());
         // Command1 and Command2 will run in parallel.
+    	addParallel(new RunShooterCommand());
     	addSequential(new AutomatedMoveTimedCommand(1, -.75));
     	addSequential(new AutonomousDoNothingCommand(), 1);
     	addSequential(new CloseGearSupportCommand());
+    	addSequential(new AutomatedTurnCommand(90));
+    	addSequential(new FeedShooterCommand());
         // A command group will require all of the subsystems that each member
         // would require.
         // e.g. if Command1 requires chassis, and Command2 requires arm,
