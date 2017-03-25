@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutoBackUpAndShootCommand extends CommandGroup {
+public class AutoBackUpAndShootRightCommand extends CommandGroup {
 
-    public AutoBackUpAndShootCommand() {
+    public AutoBackUpAndShootRightCommand() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -22,7 +22,7 @@ public class AutoBackUpAndShootCommand extends CommandGroup {
     	addSequential(new AutomatedMoveTimedCommand(1, -.75));
     	addSequential(new AutonomousDoNothingCommand(), 1);
     	addSequential(new CloseGearSupportCommand());
-    	addSequential(new AutomatedTurnCommand(90));
+    	addSequential(new AutomatedTurnCommand(-33));
     	addSequential(new FeedShooterCommand());
         // A command group will require all of the subsystems that each member
         // would require.

@@ -345,6 +345,8 @@ public class DriveSubsystem extends Subsystem {
 		SmartDashboard.putNumber("Left Motor 2", leftDriveMotor2.get());
 		SmartDashboard.putNumber("Left Motor 3", leftDriveMotor3.get());
 		SmartDashboard.putNumber("Proximity in Inches", getRangeInInches());
+		SmartDashboard.putNumber("NavX angle", ahrs.getAngle());
+		
 
 
 	}
