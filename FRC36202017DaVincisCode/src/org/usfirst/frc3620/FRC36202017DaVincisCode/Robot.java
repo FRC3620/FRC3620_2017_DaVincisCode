@@ -32,8 +32,6 @@ import java.io.IOException;
 
 import org.usfirst.frc3620.FRC36202017DaVincisCode.commands.*;
 import org.usfirst.frc3620.FRC36202017DaVincisCode.subsystems.*;
-import org.usfirst.frc3620.FRC3620_Killer_Rabbit.Robot;
-import org.usfirst.frc3620.FRC3620_Killer_Rabbit.subsystems.LightSubsystem;
 import org.usfirst.frc3620.misc.AverageSendableChooser;
 import org.usfirst.frc3620.logger.DataLogger;
 import org.usfirst.frc3620.logger.EventLogging;
@@ -257,9 +255,9 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 		endPeriodic();
 		 if(telopTimer.get()> 120){
-	        	Robot.lightSubsystem.setColor(LightSubsystem.Color.YELLOW);
-	        } else if(telopTimer.get()> 75){
 	        	Robot.lightSubsystem.setColor(LightSubsystem.Color.RED);
+	        } else if(telopTimer.get()> 75){
+	        	Robot.lightSubsystem.setColor(LightSubsystem.Color.YELLOW);
 	        }
 	}
 
