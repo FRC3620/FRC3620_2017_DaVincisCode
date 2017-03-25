@@ -36,7 +36,7 @@ public class ShiftGearToPegCommand extends Command {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
        
-    	return Robot.driveSubsystem.getRangeInInches()<15;
+    	return Robot.driveSubsystem.getRangeInInches()<10;
     }
 
     // Called once after isFinished returns true

@@ -20,7 +20,7 @@ public class AutoGearRightCommand extends CommandGroup {
         // Command1 and Command2 will run in parallel.
     	addSequential(new AutoShiftDownCommand());
     	addParallel(new CloseGearSupportCommand(), .25);
-    	addSequential(new AutomatedMoveCommand(66, .85));
+    	addSequential(new AutomatedMoveCommand(69, .85));
     	addSequential(new AutomatedTurnCommand(-65));
     	addSequential(new ScoreGearFromPointSenecaCommand(),4);
     	
