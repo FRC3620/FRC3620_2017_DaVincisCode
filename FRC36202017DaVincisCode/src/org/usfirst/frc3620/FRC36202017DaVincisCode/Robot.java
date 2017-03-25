@@ -223,6 +223,8 @@ public class Robot extends IterativeRobot {
 			logger.info("Starting autonomous {}", autonomousCommand);
 			autonomousCommand.start();
 		}
+		Robot.lightSubsystem.setGreen(true);
+		
 	}
 
 	/**
@@ -244,6 +246,7 @@ public class Robot extends IterativeRobot {
 		telopTimer.reset();
 	    telopTimer.start();
 	    Robot.lightSubsystem.setColor(LightSubsystem.Color.BLUE);
+	    Robot.gearSubsystem.retractGearSupport();
 		Robot.driveSubsystem.shiftIntoHighGear();
 		processRobotModeChange(RobotMode.TELEOP);
 	}
