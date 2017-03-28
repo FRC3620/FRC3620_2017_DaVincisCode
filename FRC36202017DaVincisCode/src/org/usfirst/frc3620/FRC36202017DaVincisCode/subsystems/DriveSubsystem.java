@@ -328,6 +328,7 @@ public class DriveSubsystem extends Subsystem {
 	public double changeAutomaticHeading(double changeAngle) {
 		automaticHeading = automaticHeading + changeAngle;
 		automaticHeading = normalizeAngle(automaticHeading);
+		logger.info("Changing auto heading to" +  automaticHeading);
 		return automaticHeading;
 	}
 
