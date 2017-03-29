@@ -67,9 +67,9 @@ public class ShooterSubsystem extends Subsystem {
     }
     
     public void updatePIDFromDashboard(){
-    	double shooterP= edu.wpi.first.wpilibj.Preferences.getInstance().getDouble("shooterP", 60);
-        double shooterI= edu.wpi.first.wpilibj.Preferences.getInstance().getDouble("shooterI", 0);
-        double shooterD= edu.wpi.first.wpilibj.Preferences.getInstance().getDouble("shooterD", 0);
+    	double shooterP= edu.wpi.first.wpilibj.Preferences.getInstance().getDouble("shooterP", 17);
+        double shooterI= edu.wpi.first.wpilibj.Preferences.getInstance().getDouble("shooterI", .007);
+        double shooterD= edu.wpi.first.wpilibj.Preferences.getInstance().getDouble("shooterD", 900);
         shooterCANTalon2.setPID(shooterP, shooterI, shooterD);
     }
     
