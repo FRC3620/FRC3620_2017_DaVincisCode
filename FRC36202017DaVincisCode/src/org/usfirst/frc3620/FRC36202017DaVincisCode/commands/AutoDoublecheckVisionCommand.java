@@ -28,8 +28,8 @@ public class AutoDoublecheckVisionCommand extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	logger.info("Double-checking vision");
-    	 robotTooLeft=false;
-    	 robotTooRight=false;
+    	robotTooLeft=false;
+    	robotTooRight=false;
     	timer.start();
     	timer.reset();
     }
@@ -37,12 +37,12 @@ public class AutoDoublecheckVisionCommand extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.driveSubsystem.driveAutomatically(howFastToMove, 0);
-    	if(Robot.gearSubsystem.isRightLimitSwitchDown())
+    	if(Robot.gearSubsystem.isRightLimitSwitchDown()){
 			robotTooLeft=true;
-    	
-    	if(Robot.gearSubsystem.isLeftLimitSwitchDown())
+    	}
+    	if(Robot.gearSubsystem.isLeftLimitSwitchDown()){
 			robotTooRight=true;
-    	
+    	}
     	
     }
 
@@ -57,11 +57,11 @@ public class AutoDoublecheckVisionCommand extends Command {
     		logger.warn("ERROR: Both switches pressed");
     	}else if(robotTooLeft){
     		logger.info("Robot too left");
-    		Robot.driveSubsystem.changeAutomaticHeading(7);
+    		Robot.driveSubsystem.changeAutomaticHeading(6);
     	}
     	else if(robotTooRight){
     		logger.info("Robot too right");
-    		Robot.driveSubsystem.changeAutomaticHeading(-7);
+    		Robot.driveSubsystem.changeAutomaticHeading(-6);
     	}
     	else{
     		logger.info("Robot aligned");
