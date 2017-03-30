@@ -48,7 +48,7 @@ public class RobotMap {
     public static Encoder driveSubsystemLeftEncoder;
     public static AnalogInput driveSubsystemRangeFinder;
     public static CANTalon shooterSubsystemShooterCANTalon2;
-    public static CANTalon shooterSubsystemShooterCANTalon3;
+    //public static CANTalon shooterSubsystemShooterCANTalon3;
     public static SpeedController shooterSubsystemShooterImpellerTalon;
     public static SpeedController gearSubsystemLeftRightTalon;
     public static SpeedController gearSubsystemTiltTalon;
@@ -116,8 +116,8 @@ public class RobotMap {
         shooterSubsystemShooterCANTalon2 = new CANTalon(2);
         LiveWindow.addActuator("ShooterSubsystem", "Shooter CAN Talon 2", shooterSubsystemShooterCANTalon2);
         
-        shooterSubsystemShooterCANTalon3 = new CANTalon(3);
-        LiveWindow.addActuator("ShooterSubsystem", "Shooter CAN Talon 3", shooterSubsystemShooterCANTalon3);
+        //shooterSubsystemShooterCANTalon3 = new CANTalon(3);
+        //LiveWindow.addActuator("ShooterSubsystem", "Shooter CAN Talon 3", shooterSubsystemShooterCANTalon3);
         
         shooterSubsystemShooterImpellerTalon = new Spark(6);
         LiveWindow.addActuator("ShooterSubsystem", "Shooter Impeller Talon", (Spark) shooterSubsystemShooterImpellerTalon);

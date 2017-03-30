@@ -330,7 +330,7 @@ public class Robot extends IterativeRobot {
 		robotDataLogger.addDataProvider("robotModeInt", () -> currentRobotMode.ordinal());
 		robotDataLogger.addDataProvider("batteryVoltage", () -> f2(driverStation.getBatteryVoltage()));
 
-		if (false && pdpIsPresent) {
+		if (pdpIsPresent) {
 			robotDataLogger.addDataProvider("pdp.totalCurrent", () -> f2(powerDistributionPanel.getTotalCurrent()));
 			robotDataLogger.addDataProvider("pdp.totalPower", () -> f2(powerDistributionPanel.getTotalPower()));
 			robotDataLogger.addDataProvider("pdp.totalEnergy", () -> f2(powerDistributionPanel.getTotalEnergy()));
@@ -356,10 +356,10 @@ public class Robot extends IterativeRobot {
 			robotDataLogger.addDataProvider("shooter.t2.voltage", () -> f2(RobotMap.shooterSubsystemShooterCANTalon2.getOutputVoltage()));
 		}
 
-		if (canDeviceFinder.isSRXPresent(RobotMap.shooterSubsystemShooterCANTalon3)) {
-			robotDataLogger.addDataProvider("shooter.t3.current", () -> f2(RobotMap.shooterSubsystemShooterCANTalon3.getOutputCurrent()));
-			robotDataLogger.addDataProvider("shooter.t3.voltage", () -> f2(RobotMap.shooterSubsystemShooterCANTalon3.getOutputVoltage()));
-		}
+//		if (canDeviceFinder.isSRXPresent(RobotMap.shooterSubsystemShooterCANTalon3)) {
+//			robotDataLogger.addDataProvider("shooter.t3.current", () -> f2(RobotMap.shooterSubsystemShooterCANTalon3.getOutputCurrent()));
+//			robotDataLogger.addDataProvider("shooter.t3.voltage", () -> f2(RobotMap.shooterSubsystemShooterCANTalon3.getOutputVoltage()));
+//		}
 		
 		robotDataLogger.addDataProvider("bi.accel.x", () -> f2(builtinAccelerometer.getX()));
 		robotDataLogger.addDataProvider("bi.accel.y", () -> f2(builtinAccelerometer.getY()));
