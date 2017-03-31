@@ -20,7 +20,7 @@ public class AutoGearMiddleCommand extends CommandGroup {
         // Command1 and Command2 will run in parallel.
     	addSequential(new AutoShiftDownCommand());
     	addSequential(new CloseGearSupportCommand(), .25);
-    	addSequential(new ScoreGearFromPointSenecaCommand(),4);
+    	addSequential(new ScoreGearFromMiddleCommand(),4);
     	
         // A command group will require all of the subsystems that each member
         // would require.

@@ -37,15 +37,10 @@ public class AutoPlungeGearCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(timer.get() > .75){
-        	logger.info("Retracting gear");
-    		Robot.gearSubsystem.retractGearPlunger();
-    	}
-    	else if(timer.get() > .35){
-        	logger.info("PLunging gear");
+    	
     	Robot.gearSubsystem.plungeGear();
 //    	Robot.driveSubsystem.setDriveForward(0, 0);
-    	}
+
     	
     	
     }

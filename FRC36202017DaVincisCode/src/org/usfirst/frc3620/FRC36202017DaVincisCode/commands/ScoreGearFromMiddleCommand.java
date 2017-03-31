@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutoBackUpAndShootLeftCommand extends CommandGroup {
+public class ScoreGearFromMiddleCommand extends CommandGroup {
 
-    public AutoBackUpAndShootLeftCommand() {
+    public ScoreGearFromMiddleCommand() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -15,13 +15,10 @@ public class AutoBackUpAndShootLeftCommand extends CommandGroup {
 
         // To run multiple commands at the same time,
         // use addParallel()
-        // e.g. addParallel(new Command1());
-        //      addSequential(new Command2());
+        addParallel(new ShiftGearToPegCommand());
+        addSequential(new ScoreGearDirectCommand());
         // Command1 and Command2 will run in parallel.
-    	addParallel(new AutoRunShooterCommand());
-    	addSequential(new AutoBackUpFromPegCommand());
-    	addSequential(new AutomatedTurnCommand(60));
-    	addSequential(new FeedShooterCommand());
+
         // A command group will require all of the subsystems that each member
         // would require.
         // e.g. if Command1 requires chassis, and Command2 requires arm,

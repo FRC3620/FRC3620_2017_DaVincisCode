@@ -261,17 +261,16 @@ public class GearSubsystem extends Subsystem {
 		if(isBlobThere()){
 			
 			if(gearIsAligned()){
-				System.out.println("Gear is Aligned");
 				SmartDashboard.putBoolean("Gear Is Aligned", true);
 				slideMotor(0);
 			}
 			else if(xOffset()<0){
 				SmartDashboard.putBoolean("Gear Is Aligned", false);
-				slideMotor(.3);
+				slideMotor(.4);
 			}
 			else if(xOffset()>0){
 				SmartDashboard.putBoolean("Gear Is Aligned", false);
-				slideMotor(-.3);
+				slideMotor(-.4);
 			}
 			
 		}
@@ -283,7 +282,7 @@ public class GearSubsystem extends Subsystem {
 	}
 	
 	public boolean gearIsAligned(){
-		if (Math.abs(xOffset())<4){
+		if (Math.abs(xOffset())<5){
 			return true;
 		}
 		else{
@@ -303,6 +302,8 @@ public class GearSubsystem extends Subsystem {
     }
     
     public void updateDashboard() {
+    	SmartDashboard.putBoolean("Left Limit", isLeftLimitSwitchDown());
+    	SmartDashboard.putBoolean("Right Limit", isRightLimitSwitchDown());
     	SmartDashboard.putNumber("Alignment", getAlignment());
     	SmartDashboard.putNumber("PegCenter", getPegLocation());
     	SmartDashboard.putNumber("X Offset", xOffset());

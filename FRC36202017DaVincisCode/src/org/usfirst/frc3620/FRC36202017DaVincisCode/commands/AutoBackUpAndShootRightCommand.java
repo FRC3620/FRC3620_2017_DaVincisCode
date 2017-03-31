@@ -20,7 +20,7 @@ public class AutoBackUpAndShootRightCommand extends CommandGroup {
         // Command1 and Command2 will run in parallel.
     	addParallel(new AutoRunShooterCommand());
     	addSequential(new AutoBackUpFromPegCommand());
-    	addSequential(new AutomatedTurnCommand(-33));
+    	addSequential(new AutomatedTurnCommand(-60));
     	addSequential(new FeedShooterCommand());
         // A command group will require all of the subsystems that each member
         // would require.

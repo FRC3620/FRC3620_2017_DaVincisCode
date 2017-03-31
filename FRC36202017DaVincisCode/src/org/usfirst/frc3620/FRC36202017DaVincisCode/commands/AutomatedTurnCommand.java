@@ -59,6 +59,7 @@ public class AutomatedTurnCommand extends Command implements PIDOutput{
     	pidTurn.reset();
     	pidTurn.setAbsoluteTolerance(10.0);
     	pidTurn.enable();
+    	pidTurn.setOutputRange(-0.85, 0.85);
     	
     }
 

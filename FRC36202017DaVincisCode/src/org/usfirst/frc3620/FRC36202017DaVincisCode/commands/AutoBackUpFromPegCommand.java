@@ -1,5 +1,7 @@
 package org.usfirst.frc3620.FRC36202017DaVincisCode.commands;
 
+import org.usfirst.frc3620.FRC36202017DaVincisCode.Robot;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -18,7 +20,10 @@ public class AutoBackUpFromPegCommand extends CommandGroup {
         // e.g. addParallel(new Command1());
         //      addSequential(new Command2());
         // Command1 and Command2 will run in parallel.
+    	addSequential(new AutonomousDoNothingCommand(),.75);
     	addSequential(new AutomatedMoveTimedCommand(1, -.75));
+    	addSequential(new RetractPlungerCommand());
+    	
 
     	
         // A command group will require all of the subsystems that each member
