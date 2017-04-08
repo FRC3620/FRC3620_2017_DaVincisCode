@@ -79,11 +79,12 @@ public class DriveSubsystem extends Subsystem {
 	}
 
 	public boolean weAreInReverse = false;
+	
+	public boolean weAreInHighGear = false;
 
 	public void runWinch(double winchPower) {
 		robotDrive.tankDrive(0, winchPower);
 		fixThirdMotor();
-
 	}
 
 	public void driveManually(double move, double rotate) {
@@ -127,10 +128,12 @@ public class DriveSubsystem extends Subsystem {
 
 	public void shiftIntoHighGear() {
 		shifterSolenoid.set(Value.kForward);
+		weAreInHighGear = true;
 	}
 
 	public void shiftIntoLowGear() {
 		shifterSolenoid.set(Value.kReverse);
+		weAreInHighGear = false;
 	}
 
 	public void processRobotModeChange(RobotMode robotMode) {
