@@ -38,7 +38,7 @@ public class DriveCommand extends Command {
     protected void initialize() {
     	logger.info("DriveCommand start");
     	slewRateLimiter.setFirstTime();
-    	slewRateLimiter.setMaxSlew(2);
+    	slewRateLimiter.setMaxSlew(4);
     }
 
     // Called repeatedly when this Command is scheduled to run
