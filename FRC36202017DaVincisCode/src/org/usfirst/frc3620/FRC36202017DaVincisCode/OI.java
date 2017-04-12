@@ -70,6 +70,7 @@ public class OI {
     public DPad dropGearPickUpButton;
     public DPad liftGearPickUpButton;
     public TriggerButton runIntakeButton;
+    public TriggerButton releaseIntakeButton;
     public JoystickButton senecaLane3Button;
     
     public Joystick operatorJoystick;
@@ -118,10 +119,14 @@ public class OI {
         feedShooterButton.whileHeld(new FeedShooterCommand());
         
         runIntakeButton = new TriggerButton(operatorJoystick, false, .2);
-        runIntakeButton.whenPressed(new RunIntakeCommand());
+        runIntakeButton.whileHeld(new RunIntakeCommand());
         
-        liftGearPickUpButton = new DPad(operatorJoystick, 0); 
-        liftGearPickUpButton.up();
+        releaseIntakeButton = new TriggerButton(operatorJoystick, true, .2);
+        releaseIntakeButton.whileHeld(new ReleaseGearCommand());
+        
+        operatorDpad.up().whenActive(new PickUpLiftCommand());
+             
+        operatorDpad.down().whenActive(new PickUpDropCommand());
         
         // SmartDashboard Buttons
         SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
