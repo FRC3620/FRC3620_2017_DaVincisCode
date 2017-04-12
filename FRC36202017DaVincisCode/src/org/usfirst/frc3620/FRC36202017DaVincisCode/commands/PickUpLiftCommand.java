@@ -1,32 +1,31 @@
 package org.usfirst.frc3620.FRC36202017DaVincisCode.commands;
 
+import org.slf4j.Logger;
 import org.usfirst.frc3620.FRC36202017DaVincisCode.Robot;
-import org.usfirst.frc3620.FRC36202017DaVincisCode.subsystems.IntakeSubsystem;
+import org.usfirst.frc3620.logger.EventLogging;
+import org.usfirst.frc3620.logger.EventLogging.Level;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class RunIntakeCommand extends Command {
+public class PickUpLiftCommand extends Command {
+	Logger logger = EventLogging.getLogger(getClass(), Level.INFO);
 
-	Timer timer = new Timer();
-	
-    public RunIntakeCommand() {
+    public PickUpLiftCommand() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.intakeSubsystem);
+        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	logger.info("Lifting Gear Pickup");
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intakeSubsystem.runIntakeMotor(0.85);
-    	
-    	
+    	Robot.intakeSubsystem.liftGearPickup();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -36,8 +35,6 @@ public class RunIntakeCommand extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.intakeSubsystem.stopIntakeMotor();
-    	
     }
 
     // Called when another command which requires one or more of the same
