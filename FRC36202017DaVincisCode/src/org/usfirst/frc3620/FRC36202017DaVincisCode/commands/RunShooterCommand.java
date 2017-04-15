@@ -50,8 +50,8 @@ public class RunShooterCommand extends Command {
     	Robot.shooterSubsystem.updatePIDFromDashboard();
     	logger.info("RunshooterCommand start");
 
-    	shooterSpeed = edu.wpi.first.wpilibj.Preferences.getInstance().getDouble("Shooter Speed", 3000);
-    	//shooterSpeed =3000;
+    	//shooterSpeed = edu.wpi.first.wpilibj.Preferences.getInstance().getDouble("Shooter Speed", 3000);
+    	shooterSpeed =2500;
     	SmartDashboard.putNumber("ShooterSpeed", shooterSpeed);
     }
 

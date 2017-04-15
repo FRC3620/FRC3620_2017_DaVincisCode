@@ -47,7 +47,7 @@ public class AutoPlungeGearCommand extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return timer.hasPeriodPassed(1);
+    	return timer.hasPeriodPassed(.5);
     }
 
     // Called once after isFinished returns true

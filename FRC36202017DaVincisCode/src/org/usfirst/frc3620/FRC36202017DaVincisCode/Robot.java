@@ -166,9 +166,11 @@ public class Robot extends IterativeRobot {
 		beforeGearChooser.addObject("Score Feul", new AutoScoreFeulCommand());
         gearChooser = new AverageSendableChooser();
         gearChooser.addDefault("Do Nothing", new AutonomousBlankCommand());
-        gearChooser.addObject("Right", new AutoGearRightCommand());
+        gearChooser.addObject("Red Right", new AutoGearRightRedCommand());
+        gearChooser.addObject("Blue Right", new AutoGearRightBlueCommand());
         gearChooser.addObject("Middle", new AutoGearMiddleCommand());
-        gearChooser.addObject("Left", new AutoGearLeftCommand());
+        gearChooser.addObject("Red Left", new AutoGearLeftRedCommand());
+        gearChooser.addObject("Blue Left", new AutoGearLeftBlueCommand());
         gearChooser.addObject("DriveForward", new AutoDriveForwardCommand());
         SmartDashboard.putData("Lane chooser", gearChooser);
         afterGearChooser = new AverageSendableChooser();

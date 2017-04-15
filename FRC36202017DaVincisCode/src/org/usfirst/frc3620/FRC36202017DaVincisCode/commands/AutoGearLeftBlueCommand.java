@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutoGearLeftCommand extends CommandGroup {
+public class AutoGearLeftBlueCommand extends CommandGroup {
 
-    public AutoGearLeftCommand() {
+    public AutoGearLeftBlueCommand() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -22,8 +22,8 @@ public class AutoGearLeftCommand extends CommandGroup {
     	addSequential(new AutoShiftDownCommand());
     	addParallel(new CloseGearSupportCommand(), .25);
     	addSequential(new AutomatedMoveCommand(65, .85));
-    	addSequential(new AutomatedTurnCommand(64));
-    	addSequential(new ScoreGearFromPointSenecaCommand(), 6);
+    	addSequential(new AutomatedTurnCommand(62));
+    	addSequential(new ScoreGearFromPointSenecaCommand(), 4);
     	
     	
     	
