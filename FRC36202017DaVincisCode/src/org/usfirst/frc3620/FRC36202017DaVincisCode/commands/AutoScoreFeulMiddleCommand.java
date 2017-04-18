@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutoScoreFeulCommand extends CommandGroup {
+public class AutoScoreFeulMiddleCommand extends CommandGroup {
 
-    public AutoScoreFeulCommand() {
+    public AutoScoreFeulMiddleCommand() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -19,6 +19,8 @@ public class AutoScoreFeulCommand extends CommandGroup {
         //      addSequential(new Command2());
         // Command1 and Command2 will run in parallel.
 
+    	addParallel(new AutoRunShooterCommand(2600));
+    	addSequential(new AutonomousDoNothingCommand(), .5);
     	addSequential(new FeedShooterCommand(),3);
     	
         // A command group will require all of the subsystems that each member
