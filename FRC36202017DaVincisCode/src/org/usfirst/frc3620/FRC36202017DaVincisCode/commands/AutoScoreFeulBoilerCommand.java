@@ -22,6 +22,7 @@ public class AutoScoreFeulBoilerCommand extends CommandGroup {
     	addParallel(new AutoRunShooterCommand(2100));
     	addSequential(new AutonomousDoNothingCommand(), .5);
     	addSequential(new FeedShooterCommand(),3);
+    	addSequential(new AutomatedMoveTimedCommand(.5, -.9));
     	
         // A command group will require all of the subsystems that each member
         // would require.
