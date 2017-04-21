@@ -6,9 +6,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 import org.usfirst.frc3620.FRC36202017DaVincisCode.commands.AutoGearMiddleCommand;
-import org.usfirst.frc3620.FRC36202017DaVincisCode.commands.AutoGearLeftCommand;
+import org.usfirst.frc3620.FRC36202017DaVincisCode.commands.AutoGearLeftRedCommand;
 import org.usfirst.frc3620.FRC36202017DaVincisCode.commands.AutoDriveForwardCommand;
-import org.usfirst.frc3620.FRC36202017DaVincisCode.commands.AutoGearRightCommand;
+import org.usfirst.frc3620.FRC36202017DaVincisCode.commands.AutoGearRightRedCommand;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;

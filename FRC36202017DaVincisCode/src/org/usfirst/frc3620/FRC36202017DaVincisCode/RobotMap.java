@@ -54,6 +54,7 @@ public class RobotMap {
     public static SpeedController gearSubsystemTiltTalon;
     public static DoubleSolenoid gearSubsystemGearPlunger;
     public static DoubleSolenoid intakeSubsystemFloorPickup;
+    public static DoubleSolenoid intakeSubsystemGearClamp;
     public static DigitalInput gearSubsystemGearLimitLeft;
     public static DigitalInput gearSubsystemGearLimitRight;
     public static DigitalInput gearSubsystemGearLimitUp;
@@ -170,5 +171,8 @@ public class RobotMap {
         
         intakeSubsystemFloorPickup = new DoubleSolenoid(1, 0, 1);
         LiveWindow.addActuator("IntakeSubsystem", "Floor Pickup Solenoid", intakeSubsystemFloorPickup);
+        
+        intakeSubsystemGearClamp = new DoubleSolenoid(1, 2, 3);
+        LiveWindow.addActuator("IntakeSubsystem", "Gear Clamp Solenoid", intakeSubsystemGearClamp);
     }
 }

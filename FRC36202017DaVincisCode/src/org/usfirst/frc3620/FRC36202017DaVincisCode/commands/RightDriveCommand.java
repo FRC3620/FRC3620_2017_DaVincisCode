@@ -2,8 +2,6 @@ package org.usfirst.frc3620.FRC36202017DaVincisCode.commands;
 
 import org.slf4j.Logger;
 import org.usfirst.frc3620.FRC36202017DaVincisCode.Robot;
-import org.usfirst.frc3620.FRC36202017DaVincisCode.subsystems.DriveSubsystem;
-import org.usfirst.frc3620.FRC36202017DaVincisCode.subsystems.GearSubsystem;
 import org.usfirst.frc3620.logger.EventLogging;
 import org.usfirst.frc3620.logger.EventLogging.Level;
 
@@ -13,56 +11,49 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class AutoPlungeGearCommand extends Command {
+public class RightDriveCommand extends Command {
+	
+	Timer timer = new Timer();
+	Logger logger = EventLogging.getLogger(getClass(), Level.INFO);
+	
+	double howLongWeWantToMove;
+	double howFastWeWantToMove;
 
-    public AutoPlungeGearCommand() {
+    public RightDriveCommand(double howLong, double howFast) {
+    	requires(Robot.driveSubsystem);
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.gearSubsystem);
-        requires(Robot.driveSubsystem);
+        // eg. requires(chassis);
+    	howLongWeWantToMove = howLong;
+    	howFastWeWantToMove = howFast;
     }
 
-    Timer timer = new Timer();
-    Logger logger = EventLogging.getLogger(getClass(), Level.INFO);
-    
     // Called just before this Command runs the first time
     protected void initialize() {
     	timer.reset();
     	timer.start();
-    	Robot.gearSubsystem.extendGearSupport();
-    	Robot.gearSubsystem.retractGearPlunger();
-    	logger.info("AutoPlungerGear initialize()");
-    	System.out.println(timer.get()
-    			);
+    	logger.info("Moving right side");
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
-    	Robot.gearSubsystem.plungeGear();
-//    	Robot.driveSubsystem.setDriveForward(0, 0);
-
-    	
-    	
+    	Robot.driveSubsystem.runRightSide(howFastWeWantToMove);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return timer.hasPeriodPassed(.5);
+        logger.info("Ending right drive");
+    	return timer.get()>howLongWeWantToMove;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	logger.info("AutoPlungerGear end()");
-    	timer.stop();
-    	timer.reset();
-    	Robot.gearSubsystem.stopGearPlunger();
-    	Robot.gearSubsystem.stopGearSupport();
+    	Robot.driveSubsystem.stopDrivingNow();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	logger.info("AutoPlungerGear interrupted()");
     	end();
     }
 }

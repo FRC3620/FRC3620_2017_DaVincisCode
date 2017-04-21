@@ -27,7 +27,7 @@ public class DriveCommand extends Command {
 	Logger logger = EventLogging.getLogger(getClass(), Level.INFO);
 	SlewRateLimiter slewRateLimiter = new SlewRateLimiter();
     
-	
+	double maxSlew=3;
 	
 	public DriveCommand() {
 
@@ -38,7 +38,8 @@ public class DriveCommand extends Command {
     protected void initialize() {
     	logger.info("DriveCommand start");
     	slewRateLimiter.setFirstTime();
-    	slewRateLimiter.setMaxSlew(4);
+    	slewRateLimiter.setMaxSlew(maxSlew);
+    	logger.info("Slew rate: {}", maxSlew);
     }
 
     // Called repeatedly when this Command is scheduled to run

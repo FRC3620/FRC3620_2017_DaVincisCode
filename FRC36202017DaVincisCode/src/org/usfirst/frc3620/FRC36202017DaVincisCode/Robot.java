@@ -163,23 +163,27 @@ public class Robot extends IterativeRobot {
 	public static void loadAutoChooser() {
 		beforeGearChooser = new AverageSendableChooser();
 		beforeGearChooser.addDefault("Do Nothing", new AutonomousBlankCommand());
-		beforeGearChooser.addObject("Score Feul", new AutoScoreFeulCommand());
+		beforeGearChooser.addObject("Score Feul Boiler Side", new AutoScoreFeulBoilerCommand());
+		beforeGearChooser.addObject("Score Feul Middle", new AutoScoreFeulMiddleCommand());
+		beforeGearChooser.addObject("Score Feul Hopper Side", new AutoScoreFeulHopperCommand());
         gearChooser = new AverageSendableChooser();
         gearChooser.addDefault("Do Nothing", new AutonomousBlankCommand());
-        gearChooser.addObject("Right", new AutoGearRightCommand());
+        gearChooser.addObject("Red Right", new AutoGearRightRedCommand());
+        gearChooser.addObject("Blue Right", new AutoGearRightBlueCommand());
         gearChooser.addObject("Middle", new AutoGearMiddleCommand());
-        gearChooser.addObject("Left", new AutoGearLeftCommand());
+        gearChooser.addObject("Red Left", new AutoGearLeftRedCommand());
+        gearChooser.addObject("Blue Left", new AutoGearLeftBlueCommand());
         gearChooser.addObject("DriveForward", new AutoDriveForwardCommand());
         SmartDashboard.putData("Lane chooser", gearChooser);
         afterGearChooser = new AverageSendableChooser();
         afterGearChooser.addDefault("Do Nothing", new AutonomousDoNothingCommand());
         afterGearChooser.addObject("Back Up", new AutoBackUpFromPegCommand());
-        afterGearChooser.addObject("Score From Boiler Left", new AutoScoreFromBoilerLeftCommand());
-        afterGearChooser.addObject("Score From Boiler Right", new AutoScoreFromBoilerRightCommand());
+        afterGearChooser.addObject("Red Shot", new AutoScoreFromBoilerRightCommand());
+        afterGearChooser.addObject("Blue Shot", new AutoScoreFromBoilerLeftCommand());
         afterGearChooser.addObject("Move Down Field Left", new AutoMoveDownFieldLeftCommand());
         afterGearChooser.addObject("Move Down Field Right", new AutoMoveDownFieldRightCommand());
-        afterGearChooser.addObject("Shoot From Middle Right", new AutoBackUpAndShootRightCommand());
-        afterGearChooser.addObject("Shoot From Middle Left", new AutoBackUpAndShootLeftCommand());
+        afterGearChooser.addObject("Middle Red Shot", new AutoBackUpAndShootRightCommand());
+        afterGearChooser.addObject("Middle Blue Shot", new AutoBackUpAndShootLeftCommand());
         
 	}
 	/**

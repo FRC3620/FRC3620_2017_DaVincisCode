@@ -125,6 +125,16 @@ public class DriveSubsystem extends Subsystem {
 		motorpower = leftDriveMotor1.get();
 		leftDriveMotor3.set(motorpower);
 	}
+	
+	public void runLeftSide(double power){
+		robotDrive.tankDrive(-power, 0);
+		fixThirdMotor();
+	}
+	
+	public void runRightSide(double power){
+		robotDrive.tankDrive(0, -power);
+		fixThirdMotor();
+	}
 
 	public void shiftIntoHighGear() {
 		shifterSolenoid.set(Value.kForward);
