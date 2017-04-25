@@ -11,41 +11,37 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class PickUpDropCommand extends Command {
-	Logger logger = EventLogging.getLogger(getClass(), Level.INFO);
-	 Timer timer = new Timer();
+public class UnclampGearCommand extends Command {
 
-    public PickUpDropCommand() {
+	Timer timer = new Timer();
+	Logger logger = EventLogging.getLogger(getClass(), Level.INFO);
+	
+    public UnclampGearCommand() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+        requires(Robot.intakeSubsystem);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	logger.info("unclamp gear");
     	timer.reset();
     	timer.start();
-    	logger.info("Dropping Gear Pickup");
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(timer.get()>.5){
-    		Robot.intakeSubsystem.dropGearPickup();	
-    	}
-    	else if(timer.get()>.1){
-    		Robot.intakeSubsystem.unclampGear();
-    	}
-    	
+    	Robot.intakeSubsystem.unclampGear();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return timer.hasPeriodPassed(.85);
+//        return timer.get()>.5;
+    	return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	timer.stop();
+    	Robot.intakeSubsystem.clampGear();
     }
 
     // Called when another command which requires one or more of the same

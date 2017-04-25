@@ -71,7 +71,8 @@ public class OI {
     public DPad liftGearPickUpButton;
     public TriggerButton runIntakeButton;
     public TriggerButton releaseIntakeButton;
-    public JoystickButton senecaLane3Button;
+    public JoystickButton gearPickUpToggleButton;
+    public JoystickButton unclampGearButton;
     
     public Joystick operatorJoystick;
 
@@ -117,14 +118,14 @@ public class OI {
         
         feedShooterButton = new JoystickButton(operatorJoystick, 3);
         feedShooterButton.whileHeld(new FeedShooterCommand());
+                
+        gearPickUpToggleButton = new JoystickButton(operatorJoystick, 5);
+        gearPickUpToggleButton.toggleWhenPressed(new PickUpLiftCommand());
         
-        runIntakeButton = new TriggerButton(operatorJoystick, false, .2);
-        runIntakeButton.whileHeld(new RunIntakeCommand());
+        unclampGearButton = new JoystickButton(operatorJoystick, 6);
+        unclampGearButton.toggleWhenPressed(new UnclampGearCommand());
         
-        releaseIntakeButton = new TriggerButton(operatorJoystick, true, .2);
-        releaseIntakeButton.whileHeld(new ReleaseGearCommand());
-        
-        operatorDpad.up().whenActive(new PickUpLiftCommand());
+        operatorDpad.up().whenActive(new ClampGearCommand());
              
         operatorDpad.down().whenActive(new PickUpDropCommand());
         

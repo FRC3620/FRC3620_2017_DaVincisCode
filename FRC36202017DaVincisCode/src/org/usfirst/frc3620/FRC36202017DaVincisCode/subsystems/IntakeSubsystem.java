@@ -92,6 +92,10 @@ public class IntakeSubsystem extends Subsystem {
     public void unclampGear(){
     	gearClamp.set(Value.kReverse);
     }
+    public void stopGearClamp(){
+    	gearClamp.set(Value.kOff);
+    	
+    }
     public boolean isGearIn(){
     	return gearSensor.get();
     }

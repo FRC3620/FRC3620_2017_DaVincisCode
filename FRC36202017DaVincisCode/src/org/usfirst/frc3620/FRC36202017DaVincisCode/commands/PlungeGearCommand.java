@@ -24,6 +24,8 @@ public class PlungeGearCommand extends Command {
     protected void initialize() {
     	timer.reset();
     	timer.start();
+    	Robot.intakeSubsystem.dropGearPickup();
+    	Robot.intakeSubsystem.unclampGear();
     	Robot.gearSubsystem.extendGearSupport();
     	Robot.gearSubsystem.retractGearPlunger();
     	System.out.println(timer.get()
@@ -40,6 +42,7 @@ public class PlungeGearCommand extends Command {
     		Robot.gearSubsystem.retractGearPlunger();
     	}
     	else if(timer.get() > .25){
+    	
     	Robot.gearSubsystem.plungeGear();
 //    	Robot.driveSubsystem.setDriveForward(0, 0);
     	}
@@ -56,6 +59,7 @@ public class PlungeGearCommand extends Command {
     protected void end() {
     	timer.stop();
     	timer.reset();
+    
     	Robot.gearSubsystem.stopGearPlunger();
     	Robot.gearSubsystem.stopGearSupport();
     }
