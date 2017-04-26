@@ -288,12 +288,12 @@ public class GearSubsystem extends Subsystem {
     }
     
     public void updateDashboard() {
-    	SmartDashboard.putBoolean("Left Limit", isLeftLimitSwitchDown());
-    	SmartDashboard.putBoolean("Right Limit", isRightLimitSwitchDown());
-    	SmartDashboard.putNumber("Alignment", getAlignment());
-    	SmartDashboard.putNumber("PegCenter", getPegLocation());
+    	SmartDashboard.putBoolean("Left Gear Limit", isLeftLimitSwitchDown());
+    	SmartDashboard.putBoolean("Right Gear Limit", isRightLimitSwitchDown());
+//    	SmartDashboard.putNumber("Alignment", getAlignment());
+//    	SmartDashboard.putNumber("PegCenter", getPegLocation());
     	SmartDashboard.putNumber("X Offset", xOffset());
-    	SmartDashboard.putNumber("BlobCount", getBlobCount());
+//    	SmartDashboard.putNumber("BlobCount", getBlobCount());
     	
     }
 }

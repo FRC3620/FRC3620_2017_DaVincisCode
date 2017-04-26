@@ -352,12 +352,12 @@ public class DriveSubsystem extends Subsystem {
 				leftEncoder.getDistance());
 		SmartDashboard.putNumber("Drive Encoder Right",
 				rightEncoder.getDistance());
-		SmartDashboard.putNumber("Right Motor 1", rightDriveMotor1.get());
-		SmartDashboard.putNumber("Right Motor 2", rightDriveMotor2.get());
-		SmartDashboard.putNumber("Right Motor 3", rightDriveMotor3.get());
-		SmartDashboard.putNumber("Left Motor 1", leftDriveMotor1.get());
-		SmartDashboard.putNumber("Left Motor 2", leftDriveMotor2.get());
-		SmartDashboard.putNumber("Left Motor 3", leftDriveMotor3.get());
+//		SmartDashboard.putNumber("Right Motor 1", rightDriveMotor1.get());
+//		SmartDashboard.putNumber("Right Motor 2", rightDriveMotor2.get());
+//		SmartDashboard.putNumber("Right Motor 3", rightDriveMotor3.get());
+//		SmartDashboard.putNumber("Left Motor 1", leftDriveMotor1.get());
+//		SmartDashboard.putNumber("Left Motor 2", leftDriveMotor2.get());
+//		SmartDashboard.putNumber("Left Motor 3", leftDriveMotor3.get());
 		SmartDashboard.putNumber("Proximity in Inches", getRangeInInches());
 		SmartDashboard.putNumber("NavX angle", ahrs.getAngle());
 		
@@ -367,14 +367,14 @@ public class DriveSubsystem extends Subsystem {
 
 	public void updateDashboardWithPidStuff(Command who, PIDController pid,
 			double sidestick) {
-		SmartDashboard.putString("PID Command", who.getName());
-		SmartDashboard.putNumber("PID P", pid.getP());
-		SmartDashboard.putNumber("PID I", pid.getI());
-		SmartDashboard.putNumber("PID D", pid.getD());
-
-		SmartDashboard.putNumber("PID Turn Sidestick", sidestick);
-		SmartDashboard.putNumber("PID Angle Setpoint", pid.getSetpoint());
-		SmartDashboard.putNumber("PID Angle Error", pid.getError());
+//		SmartDashboard.putString("PID Command", who.getName());
+//		SmartDashboard.putNumber("PID P", pid.getP());
+//		SmartDashboard.putNumber("PID I", pid.getI());
+//		SmartDashboard.putNumber("PID D", pid.getD());
+//
+//		SmartDashboard.putNumber("PID Turn Sidestick", sidestick);
+//		SmartDashboard.putNumber("PID Angle Setpoint", pid.getSetpoint());
+//		SmartDashboard.putNumber("PID Angle Error", pid.getError());
 
 		SmartDashboard.putNumber("ActualHeading", getAngle());
 		SmartDashboard.putNumber("DesiredHeading", getAutomaticHeading());
